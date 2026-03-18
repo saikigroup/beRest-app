@@ -186,7 +186,7 @@ export function generateInvitationHTML(params: {
         ` : ""}
 
         <div style="margin-top:40px;opacity:0.4;font-size:11px;">
-          <p>Dibuat dengan Apick</p>
+          <p>Dibuat dengan apick</p>
         </div>
       </div>
     </body>

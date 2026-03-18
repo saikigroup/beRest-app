@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Apick - Life, well arranged",
-  description: "Platform pengelolaan warga, usaha, sewa, dan hajatan",
+  title: "apick - Life, well arranged",
+  description: "1 app untuk kelola usaha, properti sewa, organisasi warga, dan hajatan. Simpel, gratis, dibuat untuk Indonesia.",
 };
 
 export default function RootLayout({

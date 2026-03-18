@@ -24,7 +24,7 @@ export function UpgradeModal({ visible, onClose, currentTier, featureName }: Upg
   const upgradeTiers = tiers.filter((t) => tiers.indexOf(t) > tiers.indexOf(currentTier));
 
   return (
-    <Modal visible={visible} onClose={onClose} title="Upgrade Apick">
+    <Modal visible={visible} onClose={onClose} title="Upgrade apick">
       {featureName && (
         <Text className="text-sm text-grey-text mb-3">
           Fitur &quot;{featureName}&quot; membutuhkan paket lebih tinggi.

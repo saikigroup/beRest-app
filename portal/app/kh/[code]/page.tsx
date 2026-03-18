@@ -104,7 +104,7 @@ export default async function TenantPortalPage({ params }: Props) {
           </>
         )}
 
-        <p className="text-center text-xs text-gray-400 mt-8">Dibuat dengan Apick</p>
+        <p className="text-center text-xs text-gray-400 mt-8">Dibuat dengan apick</p>
       </main>
     </>
   );

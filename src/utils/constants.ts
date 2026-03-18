@@ -1,4 +1,4 @@
-export const APP_NAME = "Apick";
+export const APP_NAME = "apick";
 export const APP_TAGLINE = "Life, well arranged.";
 export const APP_SCHEME = "apick";
 export const WEB_DOMAIN = "apick.id";
