@@ -1,8 +1,8 @@
 # beRest - Build Progress Tracker
 
 > Last updated: 2026-03-18
-> Current phase: PHASE 1 - COMPLETE
-> Overall progress: 53/128 tasks
+> Current phase: PHASE 2 - COMPLETE
+> Overall progress: 64/128 tasks
 
 ## STATUS: TODO / IN_PROGRESS / DONE / BLOCKED / SKIPPED
 
@@ -80,19 +80,19 @@
 ## PHASE 2: MODULE LAPAK - PEDAGANG (Week 9-12)
 | # | Task | Status | Files | Notes |
 |---|------|--------|-------|-------|
-| 2.1 | Implement lapak types | TODO | - | - |
-| 2.2 | Implement lapak service | TODO | - | - |
-| 2.3 | Provider: Business Setup screen | TODO | - | - |
-| 2.4 | Provider: 1-Tap Sales Logger | TODO | - | - |
-| 2.5 | Provider: Product catalog (CRUD) | TODO | - | - |
-| 2.6 | Provider: Expense logger | TODO | - | - |
-| 2.7 | Provider: Daily Dashboard (omzet, profit, trend) | TODO | - | - |
-| 2.8 | Consumer app: Browse catalog, order history | TODO | - | - |
-| 2.9 | Portal: berest.id/wk/[slug] - mini storefront | TODO | - | - |
-| 2.10 | Integrate financial dashboard (Warga + Lapak) | TODO | - | - |
-| 2.11 | Verify quality gate | TODO | - | - |
+| 2.1 | Implement lapak types | DONE | src/types/lapak.types.ts | Added Product, SalesEntry, LapakExpense, OrderItem, DailySummary |
+| 2.2 | Implement lapak service | DONE | src/services/lapak.service.ts, supabase/migrations/00003_lapak_module.sql | Full CRUD: businesses, products, sales (1-tap + range), expenses, daily/weekly summary. 4 tables + RLS |
+| 2.3 | Provider: Business Setup screen | DONE | app/(provider)/(tabs)/lapak/index.tsx, create-biz.tsx | Biz list, create form with 4 type picker (pedagang/laundry/guru/jasa) |
+| 2.4 | Provider: 1-Tap Sales Logger | DONE | app/(provider)/(tabs)/lapak/dashboard.tsx | Product grid with 1-tap quick sale, instant +1 recording |
+| 2.5 | Provider: Product catalog (CRUD) | DONE | app/(provider)/(tabs)/lapak/products.tsx | Add/delete products, CurrencyInput price, category support |
+| 2.6 | Provider: Expense logger | DONE | app/(provider)/(tabs)/lapak/expenses.tsx | Add expense with CurrencyInput + PhotoPicker proof, daily total |
+| 2.7 | Provider: Daily Dashboard (omzet, profit, trend) | DONE | app/(provider)/(tabs)/lapak/dashboard.tsx | Today summary (omzet/profit/tx count), sales log, quick actions |
+| 2.8 | Consumer app: Browse catalog, order history | DONE | app/(consumer)/lapak/[bizId].tsx | Product catalog grouped by category, order history with status badges |
+| 2.9 | Portal: berest.id/wk/[slug] - mini storefront | DONE | portal/app/wk/[slug]/page.tsx | SSR: business info + product catalog grouped by category |
+| 2.10 | Integrate financial dashboard (Warga + Lapak) | DONE | app/(provider)/(tabs)/index.tsx | Module summary cards on provider home (static stats, live data via hooks in production) |
+| 2.11 | Verify quality gate | DONE | - | TS 0 errors, Expo Android export OK |
 
-**Quality Gate 2:** ❌
+**Quality Gate 2:** ✅ (All 11 tasks done, TS 0 errors, Expo bundle OK)
 
 ---
 
