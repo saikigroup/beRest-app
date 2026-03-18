@@ -114,7 +114,7 @@ export default async function StorefrontPage({ params }: Props) {
         )}
 
         <p className="text-center text-xs text-gray-400 mt-8">
-          Dibuat dengan Apick
+          Dibuat dengan apick
         </p>
       </main>
     </>

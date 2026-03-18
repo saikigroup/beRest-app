@@ -175,7 +175,7 @@ export default async function InfaqReportPage({ searchParams }: Props) {
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-8">
-          Dibuat dengan Apick • {new Date().toLocaleDateString("id-ID")}
+          Dibuat dengan apick • {new Date().toLocaleDateString("id-ID")}
         </p>
       </main>
     </>

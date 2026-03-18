@@ -57,10 +57,10 @@ export function generateConnectionMessage(
   moduleLabel: string
 ): string {
   return (
-    `Halo! Kamu terhubung dengan ${providerName} di Apick.\n\n` +
+    `Halo! Kamu terhubung dengan ${providerName} di apick.\n\n` +
     `Module: ${moduleLabel}\n` +
     `Kode koneksi: *${code}*\n\n` +
-    `Download Apick untuk notifikasi real-time:\n` +
+    `Download apick untuk notifikasi real-time:\n` +
     `https://apick.id/download`
   );
 }
@@ -73,7 +73,7 @@ export function generateReportMessage(
   return (
     `📊 Laporan Keuangan ${orgName}\n\n` +
     `Lihat laporan lengkap:\n${reportUrl}\n\n` +
-    `Dibuat dengan Apick`
+    `Dibuat dengan apick`
   );
 }
 
@@ -87,6 +87,6 @@ export function generateInvitationMessage(
     `Kepada Yth. ${guestName},\n\n` +
     `Anda diundang ke acara: *${eventName}*\n\n` +
     `Konfirmasi kehadiran:\n${rsvpUrl}\n\n` +
-    `Dibuat dengan Apick`
+    `Dibuat dengan apick`
   );
 }

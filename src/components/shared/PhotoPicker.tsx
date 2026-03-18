@@ -30,7 +30,7 @@ export function PhotoPicker({
     if (status !== "granted") {
       Alert.alert(
         "Izin Diperlukan",
-        "Izinkan Apick mengakses galeri untuk memilih foto."
+        "Izinkan apick mengakses galeri untuk memilih foto."
       );
       return;
     }
@@ -54,7 +54,7 @@ export function PhotoPicker({
     if (status !== "granted") {
       Alert.alert(
         "Izin Diperlukan",
-        "Izinkan Apick mengakses kamera untuk mengambil foto."
+        "Izinkan apick mengakses kamera untuk mengambil foto."
       );
       return;
     }

@@ -33,7 +33,7 @@ export function SmartBanner() {
   return (
     <div className="bg-[#1B3A5C] text-white flex items-center px-4 py-3 sticky top-0 z-50">
       <div className="flex-1">
-        <div className="font-bold text-sm">Download Apick</div>
+        <div className="font-bold text-sm">Download apick</div>
         <div className="text-white/70 text-xs">
           Notifikasi real-time &amp; semua status di 1 tempat
         </div>

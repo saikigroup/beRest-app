@@ -222,6 +222,9 @@
 | 2026-03-18 | New | src/config/invitation-templates.ts | K6: Invitation templates | 13 templates across all event types + HTML generator |
 | 2026-03-18 | New | src/services/analytics.service.ts | K8: Analytics service | Per-module analytics: lapak/sewa/warga/hajat |
 | 2026-03-18 | New | app/(provider)/analytics.tsx | K8: Analytics UI screen | Metrics per module with trend badges |
+| 2026-03-18 | Rebrand | portal/app/page.tsx | Landing page redesign | Storytelling style, flat vector SVG icons, learn more per module, detailed feature descriptions |
+| 2026-03-18 | Rebrand | portal/app/globals.css | Add animations | fade-up, float animations for landing page |
+| 2026-03-18 | Rebrand | 13+ files | "Apick" → "apick" lowercase | All user-facing text: SmartBanner, footer, WA messages, constants, app config |
 
 ## KNOWN ISSUES
 | # | Issue | Phase | Severity | Status |
@@ -242,8 +245,8 @@
 ## DECISIONS LOG
 | Date | Decision | Reasoning |
 |------|----------|-----------|
-| 2026-03-18 | App name: Apick | "apik" (Javanese: neat, well-arranged). Modern, memorable, scalable. |
-| 2026-03-18 | Module names: Apick Lapak/Sewa/Warga/Hajat | Marketing names. Tab labels: Lapak/Sewa/Warga/Hajat. |
+| 2026-03-18 | App name: apick (lowercase) | "apik" (Javanese: neat, well-arranged). Lowercase branding like modern apps. |
+| 2026-03-18 | Module names: apick lapak/sewa/warga/hajat | Lowercase marketing names. Tab labels: Lapak/Sewa/Warga/Hajat. |
 | 2026-03-18 | AI model: Gemini 2.5 Flash | Gemini 2.0 Flash retired Juni 2026. 2.5 Flash stable, free tier, multimodal. |
 | 2026-03-18 | Consumer dual-access: web + app | Web for first-touch (zero friction), app for repeat users (push notif, dashboard). |
 | 2026-03-18 | URL structure: apick.id/xx/xx | Short 2-letter module codes + slug. Simple, clean. |

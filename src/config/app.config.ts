@@ -1,5 +1,5 @@
 export const APP_CONFIG = {
-  name: "Apick",
+  name: "apick",
   tagline: "Life, well arranged.",
   scheme: "apick",
   webDomain: "apick.id",

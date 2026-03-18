@@ -3,7 +3,7 @@ import { SmartBanner } from "@/components/SmartBanner";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Portal Jamaah - Apick",
+  title: "Portal Jamaah - apick",
   description: "Cek status kontribusi dan informasi mesjid Anda",
 };
 
@@ -233,7 +233,7 @@ export default async function MesjidMemberPage({ params }: Props) {
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-8">
-          Dibuat dengan Apick • {new Date().toLocaleDateString("id-ID")}
+          Dibuat dengan apick • {new Date().toLocaleDateString("id-ID")}
         </p>
       </main>
     </>
