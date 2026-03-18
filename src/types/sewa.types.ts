@@ -96,3 +96,59 @@ export interface Contract {
   status: ContractStatus;
   created_at: string;
 }
+
+// ==================== RENTAL ITEMS ====================
+
+export interface RentalItem {
+  id: string;
+  user_id: string;
+  name: string;
+  description: string | null;
+  photo_url: string | null;
+  daily_rate: number;
+  deposit_amount: number;
+  total_stock: number;
+  available_stock: number;
+  is_active: boolean;
+  created_at: string;
+}
+
+export interface RentalTransaction {
+  id: string;
+  item_id: string;
+  user_id: string;
+  rental_code: string;
+  borrower_name: string;
+  borrower_phone: string | null;
+  consumer_id: string | null;
+  quantity: number;
+  daily_rate: number;
+  deposit_collected: number;
+  start_date: string;
+  expected_return: string | null;
+  actual_return: string | null;
+  return_photo: string | null;
+  status: RentalStatus;
+  total_cost: number | null;
+  notes: string | null;
+  created_at: string;
+}
+
+// ==================== WARGA JADWAL ====================
+
+export type ScheduleType = "piket" | "ronda" | "kebersihan" | "custom";
+
+export interface WargaSchedule {
+  id: string;
+  org_id: string;
+  title: string;
+  type: ScheduleType;
+  date: string;
+  member_id: string;
+  member_name: string;
+  is_swapped: boolean;
+  swap_with_id: string | null;
+  swap_with_name: string | null;
+  notes: string | null;
+  created_at: string;
+}
