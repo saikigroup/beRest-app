@@ -14,7 +14,7 @@ interface SubscriptionLimits {
 
 const TIER_LIMITS: Record<SubscriptionTier, SubscriptionLimits> = {
   free: {
-    maxModules: 2, maxMembers: 30, maxUnits: 5, maxProducts: 20, maxGuests: 100,
+    maxModules: 1, maxMembers: 30, maxUnits: 5, maxProducts: 20, maxGuests: 100,
     canExportPDF: false, canUseAI: false, canUseAdvancedAnalytics: false,
   },
   starter: {

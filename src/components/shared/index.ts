@@ -5,3 +5,4 @@ export { SearchBar } from "./SearchBar";
 export { EmptyState } from "./EmptyState";
 export { SmartBanner } from "./SmartBanner";
 export { RoleSwitcher } from "./RoleSwitcher";
+export { UpgradeModal } from "./UpgradeModal";

@@ -3,6 +3,7 @@ import { router } from "expo-router";
 import type { ModuleKey } from "@app-types/shared.types";
 
 const APICK_HOST = "apick.id";
+const APICK_SCHEME = "apick";
 
 /** Map URL path prefix to module + route */
 const ROUTE_MAP: Record<string, { module: ModuleKey; base: string }> = {
@@ -25,10 +26,19 @@ export function parseDeepLink(url: string): {
   subPath?: string;
 } | null {
   try {
-    const parsed = new URL(url);
-    if (parsed.hostname !== APICK_HOST) return null;
+    let segments: string[];
 
-    const segments = parsed.pathname.split("/").filter(Boolean);
+    // Handle apick:// scheme (e.g., apick://rt/ABC123)
+    if (url.startsWith(`${APICK_SCHEME}://`)) {
+      const path = url.slice(`${APICK_SCHEME}://`.length);
+      segments = path.split("/").filter(Boolean);
+    } else {
+      // Handle https://apick.id/xx/xx
+      const parsed = new URL(url);
+      if (parsed.hostname !== APICK_HOST) return null;
+      segments = parsed.pathname.split("/").filter(Boolean);
+    }
+
     if (segments.length < 2) return null;
 
     const prefix = segments[0];
