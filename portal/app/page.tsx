@@ -256,19 +256,16 @@ function ModuleEditorial({
             style={{ color: mod.color }}
           >
             <span className="border-b border-current pb-0.5">
-              {isExpanded ? "Tutup detail" : "Lihat semua fitur"}
+              Lihat semua fitur
             </span>
             <svg
               width="14"
               height="14"
               viewBox="0 0 14 14"
               fill="none"
-              className={`transition-transform duration-300 ${
-                isExpanded ? "rotate-180" : ""
-              }`}
             >
               <path
-                d="M3 5.5L7 9.5L11 5.5"
+                d="M3 5L7 9L11 5"
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"
@@ -276,37 +273,74 @@ function ModuleEditorial({
               />
             </svg>
           </button>
+        </div>
 
-          {/* Feature grid */}
+        {/* Feature dialog */}
+        {isExpanded && (
           <div
-            className={`overflow-hidden transition-all duration-500 ease-in-out ${
-              isExpanded
-                ? "max-h-[1200px] opacity-100 mt-8"
-                : "max-h-0 opacity-0 mt-0"
-            }`}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={onToggle}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-              {mod.features.map((f) => (
-                <div key={f.num} className="flex gap-4">
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+
+            {/* Dialog */}
+            <div
+              className="relative bg-white rounded-2xl w-full max-w-[640px] max-h-[85vh] overflow-y-auto shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Dialog header */}
+              <div
+                className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-[#E2E8F0] bg-white rounded-t-2xl"
+              >
+                <div className="flex items-center gap-3">
+                  <Icon size={20} />
                   <span
-                    className="text-[13px] font-bold mt-0.5 shrink-0 w-7"
+                    className="text-sm font-bold"
                     style={{ color: mod.color }}
                   >
-                    {f.num}
+                    Fitur {mod.name}
                   </span>
-                  <div>
-                    <h4 className="text-[15px] font-bold text-[#1E293B]">
-                      {f.title}
-                    </h4>
-                    <p className="text-[14px] leading-[1.65] text-[#64748B] mt-1">
-                      {f.desc}
-                    </p>
-                  </div>
                 </div>
-              ))}
+                <button
+                  onClick={onToggle}
+                  className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F1F5F9] transition-colors"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M4 4L12 12M12 4L4 12"
+                      stroke="#64748B"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Dialog content */}
+              <div className="px-6 py-6 flex flex-col gap-6">
+                {mod.features.map((f) => (
+                  <div key={f.num} className="flex gap-4">
+                    <span
+                      className="text-[13px] font-bold mt-0.5 shrink-0 w-7"
+                      style={{ color: mod.color }}
+                    >
+                      {f.num}
+                    </span>
+                    <div>
+                      <h4 className="text-[15px] font-bold text-[#1E293B]">
+                        {f.title}
+                      </h4>
+                      <p className="text-[14px] leading-[1.65] text-[#64748B] mt-1">
+                        {f.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </article>
   );
