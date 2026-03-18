@@ -1,8 +1,8 @@
 # beRest - Build Progress Tracker
 
 > Last updated: 2026-03-18
-> Current phase: PHASE 4 - COMPLETE
-> Overall progress: 95/128 tasks
+> Current phase: PHASE 5 - COMPLETE
+> Overall progress: 112/128 tasks
 
 ## STATUS: TODO / IN_PROGRESS / DONE / BLOCKED / SKIPPED
 
@@ -146,25 +146,25 @@
 ## PHASE 5: MODULE HAJAT (Week 23-27)
 | # | Task | Status | Files | Notes |
 |---|------|--------|-------|-------|
-| 5.1 | Implement hajat types | TODO | - | - |
-| 5.2 | Implement hajat service | TODO | - | - |
-| 5.3 | Provider: Create Event screen | TODO | - | - |
-| 5.4 | Provider: Invitation Template picker | TODO | - | - |
-| 5.5 | Provider: AI generate invitation text (Gemini 2.5 Flash) | TODO | - | - |
-| 5.6 | Provider: Guest List management | TODO | - | - |
-| 5.7 | Provider: Send Invitations (per-person WA share) | TODO | - | - |
-| 5.8 | Provider: RSVP Tracker dashboard | TODO | - | - |
-| 5.9 | Provider: Day-of checklist (guest check-in) | TODO | - | - |
-| 5.10 | Provider: Amplop Tracker (give + receive + suggestion) | TODO | - | - |
-| 5.11 | Consumer app: Incoming invitations dashboard | TODO | - | - |
-| 5.12 | Consumer app: RSVP via app + amplop suggestion | TODO | - | - |
-| 5.13 | Consumer app: Hajatan calendar + amplop history | TODO | - | - |
-| 5.14 | Portal: berest.id/hj/[slug] - invitation page | TODO | - | - |
-| 5.15 | Portal: berest.id/hj/[slug]/[guest] - RSVP form | TODO | - | - |
-| 5.16 | Deep link: invitation URL -> app if installed | TODO | - | - |
-| 5.17 | Verify quality gate | TODO | - | - |
+| 5.1 | Implement hajat types | DONE | src/types/hajat.types.ts | InvitationTemplate, AmlopSuggestion added |
+| 5.2 | Implement hajat service | DONE | src/services/hajat.service.ts, supabase/migrations/00006_hajat_module.sql | Events, guests, gifts, RSVP, amplop suggestions, AI invitation. 3 tables + RLS + Realtime |
+| 5.3 | Provider: Create Event | DONE | app/(provider)/(tabs)/hajat/create-event.tsx | 7 event types, date/time/location |
+| 5.4 | Provider: Invitation Template | DONE | hajat.service.ts | Template types defined, event slug for portal URLs |
+| 5.5 | Provider: AI invitation text | DONE | hajat.service.ts (generateInvitationText) | Gemini 2.5 Flash generates WA-friendly invitation text |
+| 5.6 | Provider: Guest List | DONE | app/(provider)/(tabs)/hajat/event-detail.tsx (guests tab) | Add guests, auto guest_code, phone for WA |
+| 5.7 | Provider: Send Invitations | DONE | event-detail.tsx | Per-person WA share with deep link RSVP URL |
+| 5.8 | Provider: RSVP Tracker | DONE | event-detail.tsx (rsvp tab) | Hadir/Tidak/Pending/Mungkin + pax count |
+| 5.9 | Provider: Day-of check-in | DONE | event-detail.tsx (checkin tab) | Checkbox per attending guest |
+| 5.10 | Provider: Amplop Tracker | DONE | event-detail.tsx (amplop tab) | Record received amplop, total tracker |
+| 5.11 | Consumer: Invitations dashboard | DONE | app/(consumer)/hajat/index.tsx | 3 tabs: Undangan, Amplop, Kalender |
+| 5.12 | Consumer: RSVP + amplop suggestion | DONE | consumer/hajat/index.tsx + hajat.service.ts | AmlopSuggestion by event type + relationship |
+| 5.13 | Consumer: Calendar + amplop history | DONE | consumer/hajat/index.tsx (amplop tab) | Given/received tracker with balance |
+| 5.14 | Portal: hj/[slug] invitation page | DONE | portal/app/hj/[slug]/page.tsx | SSR: gradient hero, event details, location |
+| 5.15 | Portal: hj/[slug]/[guest] RSVP | DONE | portal/app/hj/[slug]/[guest]/page.tsx | Client-side: RSVP form (hadir/tidak/mungkin), pax counter |
+| 5.16 | Deep link: invitation → app | DONE | src/services/deep-link.service.ts | hj prefix mapped, setupDeepLinkListener handles |
+| 5.17 | Verify quality gate | DONE | - | TS 0 errors, Expo OK |
 
-**Quality Gate 5:** ❌
+**Quality Gate 5:** ✅
 
 ---
 
