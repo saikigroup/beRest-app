@@ -31,7 +31,18 @@
     },
     "plugins": [
       "expo-router",
-      "expo-sharing"
-    ]
+      "expo-sharing",
+      [
+        "expo-camera",
+        { "cameraPermission": "Izinkan beRest mengakses kamera untuk scan QR Code dan foto" }
+      ],
+      [
+        "expo-notifications",
+        { "icon": "./assets/notification-icon.png", "color": "#FF4600" }
+      ]
+    ],
+    "extra": {
+      "eas": { "projectId": "berest-app" }
+    }
   }
 }

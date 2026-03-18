@@ -50,6 +50,7 @@ export interface EventGuest {
 export interface GiftRecord {
   id: string;
   user_id: string;
+  event_id: string | null;
   contact_id: string | null;
   person_name: string;
   direction: GiftDirection;
@@ -59,4 +60,21 @@ export interface GiftRecord {
   event_date: string | null;
   notes: string | null;
   created_at: string;
+}
+
+export interface InvitationTemplate {
+  id: string;
+  name: string;
+  event_type: EventType;
+  preview_url: string | null;
+  bg_color: string;
+  text_color: string;
+}
+
+export interface AmlopSuggestion {
+  eventType: EventType;
+  relationship: string;
+  minAmount: number;
+  maxAmount: number;
+  suggested: number;
 }
