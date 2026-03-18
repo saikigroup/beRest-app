@@ -62,8 +62,8 @@ export default function RsvpPage() {
       <div className="px-4 -mt-6">
         <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 text-center">
           <p className="text-sm text-gray-500">📅 {eventDate}</p>
-          {event.event_time && <p className="text-sm text-[#EC4899]">🕐 {event.event_time as string} WIB</p>}
-          {event.location_name && <p className="text-sm font-bold text-gray-900 mt-2">📍 {event.location_name as string}</p>}
+          {event.event_time ? <p className="text-sm text-[#EC4899]">🕐 {String(event.event_time)} WIB</p> : null}
+          {event.location_name ? <p className="text-sm font-bold text-gray-900 mt-2">📍 {String(event.location_name)}</p> : null}
         </div>
 
         {/* RSVP Form */}

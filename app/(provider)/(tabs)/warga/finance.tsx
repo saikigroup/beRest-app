@@ -15,6 +15,7 @@ import {
 } from "@services/warga.service";
 import { shareViaWhatsApp, generateReportMessage } from "@services/wa-share.service";
 import { generateDeepLink } from "@services/deep-link.service";
+import { exportFinancialReport } from "@services/export.service";
 import { useUIStore } from "@stores/ui.store";
 import { formatRupiah, formatDate } from "@utils/format";
 import type { OrgTransaction, TransactionType } from "@app-types/warga.types";
@@ -89,6 +90,15 @@ export default function FinanceScreen() {
     shareViaWhatsApp(message);
   }
 
+  async function handleExportPDF() {
+    try {
+      await exportFinancialReport(orgName ?? "Organisasi", transactions, summary);
+      showToast("PDF berhasil dibuat!", "success");
+    } catch {
+      showToast("Gagal membuat PDF", "error");
+    }
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-light-bg" edges={["top"]}>
       <View className="flex-row items-center justify-between px-4 py-3 border-b border-border-color bg-white">
@@ -100,9 +110,14 @@ export default function FinanceScreen() {
             Keuangan
           </Text>
         </View>
-        <TouchableOpacity onPress={handleShareReport}>
-          <Text className="text-sm text-warga font-bold">Bagikan</Text>
-        </TouchableOpacity>
+        <View className="flex-row items-center">
+          <TouchableOpacity onPress={handleExportPDF} className="mr-4">
+            <Text className="text-sm text-dark-text font-bold">PDF</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleShareReport}>
+            <Text className="text-sm text-warga font-bold">Bagikan</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView className="flex-1 px-4 pt-3">

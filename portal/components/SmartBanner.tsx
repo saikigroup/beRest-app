@@ -7,6 +7,29 @@ export function SmartBanner() {
 
   if (dismissed) return null;
 
+  function handleInstall() {
+    // Try native app first via apick:// scheme, fall back to Play Store
+    const playStoreUrl =
+      "https://play.google.com/store/apps/details?id=com.apick.app";
+    const appSchemeUrl = "apick://home";
+
+    // Try opening native app, fall back to Play Store after timeout
+    const fallbackTimer = setTimeout(() => {
+      window.location.href = playStoreUrl;
+    }, 1500);
+
+    window.location.href = appSchemeUrl;
+
+    // If the app opens, clear the fallback
+    window.addEventListener(
+      "blur",
+      () => {
+        clearTimeout(fallbackTimer);
+      },
+      { once: true }
+    );
+  }
+
   return (
     <div className="bg-[#1B3A5C] text-white flex items-center px-4 py-3 sticky top-0 z-50">
       <div className="flex-1">
@@ -15,12 +38,12 @@ export function SmartBanner() {
           Notifikasi real-time &amp; semua status di 1 tempat
         </div>
       </div>
-      <a
-        href="https://play.google.com/store/apps/details?id=com.apick.app"
+      <button
+        onClick={handleInstall}
         className="bg-[#FF4600] text-white text-xs font-bold px-4 py-2 rounded-lg mr-2 hover:opacity-90"
       >
         Install
-      </a>
+      </button>
       <button
         onClick={() => setDismissed(true)}
         className="text-white/50 text-lg hover:text-white"
