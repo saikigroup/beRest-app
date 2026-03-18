@@ -77,16 +77,16 @@ const modules = [
     persona: "Pak Edi",
     personaRole: "Pedagang Nasi Goreng",
     storyLead: "Tiap malam jualan. Tiap pagi lupa berapa omzet kemarin.",
-    storyBody: "Nota kertas hilang kena minyak. Istri nanya \"untung berapa bulan ini?\" — bingung jawabnya. Bukan karena ga laku, tapi karena ga pernah dicatat bener.",
+    storyBody: "Nota kertas hilang kena minyak. Istri nanya \"untung berapa bulan ini?\", bingung jawabnya. Bukan karena ga laku, tapi karena ga pernah dicatat bener.",
     solutionLead: "Sekarang Pak Edi tap 1 tombol tiap kali ada yang beli.",
     solutionBody: "Malam selesai jualan, langsung keliatan: omzet hari ini, untung bersih, trend mingguan. Semua otomatis. Ga perlu kalkulator.",
     features: [
       { num: "01", title: "1-Tap Catat Jualan", desc: "Ketuk produk, otomatis tercatat. Secepat terima uang, secepat itu nyatatnya." },
       { num: "02", title: "4 Mode Usaha", desc: "Pedagang, laundry (tracking 6 tahap), guru/pelatih (jadwal + billing), jasa antrian. Satu app." },
-      { num: "03", title: "Untung Rugi Otomatis", desc: "Catat pengeluaran, apick hitung profit. Harian, mingguan, bulanan — lengkap dengan grafik." },
+      { num: "03", title: "Untung Rugi Otomatis", desc: "Catat pengeluaran, apick hitung profit. Harian, mingguan, bulanan. Lengkap dengan grafik." },
       { num: "04", title: "Scan Nota AI", desc: "Foto struk belanja bahan, AI langsung baca dan masukkan sebagai pengeluaran. Tanpa ketik." },
       { num: "05", title: "Database Pelanggan", desc: "Data pelanggan terkumpul otomatis. Siapa yang paling sering beli, total belanja berapa." },
-      { num: "06", title: "Web Katalog", desc: "Link apick.id/wk/namalapak — pelanggan bisa lihat menu dan harga dari browser, tanpa install." },
+      { num: "06", title: "Web Katalog", desc: "Link apick.id/wk/namalapak yang bisa dishare. Pelanggan lihat menu dan harga dari browser, tanpa install." },
     ],
   },
   {
@@ -104,7 +104,7 @@ const modules = [
     solutionLead: "Semua status kamar, 1 layar.",
     solutionBody: "Siapa yang udah bayar, siapa yang nunggak, maintenance mana yang belum dikerjain. Reminder otomatis ke anak kos tiap tanggal jatuh tempo.",
     features: [
-      { num: "01", title: "Dashboard Properti", desc: "Kamar terisi, kosong, total pemasukan — semua di 1 layar. Punya 5 properti? Tinggal swipe." },
+      { num: "01", title: "Dashboard Properti", desc: "Kamar terisi, kosong, total pemasukan. Semua di 1 layar. Punya 5 properti? Tinggal swipe." },
       { num: "02", title: "Tagihan Otomatis", desc: "Set jatuh tempo sekali, apick generate tagihan tiap bulan. Penghuni upload bukti bayar dari app." },
       { num: "03", title: "Laporan Maintenance", desc: "Penghuni lapor kerusakan langsung dari app. Masuk ke dashboard dengan priority level." },
       { num: "04", title: "Kontrak Digital", desc: "Template kontrak, isi data penghuni, simpan di vault digital. Ga perlu folder fisik." },
@@ -123,13 +123,13 @@ const modules = [
     persona: "Pak Bambang",
     personaRole: "Bendahara RT, 3 Tahun",
     storyLead: "Tiap bulan nagih iuran door-to-door. Dicatat di buku.",
-    storyBody: "Akhir tahun diminta laporan — harus ngitung ulang dari Januari. Ada warga yang nanya \"duit iuran dipake buat apa?\" dan harus buka-buka buku lagi. Capek, tapi ga enak kalau ga transparan.",
+    storyBody: "Akhir tahun diminta laporan, harus ngitung ulang dari Januari. Ada warga yang nanya \"duit iuran dipake buat apa?\" dan harus buka-buka buku lagi. Capek, tapi ga enak kalau ga transparan.",
     solutionLead: "Semua iuran tercatat digital. Laporan? Share link.",
     solutionBody: "Warga bisa cek status bayar sendiri. Laporan keuangan otomatis update, transparan, ga ada yang curiga. Pak Bambang bisa fokus kerja, bukan ngitung.",
     features: [
-      { num: "01", title: "Organisasi Fleksibel", desc: "RT/RW, pengajian, mesjid, arisan, komunitas — apa aja yang butuh iuran dan anggota." },
+      { num: "01", title: "Organisasi Fleksibel", desc: "RT/RW, pengajian, mesjid, arisan, komunitas. Apa aja yang butuh iuran dan anggota." },
       { num: "02", title: "Catat Iuran 1 Tap", desc: "Checklist siapa yang bayar. Otomatis keliatan yang nunggak. Reminder ke WhatsApp langsung." },
-      { num: "03", title: "Laporan Publik", desc: "Link apick.id/rt/laporan — seluruh warga bisa lihat pemasukan, pengeluaran, saldo. Real-time." },
+      { num: "03", title: "Laporan Publik", desc: "Link apick.id/rt/laporan bisa dibagikan. Seluruh warga lihat pemasukan, pengeluaran, saldo. Real-time." },
       { num: "04", title: "Mode Mesjid", desc: "Catat infaq harian (bisa anonim), fundraising dengan progress bar, laporan infaq publik." },
       { num: "05", title: "Pengumuman", desc: "Buat pengumuman, track siapa yang udah baca. Share ke WhatsApp group juga bisa." },
       { num: "06", title: "Jadwal Piket", desc: "Atur jadwal ronda, piket kebersihan, jadwal imam. Request tukar jadwal, semua tercatat." },
@@ -145,10 +145,10 @@ const modules = [
     headline: "Undang tamu,\ntanpa drama.",
     persona: "Mbak Dina",
     personaRole: "Calon Pengantin",
-    storyLead: "Undangan digital di platform lain — Rp 150.000 untuk 1 template.",
+    storyLead: "Undangan digital di platform lain, Rp 150.000 cuma buat 1 template.",
     storyBody: "Input tamu satu-satu, ga bisa tracking siapa yang konfirmasi. Pas hari H, ngitung amplop manual sambil senyum-senyum ke tamu. Ribet banget padahal harusnya bahagia.",
     solutionLead: "Bikin undangan gratis. Teks dibuatin AI.",
-    solutionBody: "Share ke WhatsApp per orang. Tamu RSVP dari link — tanpa install app. Hari H tinggal checklist kehadiran. Amplop dicatat, total keliatan real-time.",
+    solutionBody: "Share ke WhatsApp per orang. Tamu RSVP dari link, tanpa install app. Hari H tinggal checklist kehadiran. Amplop dicatat, total keliatan real-time.",
     features: [
       { num: "01", title: "7 Jenis Acara", desc: "Nikahan, khitanan, aqiqah, tahlilan, syukuran, ulang tahun, acara custom. Template sesuai." },
       { num: "02", title: "AI Bikin Undangan", desc: "Ketik nama acara + tanggal, AI buatkan teks sopan siap share ke WhatsApp. Tinggal edit." },
@@ -476,7 +476,7 @@ export default function HomePage() {
               <p className="text-[14px] leading-[1.7] text-[#64748B]">
                 1 layar, 1 tugas. Bahasa manusia, bukan bahasa komputer. Tombol
                 gede, tulisan jelas. Dibuat untuk orang yang bukan &ldquo;tech
-                savvy&rdquo; — dan itu bukan masalah.
+                savvy&rdquo;. Dan itu bukan masalah.
               </p>
             </div>
             <div>
@@ -496,7 +496,7 @@ export default function HomePage() {
                 Bisa via browser
               </h3>
               <p className="text-[14px] leading-[1.7] text-[#64748B]">
-                Setiap data bisa di-share via link. Pelanggan, penyewa, warga —
+                Setiap data bisa di-share via link. Pelanggan, penyewa, warga,
                 cukup klik link di WhatsApp. Ga perlu install app, ga perlu
                 daftar. Langsung lihat.
               </p>
