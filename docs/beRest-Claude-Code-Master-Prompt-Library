@@ -1,0 +1,787 @@
+# beRest - Claude Code Master Prompt Library
+
+> Dokumen ini berisi SEMUA prompt yang diperlukan untuk build beRest dari nol hingga launch.
+> Setiap prompt dirancang anti-regression: Claude selalu tau apa yang sudah dikerjakan,
+> apa yang sedang dikerjakan, dan apa yang belum dikerjakan.
+> v1.0 - Maret 2026
+
+-----
+
+# CARA PAKAI DOKUMEN INI
+
+1. Copy CLAUDE.md dan PROGRESS.md dari product concept document ke root folder project.
+1. Jalankan prompt sesuai urutan: INIT -> PHASE 0 -> QUALITY GATE 0 -> PHASE 1 -> dst.
+1. JANGAN skip prompt. JANGAN loncat phase.
+1. Setiap prompt punya VERIFICATION CHECKLIST di akhir. Pastikan semua centang sebelum lanjut.
+1. Kalau ada error, pakai HOTFIX PROMPT. Kalau Claude kehilangan context, pakai RECOVERY PROMPT.
+1. Setiap selesai 1 session (context limit tercapai), SELALU akhiri dengan CHECKPOINT PROMPT.
+1. Setiap mulai session baru, SELALU awali dengan RECOVERY PROMPT.
+
+-----
+
+# SECTION A: SESSION MANAGEMENT PROMPTS
+
+Prompts ini untuk manage context window Claude Code supaya gak kehilangan memori dan gak bikin regression.
+
+-----
+
+## A1. INIT PROMPT (Jalankan 1x di awal project)
+
+```
+Kamu adalah senior full-stack developer yang sedang build app "beRest".
+
+BACA file-file ini secara berurutan dan KONFIRMASI kamu paham sebelum mulai kerja:
+1. CLAUDE.md (project rules, tech stack, folder structure, color palette, UI/UX rules)
+2. PROGRESS.md (task tracker - semua task, status, dependencies)
+
+Setelah baca, REPORT:
+- Total phases: [N]
+- Total tasks: [N]
+- Current phase: [X]
+- Next task to do: [X.Y] - [description]
+- Tech stack summary (1 line per technology)
+- UI/UX rules yang kamu HARUS patuhi (list key rules)
+
+JANGAN mulai kerja sampai kamu report di atas dan aku konfirmasi.
+```
+
+-----
+
+## A2. RECOVERY PROMPT (Jalankan di awal SETIAP session baru)
+
+```
+RECOVERY MODE.
+
+Baca file-file ini SEKARANG:
+1. CLAUDE.md
+2. PROGRESS.md
+
+Lalu report:
+- Current phase: [X]
+- Last DONE task: [X.Y] - [description]
+- Next TODO task: [X.Z] - [description]
+- Files yang sudah dibuat di phase ini: [list]
+- Known issues yang belum resolved: [list atau "none"]
+- Modification log entries sejak phase ini dimulai: [list atau "none"]
+
+CRITICAL: Jangan assume apapun. Baca file PROGRESS.md untuk ground truth.
+Jangan mulai kerja sampai aku konfirmasi report-mu benar.
+```
+
+-----
+
+## A3. CHECKPOINT PROMPT (Jalankan di AKHIR setiap session)
+
+```
+SESSION ENDING. Sebelum kita stop, lakukan ini:
+
+1. UPDATE PROGRESS.md:
+   - Semua task yang baru selesai: status -> DONE, timestamp, files affected
+   - Task yang sedang in progress: status -> IN_PROGRESS, notes tentang apa yang sudah dan belum
+   - Known issues yang muncul di session ini
+
+2. RUN REGRESSION CHECK:
+   - npx tsc --noEmit (TypeScript errors?)
+   - Verify app boots: npx expo start
+   - List semua file yang kamu BUAT atau MODIFIKASI di session ini
+
+3. WRITE SESSION SUMMARY di PROGRESS.md (di section notes):
+   - "Session [date]: Completed tasks [X.Y to X.Z]. Created files: [...]. Modified files: [...]. Known issues: [...]. Next: task [X.N]."
+
+4. KONFIRMASI:
+   - "App compiles: YES/NO"
+   - "All previous features still work: YES/NO/UNTESTED"
+   - "Ready for next session: YES/NO"
+
+Jangan skip step manapun.
+```
+
+-----
+
+## A4. REGRESSION CHECK PROMPT (Jalankan setelah setiap 3-5 task selesai)
+
+```
+REGRESSION CHECK. Stop semua development. Run checks:
+
+STEP 1 - COMPILE CHECK:
+- npx tsc --noEmit
+- Report: jumlah errors. Jika > 0, list semua dan FIX sebelum lanjut.
+
+STEP 2 - BOOT CHECK:
+- npx expo start
+- App harus boot tanpa crash. Report: YES/NO.
+
+STEP 3 - IMPORT CHECK:
+- Scan semua file .ts/.tsx yang ada.
+- Pastikan semua import paths resolve ke file yang exist.
+- Report: jumlah broken imports.
+
+STEP 4 - PREVIOUS PHASE CHECK:
+- Untuk setiap phase yang sudah DONE, verify key features masih jalan:
+  - Phase 0: Auth flow, onboarding, tab navigation, role switching
+  - Phase 1: Warga CRUD, laporan share, consumer web portal
+  - Phase 2: Lapak pedagang, catat penjualan, katalog
+  - Phase 3: Sewa properti, tenant billing, contract
+  - Phase 4: Laundry/guru/jasa modes, consumer real-time
+  - Phase 5: Hajat undangan, RSVP, amplop
+  - (Check only phases that are DONE)
+
+STEP 5 - FIX:
+- Fix ALL errors found in steps 1-4.
+- Untuk setiap fix, VERIFY bahwa fix tersebut tidak break hal lain.
+- Update MODIFICATIONS LOG di PROGRESS.md.
+
+Report format:
+"REGRESSION CHECK [date]:
+- Compile: [X] errors -> [fixed/pending]
+- Boot: [YES/NO]
+- Imports: [X] broken -> [fixed/pending]
+- Phase [N] features: [OK/FAIL - detail]
+- Fixes applied: [list]
+- Confidence level: [HIGH/MEDIUM/LOW]"
+```
+
+-----
+
+## A5. HOTFIX PROMPT
+
+```
+HOTFIX NEEDED.
+
+Issue: [describe the error/bug you see]
+Affected screen/feature: [where it happens]
+
+Rules untuk hotfix:
+1. BACA PROGRESS.md dulu - cek apakah issue ini sudah di-log di KNOWN ISSUES.
+2. Identify ROOT CAUSE. Jangan fix symptoms.
+3. MINIMAL CHANGE. Jangan refactor. Jangan "improve" code lain saat hotfix.
+4. Sebelum fix, LIST semua files yang akan kamu modifikasi.
+5. Setelah fix, RUN:
+   - npx tsc --noEmit (harus 0 errors)
+   - Verify fitur yang di-fix WORKS
+   - Verify fitur LAIN yang mungkin terpengaruh masih WORKS
+6. Log di MODIFICATIONS LOG: date, file, reason, impact.
+7. Jika fix ini mengubah interface/props/types yang dipakai file lain, LIST semua file yang harus di-update juga dan UPDATE semuanya.
+
+JANGAN fix error A lalu create error B. Setiap fix harus NET ZERO new errors.
+```
+
+-----
+
+## A6. ANTI-REGRESSION RULES (Paste ini di awal session yang panjang)
+
+```
+ANTI-REGRESSION CONTRACT. Kamu HARUS patuhi rules ini sepanjang session:
+
+RULE 1: BACA SEBELUM TULIS.
+Sebelum modifikasi file APAPUN, BACA file tersebut dulu. Jangan assume isinya.
+
+RULE 2: INTERFACE CONSISTENCY.
+Jika kamu mengubah signature function, props component, atau type definition:
+- SEARCH semua file yang import/use item tersebut
+- UPDATE semua file tersebut
+- VERIFY semuanya compile
+Jangan pernah ubah interface tanpa update semua consumer-nya.
+
+RULE 3: NO SILENT CHANGES.
+Jangan pernah "quietly fix" atau "improve" code yang bukan bagian dari task saat ini.
+Jika kamu temukan bug di code lain, LOG di KNOWN ISSUES, jangan fix sambil lalu.
+
+RULE 4: TEST AFTER EVERY FILE.
+Setiap selesai create/modify file, run: npx tsc --noEmit.
+Jangan lanjut ke file berikutnya kalau masih ada error.
+
+RULE 5: TRACK YOUR CHANGES.
+Maintain list di memori kamu:
+- Files created this session: [...]
+- Files modified this session: [...]
+- Interfaces/types changed: [...]
+Kalau aku tanya "apa yang sudah kamu kerjakan?", kamu harus bisa jawab dari list ini.
+
+RULE 6: PRESERVE WORKING CODE.
+Jika sebuah fitur SUDAH JALAN, dan kamu perlu mengubah sesuatu di area itu:
+- BACKUP mental state fitur yang jalan
+- Buat perubahan
+- VERIFY fitur lama masih jalan
+- Jika tidak, REVERT perubahanmu dan cari approach lain
+
+RULE 7: ONE TASK AT A TIME.
+Selesaikan 1 task, verify, update PROGRESS.md, baru lanjut ke task berikutnya.
+Jangan paralel. Jangan "sementara skip dulu, nanti balik."
+```
+
+-----
+
+# SECTION B: PHASE EXECUTION PROMPTS
+
+Jalankan sesuai urutan. JANGAN SKIP.
+
+-----
+
+## B0. PHASE 0 - FOUNDATION
+
+### B0-START: Mulai Phase 0
+
+```
+PHASE 0: FOUNDATION. Mulai sekarang.
+
+Baca CLAUDE.md dan PROGRESS.md.
+Phase ini ada [29] tasks (0.1 sampai 0.29).
+
+Kerjakan SECARA BERURUTAN dari task 0.1.
+Setiap selesai 1 task:
+1. Verify: npx tsc --noEmit (0 errors)
+2. Update PROGRESS.md: task status -> DONE, files affected, timestamp
+3. Lanjut ke task berikutnya
+
+Mulai dari task 0.1: Init Expo project + TypeScript strict.
+
+IMPORTANT CONTEXT:
+- App ini dual-sided: Provider (kelola) + Consumer (pengguna). 1 codebase.
+- 4 modules: Lapak (usaha), Sewa (sewaan), Warga (komunitas), Hajat (acara)
+- Consumer bisa akses via web (berest.id) ATAU install app
+- UI/UX harus super simple - target user literasi digital rendah (baca Rule 9 di CLAUDE.md)
+- Database schema lengkap ada di product concept document. Copy-paste saat buat migration.
+- Color palette ada di CLAUDE.md. Pakai PERSIS.
+
+Kerjakan sekarang. Start with 0.1.
+```
+
+### B0-CONTINUE: Lanjut Phase 0 (session baru)
+
+```
+RECOVERY + CONTINUE PHASE 0.
+
+Baca CLAUDE.md lalu PROGRESS.md.
+Report: last DONE task, next TODO task.
+Setelah aku konfirmasi, lanjutkan dari task berikutnya.
+
+Reminder rules:
+- 1 task at a time, verify, update PROGRESS.md
+- npx tsc --noEmit setelah setiap task
+- Jangan modify file DONE tanpa alasan
+- UI/UX: max 3 input per screen, bahasa manusia, thumb-zone first
+```
+
+### B0-GATE: Quality Gate Phase 0
+
+```
+QUALITY GATE 0. Stop development. Full verification.
+
+Checklist (jawab YES/NO per item):
+
+INFRASTRUCTURE:
+[ ] Expo project boots tanpa error
+[ ] TypeScript strict mode, 0 errors
+[ ] NativeWind configured, styles render
+[ ] Expo Router works, navigation between screens
+[ ] Supabase client connected, can read/write
+[ ] Environment variables loaded (.env)
+
+AUTH:
+[ ] Google 1-tap login works
+[ ] Phone OTP login works
+[ ] User profile created in Supabase after auth
+[ ] Logout works, session cleared
+
+ONBOARDING:
+[ ] Provider onboarding: module selection -> guided setup -> home screen
+[ ] Consumer onboarding: auto-detect OR code input OR QR -> home screen
+[ ] Role switcher: provider <-> consumer toggle works for role='both'
+
+NAVIGATION:
+[ ] Provider tabs: Home + active modules + Profile (dynamic based on modules)
+[ ] Consumer tabs: Home + Notifications + Profile
+[ ] Tab bar di bawah, icons + labels, active state warna module
+
+DASHBOARDS:
+[ ] Provider home: summary cards per active module (empty state OK)
+[ ] Consumer home: connected providers list (empty state OK)
+[ ] Riwayat (archived connections) collapsible section works
+
+SHARED SERVICES:
+[ ] Contacts CRUD works (create, read, update, delete)
+[ ] Connection service: link consumer-provider via code/QR/phone detect
+[ ] Connection lifecycle: archive, disconnect works
+[ ] WA share engine: generates correct message + link, opens WA
+[ ] Reminder service: can schedule local notification
+[ ] Notification service: can send push + show in-app
+[ ] Deep link handler: berest.id/xx/xx -> correct screen in app
+
+DATABASE:
+[ ] All tables created (run migration, verify in Supabase dashboard)
+[ ] RLS policies set (users can only access their own data)
+[ ] Supabase Realtime: subscription works, receives updates
+
+UI/UX:
+[ ] Shared UI components render correctly (Button, Input, Card, Badge, Modal, Toast, Skeleton)
+[ ] Font sizes comply (min 14sp body, 12sp caption)
+[ ] Primary button: Orange #FF4600, di bottom screen
+[ ] Empty states: illustration + text + CTA button
+[ ] Loading: skeleton shimmer, bukan spinner
+
+Jika ada yang FAIL: fix sekarang, lalu re-verify.
+Jika semua PASS: update PROGRESS.md "Quality Gate 0: PASS" dan proceed.
+```
+
+-----
+
+## B1. PHASE 1 - MODULE WARGA MVP
+
+### B1-START: Mulai Phase 1
+
+```
+PHASE 1: MODULE WARGA MVP. Mulai sekarang.
+
+PREREQUISITE: Quality Gate 0 harus PASS. Verify di PROGRESS.md.
+
+Baca PROGRESS.md. Phase 1 ada [24] tasks (1.1 sampai 1.24).
+Kerjakan berurutan.
+
+CONTEXT PHASE INI:
+- Module Warga = beRest-in Warga (warna: ungu #8B5CF6)
+- Fitur: Kas & Iuran, Infaq & Donasi, Pengumuman, Fundraising tracker
+- Provider: pengurus RT/mesjid/pengajian/klub
+- Consumer: anggota/warga/jamaah
+- Consumer web portal: berest.id/rt/[code] dan berest.id/ms/[code]
+- Ini module PERTAMA, jadi harus jadi benchmark UX untuk semua module berikutnya
+
+SEBELUM MULAI CODING:
+1. Baca ulang Section 8 "MODULE DETAIL: beRest-in Warga" di product concept
+2. Baca ulang Section 4 "UI/UX Design Principles" - semua screen HARUS comply
+3. Baca database schema untuk tables: organizations, org_members, org_dues, org_transactions, org_announcements
+
+ANTI-REGRESSION:
+- Setiap task, setelah selesai: npx tsc --noEmit + verify app boots
+- Setiap 5 tasks: run full REGRESSION CHECK (Section A4)
+- JANGAN modifikasi shared components dari Phase 0 tanpa catat di MODIFICATIONS LOG
+- Jika butuh update shared component: update component -> verify SEMUA screen yang pakai -> baru lanjut
+
+Mulai dari task 1.1: Implement warga types.
+```
+
+### B1-GATE: Quality Gate Phase 1
+
+```
+QUALITY GATE 1. Stop development. Full verification.
+
+REGRESSION FIRST - verify Phase 0 masih jalan:
+[ ] Auth (Google + OTP) still works
+[ ] Onboarding (provider + consumer) still works
+[ ] Tab navigation still works
+[ ] Contacts CRUD still works
+[ ] Connection service still works
+
+PHASE 1 FEATURES - Provider:
+[ ] Create organization (RT/mesjid/pengajian/klub)
+[ ] Add members (manual + import contacts)
+[ ] Set iuran (nominal, period, jatuh tempo)
+[ ] Payment tracking (centang per member per period)
+[ ] Add expense (+ photo bukti)
+[ ] Financial report (income - expense = saldo)
+[ ] Share report via WA (link berest.id/rt/laporan)
+[ ] Reminder ke yang belum bayar (push + WA)
+[ ] Announcement (create + share)
+[ ] Infaq/Donasi (mesjid mode)
+[ ] Fundraising tracker (target + progress bar)
+
+PHASE 1 FEATURES - Consumer App:
+[ ] Warga dashboard: iuran status per org
+[ ] View announcements + read tracking
+[ ] Upload bukti bayar -> push to provider
+
+PHASE 1 FEATURES - Consumer Web Portal:
+[ ] berest.id/rt/[code] - warga status page loads
+[ ] berest.id/rt/laporan - financial report page loads
+[ ] berest.id/ms/laporan - infaq report page loads
+[ ] Smart banner (download app CTA) shows
+[ ] Portal deployed to Vercel, accessible via URL
+
+E2E TEST:
+[ ] Provider create org -> add member -> set iuran -> share link
+[ ] Consumer open web link -> see status -> see laporan
+[ ] Consumer in app -> see iuran -> upload bukti bayar
+[ ] Provider sees bukti bayar -> mark as paid
+[ ] Consumer gets notification "Iuran sudah dicatat"
+
+Jika ada FAIL: fix, re-verify. Semua PASS: proceed to Phase 2.
+```
+
+-----
+
+## B2. PHASE 2 - MODULE LAPAK PEDAGANG
+
+### B2-START
+
+```
+PHASE 2: MODULE LAPAK - MODE PEDAGANG. Mulai sekarang.
+
+PREREQUISITE: Quality Gate 1 PASS.
+
+Phase 2 ada [11] tasks (2.1 sampai 2.11).
+
+CONTEXT:
+- Module Lapak = beRest-in Lapak (warna: hijau #10B981)
+- Mode Pedagang dulu (mode paling simple - 1-tap catat omzet)
+- Provider: pedagang, warung kecil, PKL
+- Consumer: customer (browse katalog)
+- Portal: berest.id/wk/[slug]
+
+ANTI-REGRESSION:
+- Verify Phase 0 + Phase 1 still work di awal
+- Jangan touch warga service/screens
+- Financial dashboard harus AGGREGATE Warga + Lapak sekarang
+
+Mulai task 2.1.
+```
+
+-----
+
+## B3. PHASE 3 - MODULE SEWA PROPERTI
+
+### B3-START
+
+```
+PHASE 3: MODULE SEWA - PROPERTI. Mulai sekarang.
+
+PREREQUISITE: Quality Gate 2 PASS.
+
+Phase 3 ada [17] tasks (3.1 sampai 3.17).
+
+CONTEXT:
+- Module Sewa = beRest-in Sewa (warna: biru #3B82F6)
+- Sub-module Properti dulu (kos, kontrakan)
+- Sub-module Kontrak (AI generate via Gemini 2.5 Flash)
+- Provider: pemilik kos/kontrakan
+- Consumer: penghuni (cek tagihan, lapor masalah, upload bukti bayar)
+- Portal: berest.id/kh/[code]
+- Connection lifecycle: pindah kos = archive connection, history tetap ada
+
+AI INTEGRATION:
+- Gemini 2.5 Flash untuk: scan KTP extract data, generate contract text
+- Model string: gemini-2.5-flash
+- Free tier: 15 RPM, ~1000 RPD
+- Implement di gemini.service.ts
+- Error handling: jika API fail, fallback ke manual input (gak blocking user)
+
+ANTI-REGRESSION:
+- Financial dashboard: harus aggregate Warga + Lapak + Sewa
+- Verify semua Phase 0-2 features still work
+
+Mulai task 3.1.
+```
+
+-----
+
+## B4. PHASE 4 - MODULE LAPAK ADVANCED
+
+### B4-START
+
+```
+PHASE 4: MODULE LAPAK - ADVANCED MODES. Mulai sekarang.
+
+PREREQUISITE: Quality Gate 3 PASS.
+
+Phase 4 ada [14] tasks (4.1 sampai 4.14).
+
+CONTEXT:
+- 3 new modes di Lapak: Laundry, Guru/Pelatih, Jasa Umum
+- Ini yang bikin Lapak jadi multi-mode module
+- Business type stored di businesses.type: 'pedagang' (done) | 'laundry' | 'guru' | 'jasa_umum'
+- Mode switch via business settings, bukan hardcoded
+- Consumer REAL-TIME tracking via Supabase Realtime (laundry status, antrian)
+
+IMPORTANT - MODE ARCHITECTURE:
+- Semua mode share: businesses table, orders table, contacts
+- Pembeda ada di: orders.metadata (JSON), UI screens per mode, business.settings
+- Reuse sebanyak mungkin. Jangan bikin table baru kalau bisa pakai orders dengan metadata berbeda.
+- Student table (students, attendance_logs) khusus guru mode
+- Queue table (queue_tickets) khusus jasa mode
+
+CONSUMER REAL-TIME:
+- Laundry: status change -> Supabase Realtime -> consumer app update instant
+- Antrian: queue_tickets update -> consumer sees position real-time
+- Implement subscription di consumer app, bukan polling
+
+Mulai task 4.1.
+```
+
+-----
+
+## B5. PHASE 5 - MODULE HAJAT
+
+### B5-START
+
+```
+PHASE 5: MODULE HAJAT. Mulai sekarang.
+
+PREREQUISITE: Quality Gate 4 PASS.
+
+Phase 5 ada [17] tasks (5.1 sampai 5.17).
+
+CONTEXT:
+- Module Hajat = beRest-in Hajat (warna: pink #EC4899)
+- Undangan digital, RSVP, amplop tracker
+- Provider: penyelenggara acara (nikah, khitan, aqiqah, ultah, syukuran, duka)
+- Consumer: tamu (RSVP, amplop suggestion)
+- Portal: berest.id/hj/[slug] (invitation page HARUS cantik dan responsive)
+
+INVITATION PAGE:
+- Ini adalah "wajah" beRest ke publik. Setiap undangan yang dibuka = potential user exposure.
+- Page harus: fast (< 2 detik), cantik, responsive, shareable.
+- Template-based: 10-15 template per tipe acara. Desain clean, modern, Indonesian aesthetic.
+- AI generate text undangan via Gemini 2.5 Flash (bahasa Indonesia yang sopan sesuai budaya).
+
+AMPLOP TRACKER:
+- Ini fitur UNIK yang gak ada di app manapun di dunia.
+- Data amplop = personal, cross-event, lifetime. Gak pernah di-archive.
+- Suggestion algorithm: berdasarkan history (orang ini pernah kasih berapa ke kita).
+
+DEEP LINKING:
+- berest.id/hj/andi-nina -> jika app installed, buka di app. Jika tidak, buka web.
+- Implementasi: Expo Linking + Universal Links (Android App Links)
+
+Mulai task 5.1.
+```
+
+-----
+
+## B6. PHASE 6 - RENTAL + POLISH + LAUNCH
+
+### B6-START
+
+```
+PHASE 6: SEWA RENTAL + WARGA JADWAL + POLISH + LAUNCH. Phase terakhir.
+
+PREREQUISITE: Quality Gate 5 PASS.
+
+Phase 6 ada [16] tasks (6.1 sampai 6.16).
+
+CONTEXT:
+- Fitur remaining: rental items (Sewa), jadwal & giliran (Warga)
+- Polish: analytics, export PDF/CSV, subscription/paywall
+- Web-to-app conversion optimization (smart banners, deep links)
+- Performance optimization
+- Full regression test ALL modules
+- Play Store prep
+
+SUBSCRIPTION/PAYWALL:
+- Free: 1 module, basic limits
+- Starter Rp29K/bln: 2 modules
+- Pro Rp59K/bln: all 4 modules unlimited
+- Pakai Supabase Edge Functions untuk check subscription status
+- Soft paywall: gak blocking, tapi gentle nudge saat limit tercapai
+- Consumer features 100% FREE
+
+FINAL REGRESSION:
+- Task 6.13 adalah FULL regression test. SEMUA module, SEMUA consumer flows, SEMUA web portals.
+- Ini harus thorough. Setiap feature dari Phase 0-6 harus verified.
+
+Mulai task 6.1.
+```
+
+### B6-FINAL: Final Quality Gate
+
+```
+FINAL QUALITY GATE. Ini yang terakhir sebelum launch.
+
+RUN FULL REGRESSION - setiap item harus di-test:
+
+FOUNDATION:
+[ ] Auth (Google + OTP)
+[ ] Provider onboarding
+[ ] Consumer onboarding
+[ ] Role switcher
+[ ] Tab navigation (provider + consumer)
+
+MODULE WARGA:
+[ ] Kas & Iuran full flow (provider + consumer app + web)
+[ ] Infaq & Donasi
+[ ] Pengumuman
+[ ] Fundraising tracker
+[ ] Jadwal & Giliran
+[ ] Laporan share via WA
+
+MODULE LAPAK:
+[ ] Mode Pedagang (catat penjualan, profit)
+[ ] Mode Laundry (order, status, consumer real-time)
+[ ] Mode Guru (murid, jadwal, absensi, tagihan)
+[ ] Mode Jasa (antrian QR, consumer real-time)
+[ ] AI scan nota
+[ ] Customer database cross-mode
+
+MODULE SEWA:
+[ ] Properti (unit, penghuni, billing)
+[ ] Rental (item, penyewa, before/after foto)
+[ ] Kontrak (AI generate, vault)
+[ ] Tenant portal (web + app)
+[ ] Connection lifecycle (pindah kos flow)
+
+MODULE HAJAT:
+[ ] Undangan digital (template, AI text, share)
+[ ] RSVP + guest manager
+[ ] Amplop tracker (beri, terima, suggestion)
+[ ] Invitation web page (cantik, fast, responsive)
+[ ] Deep link ke app
+
+SHARED:
+[ ] Kontak universal (cross-module)
+[ ] Financial dashboard (aggregated semua module)
+[ ] Reminder center (semua module)
+[ ] WA share engine (semua module)
+[ ] Notification (push + in-app, provider + consumer)
+[ ] Connection lifecycle (archive, riwayat, auto-archive)
+[ ] Offline mode (cached data visible, queue actions)
+
+WEB PORTALS:
+[ ] berest.id/rt/[code] (warga)
+[ ] berest.id/rt/laporan (laporan kas)
+[ ] berest.id/ms/laporan (laporan infaq)
+[ ] berest.id/wk/[slug] (katalog)
+[ ] berest.id/lb/[code] (laundry status)
+[ ] berest.id/gp/[code] (murid portal)
+[ ] berest.id/bb/[slug] (antrian)
+[ ] berest.id/kh/[code] (tenant)
+[ ] berest.id/rn/[code] (rental)
+[ ] berest.id/hj/[slug] (invitation)
+[ ] berest.id/hj/[slug]/[guest] (RSVP)
+[ ] berest.id landing page
+[ ] Smart banner semua pages
+
+PERFORMANCE:
+[ ] App cold start < 3 detik
+[ ] Web portal pages load < 2 detik
+[ ] No memory leaks (module lazy loading works)
+[ ] Image upload handles poor connection gracefully
+
+SUBSCRIPTION:
+[ ] Free tier limits enforced correctly
+[ ] Upgrade prompts show at right time
+[ ] Paid features unlock after upgrade
+
+BUILD:
+[ ] APK/AAB builds successfully
+[ ] App icon + splash screen correct
+[ ] Play Store listing complete
+
+Setiap FAIL: fix -> re-verify -> confirm no regression.
+Semua PASS: APP READY FOR LAUNCH.
+```
+
+-----
+
+# SECTION C: EMERGENCY PROMPTS
+
+-----
+
+## C1. STUCK PROMPT (Claude gak tau harus ngapain)
+
+```
+Aku stuck. Bantuin aku proceed.
+
+1. Baca PROGRESS.md - apa task berikutnya?
+2. Baca CLAUDE.md - apa rules yang relevan?
+3. Baca product concept document Section [N] untuk detail fitur yang harus dibuild.
+4. Propose: file apa yang akan kamu buat, interface/type apa yang diperlukan, screen flow-nya gimana.
+5. Tunggu aku approve sebelum mulai coding.
+```
+
+-----
+
+## C2. ERROR SPIRAL PROMPT (Fix error A creates error B, fix B breaks A)
+
+```
+ERROR SPIRAL DETECTED. STOP semua development.
+
+Situasi: [describe the circular error problem]
+
+RESOLUTION PROTOCOL:
+1. REVERT ke state terakhir yang WORKING. Git stash/revert perubahan terakhir.
+2. LIST semua errors yang ada SEKARANG (npx tsc --noEmit).
+3. IDENTIFY root cause. Biasanya: type/interface mismatch, import circular dependency, atau shared component yang diubah tanpa update consumer-nya.
+4. FIX dari ROOT, bukan dari SYMPTOMS. Biasanya cuma 1-2 file yang jadi akar masalah.
+5. Setelah fix root: npx tsc --noEmit HARUS 0 errors.
+6. Verify: app boots + semua features dari phase sebelumnya masih jalan.
+7. Baru lanjut development.
+
+JANGAN tambal-sulam. JANGAN fix error satu-satu tanpa understand root cause.
+Lebih baik revert dan mulai ulang task ini dari scratch daripada stuck di error spiral.
+```
+
+-----
+
+## C3. DEPENDENCY CONFLICT PROMPT
+
+```
+Ada dependency conflict / package error.
+
+1. Run: npx expo-doctor
+2. Run: npx expo install --check
+3. List semua warnings/errors.
+4. Fix berdasarkan Expo compatibility - JANGAN manual pin version kecuali terpaksa.
+5. Setelah fix: rm -rf node_modules && npm install && npx tsc --noEmit
+6. Verify app boots.
+
+Jika masih stuck: list exact error message, aku akan bantu troubleshoot.
+```
+
+-----
+
+## C4. CONTEXT LIMIT APPROACHING
+
+```
+Aku rasa context window hampir penuh. Sebelum kita kehilangan context:
+
+1. Update PROGRESS.md SEKARANG dengan status terkini.
+2. List semua files yang sedang in-progress (belum selesai).
+3. Untuk setiap file in-progress, tulis di PROGRESS.md: apa yang sudah dan belum.
+4. Run: npx tsc --noEmit - catat hasilnya.
+5. Tulis summary: "Terakhir mengerjakan [task X.Y]. File [filename] sudah [X]% selesai. Next step: [...]."
+
+Setelah ini aku akan mulai session baru dengan RECOVERY PROMPT.
+```
+
+-----
+
+# SECTION D: QUALITY GATE PROMPTS (Per Phase)
+
+Quality gates untuk Phase 2-5 mengikuti pattern yang sama dengan Phase 0 dan 1 di atas. Prinsipnya:
+
+1. Verify ALL previous phases masih jalan (regression check)
+1. Verify ALL features di phase ini berfungsi (feature check)
+1. Verify E2E flow provider -> consumer web -> consumer app (integration check)
+1. Fix semua failures sebelum proceed
+1. Update PROGRESS.md: “Quality Gate [N]: PASS”
+
+-----
+
+# SECTION E: ONGOING MAINTENANCE PROMPTS
+
+## E1. ADD NEW FEATURE (setelah launch)
+
+```
+NEW FEATURE REQUEST: [describe feature]
+
+Before implementing:
+1. Baca CLAUDE.md (rules masih berlaku)
+2. Baca PROGRESS.md (current state)
+3. Identify: module mana yang affected, tables mana yang perlu update, screens mana yang baru/berubah
+4. Propose plan: files to create, files to modify, migration needed
+5. Tunggu approval
+6. Implement -> regression check -> deploy
+```
+
+## E2. BUG FIX (setelah launch)
+
+```
+BUG REPORT: [describe bug, steps to reproduce, expected vs actual]
+
+Resolution:
+1. Reproduce bug
+2. Identify root cause
+3. Propose minimal fix
+4. Implement fix
+5. Verify fix works
+6. Regression check: verify nothing else broke
+7. Log di MODIFICATIONS LOG
+```
