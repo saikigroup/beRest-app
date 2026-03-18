@@ -1,0 +1,2161 @@
+# beRest - Complete Product Concept & Build System v2.0
+
+> “Be at Rest with beRest.”
+> Dual-sided modular platform: Provider + Consumer
+> 4 Module: beRest-in Lapak, beRest-in Sewa, beRest-in Warga, beRest-in Hajat
+> v2.0 - Maret 2026
+
+-----
+
+# PART 1: PRODUCT CONCEPT
+
+-----
+
+## 1. VISION
+
+beRest bukan 4 app yang di-staple jadi 1. beRest adalah **personal operations system** untuk kehidupan orang Indonesia - dimana setiap orang secara bersamaan adalah provider DAN consumer di berbagai aspek hidupnya.
+
+Pak Hadi (52, Bekasi) di beRest:
+
+- **Provider:** ketua RT (beRest-in Warga), punya kos 8 kamar (beRest-in Sewa)
+- **Consumer:** langganan laundry Bu Ningsih (beRest-in Lapak), bulan depan kondangan anak tetangga (beRest-in Hajat)
+
+Bu Ningsih (40, Malang) di beRest:
+
+- **Provider:** punya laundry kiloan (beRest-in Lapak), bendahara pengajian (beRest-in Warga)
+- **Consumer:** ngekos di tempat Pak Hadi (beRest-in Sewa), bikin undangan khitanan anaknya (beRest-in Hajat)
+
+**1 app. 2 sisi. 4 module. 1 kehidupan.**
+
+-----
+
+## 2. BRANDING
+
+### App Name
+
+**beRest** - gabungan “beres” (solved, handled, done) + “rest” (istirahat). Lo beresin semua urusan, terus bisa rest. Kapitalisasi “R” di tengah = visual identity.
+
+### Module Names
+
+|Module   |Nama Marketing |Tab Label|Bahasa Sehari-hari|
+|---------|---------------|---------|------------------|
+|Usaha    |beRest-in Lapak|Lapak    |“beresin lapak”   |
+|Sewaan   |beRest-in Sewa |Sewa     |“beresin sewa”    |
+|Komunitas|beRest-in Warga|Warga    |“beresin warga”   |
+|Acara    |beRest-in Hajat|Hajat    |“beresin hajat”   |
+
+### Module Colors
+
+|Module                 |Warna|Hex    |
+|-----------------------|-----|-------|
+|beRest-in Lapak        |Hijau|#10B981|
+|beRest-in Sewa         |Biru |#3B82F6|
+|beRest-in Warga        |Ungu |#8B5CF6|
+|beRest-in Hajat        |Pink |#EC4899|
+|Primary Navy           |-    |#1B3A5C|
+|Primary Orange (accent)|-    |#FF4600|
+|Dark Text              |-    |#1E293B|
+|Grey Text              |-    |#64748B|
+|Light BG               |-    |#F8FAFC|
+|Border                 |-    |#E2E8F0|
+
+### Taglines
+
+- Primary: “Be at Rest with beRest.”
+- Alt 1: “Beresin semua. Then rest.”
+- Alt 2: “Satu app, semua beres.”
+- Alt 3: “Hidup banyak urusan? beRest-in aja.”
+- Per-module: “beRest-in Lapak - usahamu, beres.” / “beRest-in Sewa - sewaanmu, beres.” / dst.
+
+-----
+
+## 3. POSITIONING
+
+**One-liner:** “Satu app untuk beresin urusan usaha, sewaan, komunitas, dan acara.”
+
+**Positioning statement:** Untuk orang Indonesia yang setiap harinya mengelola usaha kecil, properti sewaan, urusan komunitas, dan acara sosial secara bersamaan menggunakan buku tulis dan WhatsApp - beRest adalah satu-satunya app yang menyatukan semua itu dalam satu tempat, baik lo yang mengelola maupun lo yang dilayani.
+
+-----
+
+## 4. UI/UX DESIGN PRINCIPLES
+
+### Target User Reality
+
+User utama beRest BUKAN digital native. Mereka:
+
+- Ibu kos 55 tahun yang HP-nya cuma buat WA dan TikTok
+- Ketua RT 60 tahun yang masih nulis iuran di buku tulis
+- Tukang laundry 40 tahun yang belum pernah pakai app selain WA, Shopee, dan mobile banking
+- Pedagang kaki lima yang ngetik pakai 1 jari
+- Ortu murid les yang takut salah pencet
+
+App ini HARUS bisa dioperasikan oleh orang yang cuma bisa buka WhatsApp. Kalau mereka bisa bales chat WA, mereka harus bisa pakai beRest. Itu benchmark-nya.
+
+### Prinsip 1: Satu Layar, Satu Tugas (Atomic Flow)
+
+Setiap screen cuma punya 1 tujuan. Gak ada screen yang minta user mikir “ini untuk apa ya?”
+
+```
+SALAH:
+Screen "Order Baru" yang sekaligus minta input:
+nama customer + berat cucian + layanan + harga + catatan + metode bayar
+= 6 input di 1 screen = overwhelm
+
+BENAR:
+Screen 1: "Siapa customernya?" -> pilih dari kontak ATAU ketik nama baru -> Next
+Screen 2: "Berapa beratnya?" -> input angka + pilih layanan -> harga auto-muncul -> Next
+Screen 3: "Ringkasan" -> konfirmasi semua -> SIMPAN
+= 3 screen, masing-masing 1-2 input, setiap langkah jelas
+```
+
+Rules:
+
+- Maksimal 3 input field per screen. Lebih dari itu = pecah ke step berikutnya.
+- Setiap screen punya 1 primary action button yang JELAS (warna solid, besar, di bawah).
+- Progress indicator untuk multi-step flow (“Langkah 2 dari 3”).
+- Back button selalu available, data gak hilang saat back.
+
+### Prinsip 2: Bahasa Manusia, Bukan Bahasa Sistem
+
+Semua text di app harus terasa kayak ngobrol sama teman yang bantu, bukan baca manual.
+
+```
+SALAH:
+- "Input nominal transaksi"
+- "Status: IN_PROGRESS"  
+- "Record berhasil disimpan ke database"
+- "Error: field required"
+- "Konfirmasi pembatalan order?"
+
+BENAR:
+- "Berapa totalnya?"
+- "Lagi dicuci"
+- "Udah kesimpan!"
+- "Nama customer belum diisi nih"
+- "Yakin mau batalin pesanan ini?"
+```
+
+Rules:
+
+- Pakai Bahasa Indonesia casual tapi sopan. Bukan bahasa gaul, bukan bahasa formal.
+- Gak boleh ada istilah teknis yang exposed ke user: gak ada “database”, “record”, “field”, “sync”, “cache”, “token”.
+- Error message harus bilang APA yang salah DAN BAGAIMANA cara benerin. Bukan cuma “Error.”
+- Placeholder di input field = contoh nyata (“contoh: Bu Siti”, “contoh: 3.5 kg”), bukan instruksi (“Masukkan nama”).
+- Confirmation dialog pakai bahasa yang spesifik: “Hapus pesanan cucian Bu Siti?” bukan “Hapus item ini?”
+
+### Prinsip 3: Jempol Satu Tangan (Thumb-Zone First)
+
+90% user beRest pakai HP Android 5-6 inch dengan satu tangan. Design for thumb reach.
+
+Rules:
+
+- Primary action buttons SELALU di bottom 1/3 layar (thumb zone).
+- Tab bar di bawah, bukan di atas. Max 4 tab + 1 center (total 5).
+- Floating Action Button (FAB) untuk action paling frequent: “+” untuk tambah order, tambah pembayaran, dll.
+- Swipe gestures sebagai SHORTCUT, bukan satu-satunya cara. Selalu ada button alternative.
+- Gak boleh ada action penting yang cuma bisa diakses via long-press atau hidden gesture.
+- Touch target minimum 48x48dp. Untuk user older demographic, prefer 56x56dp.
+- Spacing antar clickable elements minimum 12dp (hindari mis-tap).
+
+### Prinsip 4: Visual Hierarchy yang Tegas
+
+User harus bisa scan screen dalam 2 detik dan tau: ini tentang apa, apa yang penting, apa yang harus dilakukan.
+
+Rules:
+
+- 1 screen = 1 visual focus. Gak ada 2 hal yang sama-sama teriak minta perhatian.
+- Angka uang SELALU paling besar dan paling bold. “Rp 3.200.000” = ukuran 24-32sp, bold, dark color.
+- Status pakai warna + icon, bukan cuma text: Hijau+centang = Lunas, Merah+seru = Belum bayar, Kuning+jam = Menunggu, Biru+proses = Sedang dikerjakan.
+- Card-based layout. Setiap item = 1 card dengan informasi yang cukup. Gak perlu tap card untuk lihat info basic.
+- Warna module konsisten di mana-mana: Lapak = hijau, Sewa = biru, Warga = ungu, Hajat = pink. User bisa navigasi by color bahkan tanpa baca text.
+- Empty states HARUS punya ilustrasi + text ramah + 1 CTA button. “Belum ada pesanan hari ini. [+ Tambah Pesanan]”. Jangan pernah tampilkan layar kosong.
+
+### Prinsip 5: Konfirmasi Sebelum Destruktif, Instant untuk Non-destruktif
+
+Rules:
+
+- Tambah data = instant, gak perlu konfirmasi (“Pesanan tersimpan!” toast di atas).
+- Edit data = instant save saat navigate away (auto-save), atau explicit “Simpan” button.
+- Hapus data = SELALU double confirm: “Yakin hapus pesanan Bu Siti? Aksi ini tidak bisa dibatalkan.” dengan tombol merah yang BUKAN di posisi default thumb (hindari accidental tap).
+- Arsipkan/disconnect = confirm + opsi batal dalam 5 detik (undo snackbar).
+- Kirim notifikasi/reminder massal = preview dulu sebelum kirim. “Pesan ini akan dikirim ke 34 warga. Lihat dulu?”
+- Gak boleh ada action yang auto-execute tanpa user sadar. Semua action = user harus tap sesuatu.
+
+### Prinsip 6: Navigasi yang Gak Bikin Nyasar
+
+User harus selalu tau: gue di mana, gue datang dari mana, gue bisa ke mana.
+
+Rules:
+
+- Breadcrumb atau header title yang SELALU visible: “beRest-in Lapak > Laundry > Order #0042”
+- Back button selalu ke parent screen, bukan random. Predictable.
+- Tab bar selalu visible (kecuali saat full-screen form/camera).
+- Gak boleh ada navigasi depth lebih dari 3 level dari tab. Kalau lebih, re-evaluate information architecture.
+- Deep link dari notifikasi/WA link HARUS ada “back to home” yang jelas. User gak boleh terjebak di dead-end screen.
+- Saat baru selesai action (simpan order, kirim tagihan), SELALU kasih feedback + clear path: “Pesanan tersimpan! [Lihat Detail] [Kembali ke Daftar]”
+- Gak boleh ada circular navigation (A -> B -> C -> A tanpa sadar).
+
+### Prinsip 7: Offline-Tolerant, Bukan Offline-First
+
+Mayoritas user beRest punya internet (4G), tapi kualitasnya fluktuatif. App harus graceful saat koneksi jelek.
+
+Rules:
+
+- Data yang sudah loaded harus tetap visible saat offline. Gak boleh blank screen.
+- Action saat offline: queue di background, auto-sync saat online. User gak perlu tau.
+- Indicator koneksi: subtle banner “Menunggu koneksi internet…” di atas (kuning). Gak blocking.
+- Gak boleh ada loading spinner lebih dari 3 detik tanpa fallback. Kalau data lama, tampilkan skeleton + cached data.
+- Image upload gagal = auto-retry 3x, lalu simpan di queue dengan feedback: “Foto akan diupload saat internet stabil.”
+- CRITICAL: app HARUS bisa dibuka dan menampilkan data meskipun internet mati. User bisa lihat pesanan hari ini, tagihan pending, jadwal - semua dari local cache.
+
+### Prinsip 8: Onboarding yang Gak Bikin Kabur
+
+First-time experience menentukan apakah user stay atau uninstall dalam 60 detik pertama.
+
+Rules:
+
+- Registrasi: MAKSIMAL 2 langkah. Google 1-tap (1 langkah) atau Phone OTP (2 langkah: input nomor -> input kode). Selesai. Gak ada form panjang.
+- Module selection: visual cards dengan icon besar + deskripsi 1 baris. Pilih 1, langsung masuk. Gak perlu setup detail di awal.
+- Guided first action: setelah masuk module, app langsung guide ke action pertama. “Yuk, tambah anggota pertama!” dengan panah/highlight ke button yang harus di-tap.
+- JANGAN minta permission (kamera, kontak, notifikasi) di awal. Minta saat dibutuhkan: saat user mau foto KTP baru minta camera permission, saat user mau import kontak baru minta contacts permission.
+- Skip/lewati option di SETIAP langkah onboarding. Gak boleh ada mandatory step selain auth.
+- Tutorial: BUKAN slideshow 5 halaman yang harus di-swipe. Tapi contextual tooltip yang muncul saat user pertama kali lihat fitur (“Tap di sini untuk catat penjualan”).
+
+### Prinsip 9: Accessibility untuk Semua Umur
+
+Rules:
+
+- Font size minimum 14sp untuk body text, 12sp untuk caption/secondary. JANGAN pernah di bawah 12sp.
+- Support system font scaling (Android accessibility). App harus tetap usable di 1.5x font scale.
+- Contrast ratio minimum 4.5:1 untuk text. Jangan pakai light grey on white.
+- Jangan pernah rely HANYA pada warna untuk convey meaning. Selalu tambah icon/text. “Lunas” bukan cuma hijau, tapi hijau + centang + text “Lunas”.
+- Touch targets besar (48dp+). Especially untuk buttons yang sering di-tap (catat penjualan, centang bayar).
+- Gak boleh ada animasi yang bikin pusing. Transisi halaman = simple fade atau slide. No fancy 3D flips.
+- Haptic feedback (getar ringan) saat action berhasil. Reinforcement untuk user yang gak selalu lihat layar.
+
+### Prinsip 10: Konsistensi Total
+
+Rules:
+
+- 1 pattern untuk 1 action di seluruh app. Kalau “centang bayar” di module Warga pakai checkbox + tap nama, maka di module Sewa juga SAMA persis.
+- Button primer SELALU warna yang sama (Primary Orange #FF4600), posisi yang sama (bottom), ukuran yang sama.
+- Card layout yang sama di semua module: nama di kiri atas (bold), status di kanan atas (badge warna), detail di bawah, action di bottom card.
+- Hapus SELALU merah. Konfirmasi SELALU di kanan. Cancel SELALU di kiri. Gak boleh ketuker di screen manapun.
+- Icon set yang sama (Lucide) di semua tempat. Gak boleh mix icon style.
+- Loading state yang sama: skeleton shimmer (gak spinner). Di semua screen.
+- Error state yang sama: ilustrasi sedih + text ramah + retry button. Di semua screen.
+
+### Prinsip 11: WA-Native Feeling
+
+Target user hidup di WhatsApp. Banyak pattern WA yang bisa dipinjam supaya user merasa familiar.
+
+Rules:
+
+- Chat bubble style untuk communication features (pengumuman, update status ke customer).
+- Green action button untuk “Kirim via WA” - sama persis kayak warna WA.
+- Share flow: tap “Bagikan” -> preview message + link -> “Kirim via WhatsApp” (langsung buka WA, gak perlu pilih app).
+- List style mirip WA chat list: foto kecil di kiri, nama bold, preview text di bawah, timestamp di kanan atas.
+- Centang biru untuk “sudah dibaca” (di fitur pengumuman). User langsung paham tanpa penjelasan.
+
+### Prinsip 12: Smart Defaults, Minimal Config
+
+App harus JALAN tanpa user setting apa-apa. Default harus udah benar untuk 80% use case.
+
+Rules:
+
+- Iuran RT: default bulanan, tanggal 1. User bisa ubah tapi gak harus.
+- Laundry pricing: pre-fill berdasarkan rata-rata pasar (“Cuci-kering: Rp7.000/kg” - user tinggal adjust).
+- Reminder: default H-3 sebelum jatuh tempo. User gak perlu set.
+- Laporan: auto-generate bulanan tanpa diminta. User buka = laporan sudah ada.
+- Tagihan: auto-generate di tanggal 1 setiap bulan. Provider tinggal share.
+- Template kontrak/undangan: pre-filled berdasarkan data yang sudah diinput. User tinggal review dan kirim.
+- Gak boleh ada settings page dengan 20 toggle. Settings harus minimal dan jarang dikunjungi. App harus “just work” tanpa config.
+
+### UI Component Standards (Design System Reference)
+
+|Component         |Spec                                                                                                        |
+|------------------|------------------------------------------------------------------------------------------------------------|
+|Primary Button    |Orange #FF4600, rounded-xl (12px), h-56dp, full-width, text 16sp bold white, shadow-sm                      |
+|Secondary Button  |White bg, border 1px #E2E8F0, rounded-xl, h-48dp, text 14sp #1E293B                                         |
+|Destructive Button|Red #EF4444, rounded-xl, h-48dp, text 14sp white, NEVER at default thumb position                           |
+|Input Field       |h-52dp, rounded-lg (8px), border 1px #E2E8F0, focus border Primary Navy, text 16sp, placeholder 14sp #94A3B8|
+|Card              |White bg, rounded-xl, shadow-sm, padding 16dp, margin-bottom 12dp                                           |
+|Badge/Status      |rounded-full, padding-x 12dp padding-y 4dp, text 12sp bold, color per status                                |
+|Tab Bar           |h-64dp, 4-5 items, icon 24dp + label 11sp, active = module color, inactive = #94A3B8                        |
+|FAB               |56x56dp, rounded-full, shadow-lg, module color bg, white icon 24dp                                          |
+|Toast/Snackbar    |Bottom, above tab bar, rounded-lg, dark bg, white text, auto-dismiss 3s, undo option if applicable          |
+|Modal/Bottom Sheet|Rounded-top-xl, max 60% screen height, drag handle visible, tap outside to close                            |
+|Skeleton          |Shimmer animation, match layout of actual content, light grey #F1F5F9                                       |
+|Empty State       |Center-aligned, illustration 120dp, text 16sp bold + 14sp body, 1 CTA button                                |
+|Section Header    |Text 13sp bold uppercase #64748B, letter-spacing 0.5, margin-top 24dp margin-bottom 8dp                     |
+|List Item         |h-min-64dp, avatar/icon 40dp left, title 16sp bold, subtitle 14sp #64748B, chevron right if navigable       |
+|Number/Currency   |Tabular figures (monospace for numbers), Rp prefix 14sp, amount 24-32sp bold                                |
+
+### Screen Density Guidelines
+
+|Screen Type    |Max Elements                                                |
+|---------------|------------------------------------------------------------|
+|Dashboard/Home |4-6 summary cards, scrollable                               |
+|List           |Max 2 lines per item, infinite scroll, search bar sticky top|
+|Detail         |Grouped sections with clear headers, scroll                 |
+|Form (per step)|Max 3 input fields + 1 primary button                       |
+|Report         |Big number top, chart middle, detail list bottom            |
+|Empty          |1 illustration + 1 text block + 1 button. That’s it.        |
+
+-----
+
+## 5. DUAL-SIDED ARCHITECTURE
+
+Setiap module punya 2 experience yang berbeda tergantung role user:
+
+### Provider = Pengelola
+
+Full app install (Android). Dashboard management, input data, kelola order/penghuni/anggota/tamu, analytics, kirim tagihan dan reminder.
+
+### Consumer = Pengguna/Customer/Anggota/Tamu
+
+**2 opsi akses:**
+
+**Opsi 1: Via Web (tanpa install - default first touch)**
+
+- Provider share link via WA: berest.id/xx/xx
+- Consumer buka di browser HP
+- Zero friction, zero install
+- Bisa view semua + limited actions (RSVP, konfirmasi bayar, lapor masalah)
+
+**Opsi 2: Via App (install beRest - full consumer experience)**
+
+- Consumer download beRest dari Play Store
+- Register/login
+- App otomatis detect: “Lo terhubung sebagai customer di Laundry Bu Ningsih, penghuni Kos Pak Hadi, warga RT 05, dan tamu undangan Andi.”
+- Semua status dan interaksi dari semua provider yang terhubung ke lo = 1 dashboard
+- Push notification real-time (bukan cuma WA)
+- History lengkap cross-provider
+- Bisa jadi provider juga kapan saja (activate module)
+
+### Kenapa 2 Opsi?
+
+Web-first untuk first touch: orang gak mau install app cuma buat cek status cucian 1x. Link di WA = zero friction entry point.
+
+App untuk repeat consumers: penghuni kos yang bayar tiap bulan, customer laundry langganan, warga RT yang cek iuran rutin - mereka BUTUH app karena interaksi berulang dan push notification lebih reliable dari WA.
+
+App install juga jadi **bridge dari consumer ke provider**: “Lo udah install beRest buat cek cucian laundry? Oh, lo juga punya usaha sendiri? Aktifin aja module Lapak.”
+
+### Consumer App Dashboard
+
+```
+Home (Consumer View):
+├── "Terhubung dengan 4 provider"
+│
+├── beRest-in Lapak
+│   ├── Laundry Bu Ningsih: 2 order aktif
+│   │   ├── Order #L-0042: Sedang disetrika (estimasi ready 3 jam)
+│   │   └── Order #L-0041: Ready, belum diambil
+│   └── Les Piano Kak Dinda: Jadwal besok 16:00
+│       └── Tagihan Maret: Rp800.000 (belum bayar)
+│
+├── beRest-in Sewa
+│   ├── Kos Pak Hadi - Kamar 5
+│   │   ├── Tagihan Maret: Rp800.000 (LUNAS)
+│   │   └── Kontrak berakhir: 45 hari lagi
+│   └── Rental Kamera (Studio Jaya): Kembali besok
+│
+├── beRest-in Warga
+│   ├── RT 05 RW 03 Pekayon
+│   │   ├── Iuran Maret: Belum bayar (Rp50.000)
+│   │   ├── Pengumuman baru: "Gotong royong Minggu..."
+│   │   └── Jadwal ronda: 22 Maret (Sabtu malam)
+│   └── Pengajian Al-Ikhlas
+│       └── Infaq Jumat minggu ini: Rp2.350.000
+│
+├── beRest-in Hajat
+│   ├── Undangan masuk: Nikahan Andi (25 Maret)
+│   │   ├── Status RSVP: Hadir (2 orang)
+│   │   └── Suggested amplop: Rp500.000
+│   └── Amplop tracker: 3 hajatan bulan ini
+│
+└── Notifikasi
+    ├── "Cucian kamu sudah ready!" (5 menit lalu)
+    ├── "Iuran RT Maret belum dibayar" (tadi pagi)
+    └── "Reminder: kondangan Andi 7 hari lagi"
+```
+
+### Connection Flow: Provider <-> Consumer
+
+```
+PROVIDER (di app):
+1. Provider mengelola usaha/sewa/warga/hajat
+2. Provider share link ke consumer via WA:
+   "Kak, cucian kamu sudah ready. Cek: berest.id/lb/0042"
+
+CONSUMER (via web - first touch):
+3. Consumer tap link di WA -> buka browser
+4. Lihat: status order, detail, dll
+5. Di halaman web ada banner: "Install beRest untuk notifikasi real-time"
+6. Optional: consumer install app
+
+CONSUMER (via app - repeat):
+7. Consumer install beRest, register
+8. Input kode koneksi ATAU scan QR dari provider ATAU auto-link via nomor HP
+9. Provider muncul di dashboard consumer
+10. Semua update = push notification
+11. Consumer bisa interact: konfirmasi bayar, RSVP, lapor masalah, upload bukti
+
+CONSUMER -> PROVIDER (upgrade):
+12. Consumer yang sudah install app punya usaha sendiri
+13. Tap "Aktifkan Module" -> pilih Lapak/Sewa/Warga/Hajat
+14. Sekarang 1 app = consumer view + provider view
+```
+
+### Linking Mechanism
+
+Bagaimana consumer terhubung ke provider:
+
+**Method 1: Via Link (passive, web-only)**
+Provider share link WA -> consumer buka -> one-time view. Gak ada persistent connection. Cocok untuk: tamu undangan, customer 1x beli, jamaah lihat laporan infaq.
+
+**Method 2: Via Kode Koneksi (persistent, app required)**
+Provider generate kode 6 digit per consumer (e.g., “KOS-4829”). Consumer input kode di app -> permanent link terbentuk. Cocok untuk: penghuni kos, murid les, customer laundry langganan, anggota RT.
+
+**Method 3: Via Nomor HP (auto-detect, app required)**
+Saat consumer register di app dengan nomor HP, system auto-match dengan semua provider yang punya nomor HP itu di contact list mereka. Consumer dapat notifikasi: “Sepertinya kamu terhubung dengan provider ini. Konfirmasi?” Cocok untuk: onboarding massal, warga RT yang sudah didaftarkan pengurus.
+
+### Connection Lifecycle (Pindah, Ganti, Keluar)
+
+**Prinsip utama: data TIDAK PERNAH dihapus. Connection di-archive, bukan di-delete. Consumer bisa lihat full history semua provider yang pernah terhubung.**
+
+**Skenario dan mekanisme:**
+
+**1. Pindah Kos / Ganti Kontrakan**
+
+```
+Consumer (Bu Siti) di app:
+Sewa > Kos Pak Hadi - Kamar 5
+-> Tap [...] > "Pindah / Akhiri Sewa"
+-> Konfirmasi: "Yakin mau mengakhiri sewa di Kos Pak Hadi?"
+-> Input tanggal keluar (atau hari ini)
+-> Status connection: active -> archived
+-> History tagihan + kontrak tetap accessible di tab "Riwayat"
+-> Provider (Pak Hadi) dapat notifikasi: "Bu Siti menandai akhir sewa per [tanggal]"
+-> Provider confirm: unit status -> vacant, deposit -> process return
+
+Kemudian Bu Siti connect ke Kos Bu Ani (kode koneksi / QR baru):
+-> Connection baru terbentuk, status: active
+-> Dashboard sekarang nunjukin Kos Bu Ani (active) + Kos Pak Hadi (archived, collapsible)
+```
+
+**2. Ganti Langganan Laundry / Jasa**
+
+```
+Consumer (Andi) di app:
+Lapak > Laundry Bu Ningsih
+-> Tap [...] > "Berhenti Berlangganan"
+-> Status: active -> archived
+-> History order tetap ada di "Riwayat"
+-> Provider gak dapat notifikasi khusus (karena laundry itu casual, bukan kontraktual)
+
+Connect ke Laundry Bersih:
+-> Connection baru, order history mulai fresh
+-> Dashboard: Laundry Bersih (active) + Bu Ningsih (archived, di bawah "Riwayat")
+```
+
+**3. Pindah RT / Keluar dari Komunitas**
+
+```
+Consumer (Pak Dodi) di app:
+Warga > RT 05 RW 03 Pekayon
+-> Tap [...] > "Keluar dari Organisasi"
+-> Konfirmasi: "Yakin keluar dari RT 05?"
+-> Status: active -> archived
+-> History iuran tetap ada
+-> Provider (Ketua RT) dapat notifikasi: "Pak Dodi menandai keluar per [tanggal]"
+-> Provider update: member status -> inactive, stop billing
+
+Pak Dodi connect ke RT 08 (kode baru dari ketua RT baru):
+-> Fresh start: iuran mulai dari bulan join
+```
+
+**4. Hajatan Selesai (Auto-archive)**
+
+```
+Event nikahan Andi (25 Maret) selesai.
+-> Provider mark event: status -> completed
+-> Semua guest connections: active -> archived (otomatis)
+-> Consumer masih bisa lihat undangan + history di "Riwayat Hajatan"
+-> Amplop records tetap permanent (gak ter-archive, karena itu data personal consumer)
+```
+
+**5. Provider Tutup Usaha / Jual Properti**
+
+```
+Provider (Bu Ningsih) tutup laundry:
+-> Provider: Lapak > Settings > "Nonaktifkan Usaha"
+-> Semua consumer connections: active -> archived
+-> Semua consumer dapat notifikasi: "Laundry Bu Ningsih sudah tidak aktif"
+-> Consumer history tetap ada
+-> Provider bisa reaktifkan kapan saja (data gak hilang)
+```
+
+**Consumer Dashboard dengan Riwayat:**
+
+```
+Home (Consumer View):
+├── AKTIF
+│   ├── Kos Bu Ani - Kamar 2 (Sewa)
+│   ├── Laundry Bersih (Lapak)
+│   ├── RT 08 RW 02 (Warga)
+│   └── Nikahan Budi - 15 April (Hajat)
+│
+└── RIWAYAT (collapsible, default hidden)
+    ├── Kos Pak Hadi - Kamar 5 (Sewa) - berakhir Des 2025
+    │   └── Tap: lihat history tagihan, kontrak lama
+    ├── Laundry Bu Ningsih (Lapak) - berakhir Feb 2026
+    │   └── Tap: lihat history order
+    ├── RT 05 RW 03 Pekayon (Warga) - keluar Jan 2026
+    │   └── Tap: lihat history iuran
+    └── Nikahan Andi - 25 Maret 2026 (Hajat) - selesai
+        └── Tap: lihat undangan, amplop record
+```
+
+**Dari sisi Provider - manage connections:**
+
+```
+Provider Dashboard > Kontak/Anggota:
+├── AKTIF (32 penghuni)
+│   ├── Bu Siti - Kamar 5 - sejak Jan 2026
+│   └── ...
+├── TIDAK AKTIF (8 mantan penghuni)
+│   ├── Pak Dodi - Kamar 3 - Jan 2025 s/d Des 2025
+│   │   └── History: 12 bulan bayar, 0 nunggak, deposit dikembalikan
+│   └── ...
+└── Actions:
+    ├── "Tandai Keluar" (provider bisa initiate juga, bukan cuma consumer)
+    ├── "Kirim Ulang Kode Koneksi"
+    └── "Arsipkan"
+```
+
+**Initiation: Siapa yang bisa trigger disconnect?**
+
+|Skenario            |Consumer initiate |Provider initiate      |Auto                          |
+|--------------------|------------------|-----------------------|------------------------------|
+|Pindah kos          |Ya (utama)        |Ya (usir/kontrak habis)|Kontrak expired + grace 7 hari|
+|Ganti laundry       |Ya (utama)        |Ya (block customer)    |Tidak                         |
+|Keluar RT           |Ya (utama)        |Ya (keluarkan anggota) |Tidak                         |
+|Hajatan selesai     |Tidak perlu       |Tidak perlu            |Ya (event completed)          |
+|Provider tutup usaha|Tidak perlu       |Ya (utama)             |Tidak                         |
+|Rental selesai      |Ya (return barang)|Ya (confirm return)    |End date + grace 3 hari       |
+
+**Grace period & auto-archive rules:**
+
+- Kontrak sewa: jika contract_end_date lewat + 7 hari tanpa perpanjangan -> auto-archive connection, notify both sides
+- Rental: jika end_date lewat + 3 hari dan barang sudah returned -> auto-archive
+- Hajatan: event_date + 7 hari -> auto-archive semua guest connections
+- Laundry/jasa: gak ada auto-archive (consumer harus manual disconnect, atau inactive 90 hari -> soft prompt “Masih berlangganan?”)
+
+-----
+
+## 6. MODULE DETAIL: beRest-in Lapak
+
+### 5A. Provider Side - Pemilik Usaha
+
+**Mode Pedagang (PKL, warung kecil, jualan online kecil)**
+
+Fitur inti:
+
+- 1-tap catat penjualan (tombol besar “CATAT” -> input nominal -> done, 3 detik)
+- Omzet hari ini (real-time counter di home screen)
+- Catat pengeluaran (beli bahan, sewa tempat, gas, dll)
+- Profit harian = omzet - pengeluaran
+- Trend mingguan/bulanan (chart simple)
+- Produk favorit (kalau mau detail: input nama produk + harga -> tap produk saat jual instead of input nominal)
+
+**Mode Laundry**
+
+Fitur inti:
+
+- Terima order: input nama customer, berat (kg), layanan (cuci-kering / cuci-setrika / express / bedcover / dll), harga auto-calculate dari rate per kg
+- Print/share nota digital ke customer via WA (include link status)
+- Update status per order: Diterima -> Dicuci -> Disetrika -> Ready -> Diambil
+- Dashboard: order hari ini, ready belum diambil (berapa hari), total omzet
+- Customer database: history order, total spending
+- Alert: cucian ready lebih dari 3 hari belum diambil -> reminder ke customer
+
+**Mode Guru/Pelatih**
+
+Fitur inti:
+
+- Daftar murid: nama, no HP (ortu jika anak), alamat, mata pelajaran/skill
+- Jadwal recurring per murid: Senin 16:00 (Andi - Matematika), Selasa 10:00 (Budi - Gitar)
+- Absensi per sesi: Hadir / Cancel oleh murid / Cancel oleh guru
+- Auto-generate tagihan bulanan: 8 sesi x Rp100K = Rp800.000 (kurangi sesi cancel)
+- Share tagihan ke WA ortu murid
+- Track pembayaran: Lunas / Belum / Sebagian
+- Dashboard: jadwal hari ini, income bulan ini, murid nunggak
+
+**Mode Jasa Umum (barbershop, bengkel, jahit, servis HP, dll)**
+
+Fitur inti:
+
+- Antrian digital: generate QR code -> tempel di toko -> customer scan -> dapat nomor antrian
+- Catat order/job: customer + item/jasa + estimasi harga + estimasi selesai
+- Update status: Antri -> Dikerjakan -> Selesai -> Diambil/Dibayar
+- Nota/invoice digital
+- Customer database + history
+- Analytics: peak hours, avg service time, daily revenue
+
+**Cross-mode features:**
+
+- Customer database (shared across modes - 1 customer bisa pakai multiple services)
+- Income dashboard (aggregated semua mode)
+- Pengeluaran tracker
+- Profit report (daily/weekly/monthly)
+- Export data (CSV/PDF)
+- AI scan nota belanja bahan -> auto-extract items + harga (Gemini 2.5 Flash)
+
+### 5B. Consumer Side - Customer/Murid/Penerima Jasa
+
+**Via Web (tanpa install):**
+
+Laundry customer:
+
+- Provider share link: berest.id/lb/0042
+- Customer buka -> lihat status cucian real-time: “Sedang disetrika, estimasi ready 2 jam lagi”
+- Banner: “Install beRest untuk notifikasi otomatis”
+
+Guru/Pelatih murid (ortu):
+
+- Provider share link: berest.id/gp/andi
+- Ortu buka -> lihat: jadwal les, absensi, tagihan bulan ini, history pembayaran
+
+Jasa (barbershop/bengkel):
+
+- Scan QR di toko -> buka berest.id/bb/antrian
+- Lihat: nomor antrian, estimasi waktu tunggu, berapa orang di depan
+- Bisa “pergi dulu” dan pantau dari HP
+
+Pedagang:
+
+- Provider share link katalog: berest.id/wk/katalog
+- Customer browse produk + harga + stok
+- Tap “Pesan via WhatsApp” -> auto-formatted message ke WA provider
+
+**Via App (install beRest):**
+
+Semua fitur web di atas PLUS:
+
+- Push notification saat status berubah (“Cucian ready!”, “Giliran kamu 2 lagi!”)
+- 1 dashboard semua provider yang lo langganan
+- History order/les/servis lintas provider
+- Quick re-order (laundry: “Order seperti terakhir?”)
+- Rate & review provider (internal, bukan public)
+- Chat ringan dengan provider (dalam app, bukan WA)
+
+-----
+
+## 7. MODULE DETAIL: beRest-in Sewa
+
+### 6A. Provider Side - Pemilik Aset Sewa
+
+**Sub-module Properti (kos-kosan, kontrakan, rumah sewa)**
+
+Fitur inti:
+
+- Daftar properti: nama, alamat, jumlah unit/kamar, foto
+- Per unit: nomor kamar, status (terisi/kosong/maintenance), harga sewa, penghuni saat ini
+- Penghuni management: nama, no HP, KTP (foto), tanggal masuk, tanggal kontrak habis
+- Billing cycle: auto-generate tagihan bulanan per penghuni -> share via WA
+- Payment tracking: Lunas / Belum / Sebagian / Telat
+- Reminder otomatis H-3 sebelum jatuh tempo
+- Pengeluaran properti: maintenance (pipa bocor, cat ulang), listrik token, wifi, cleaning
+- Kamar kosong alert + info untuk di-share (“Kamar No.5 available, Rp800K/bulan” -> share ke WA/socmed)
+- Dashboard: total income, occupancy rate, penghuni nunggak, kontrak segera habis
+
+**Sub-module Rental (alat pesta, kamera, kendaraan, baju, tools)**
+
+Fitur inti:
+
+- Inventory item: nama, foto, jumlah unit, harga sewa per hari/event, deposit required
+- Penyewaan: customer + item + tanggal pinjam + tanggal kembali + deposit + foto kondisi BEFORE
+- Status tracking: Disewa -> Due Date -> Dikembalikan -> Dicek
+- Pengembalian: foto kondisi AFTER + compare dengan BEFORE + catatan (rusak/hilang/ok)
+- Reminder H-1 pengembalian ke penyewa
+- Calendar view: item mana yang disewa kapan (hindari double-booking)
+- Dashboard: item tersewa, due today, overdue, income bulan ini
+
+**Sub-module Kontrak**
+
+Fitur inti:
+
+- Template perjanjian: sewa kos, kontrak rumah, perjanjian rental, perjanjian titip kunci
+- AI generate isi kontrak dari input (nama, alamat, nominal, durasi, syarat khusus) via Gemini 2.5 Flash
+- Download PDF
+- Vault: simpan semua kontrak aktif
+- Reminder: kontrak habis H-30, H-7
+- History kontrak per penghuni/penyewa
+
+### 6B. Consumer Side - Penghuni/Penyewa
+
+**Via Web (tanpa install):**
+
+Penghuni kos:
+
+- Provider share link: berest.id/kh/siti
+- Penghuni buka -> lihat: tagihan bulan ini, history pembayaran, tanggal kontrak berakhir, aturan kos, kontak pemilik kos
+- Lapor masalah: “AC kamar 5 bocor” -> masuk ke dashboard provider (with foto)
+
+Penyewa rental:
+
+- Provider share link: berest.id/rn/0087
+- Lihat: item yang disewa, tanggal harus kembali, deposit yang ditahan, status deposit
+
+**Via App (install beRest):**
+
+Semua fitur web PLUS:
+
+- Push notification tagihan jatuh tempo, kontrak mau habis
+- Upload bukti bayar langsung dari app -> status auto-update di provider
+- Maintenance request dengan foto + tracking status perbaikan
+- History semua tempat kos/kontrakan yang pernah ditinggali (lintas provider)
+- Digital kontrak vault (salinan kontrak dari semua provider)
+
+-----
+
+## 8. MODULE DETAIL: beRest-in Warga
+
+### 7A. Provider Side - Pengurus Komunitas
+
+**Sub-module Kas & Iuran (RT/RW, komplek, pengajian, OSIS, klub, alumni)**
+
+Fitur inti:
+
+- Buat organisasi: nama, tipe (RT/RW, komplek, pengajian, mesjid, klub, sekolah, alumni, lainnya)
+- Daftar anggota: nama, no HP, alamat (bisa import dari kontak HP)
+- Set iuran: nominal per periode (bulanan/mingguan/tahunan), tanggal jatuh tempo
+- Catat pembayaran: centang per anggota per periode
+- Catat pengeluaran: nominal + kategori + foto bukti (struk/nota)
+- Saldo kas real-time: total masuk - total keluar
+- Laporan otomatis: “Periode Maret 2026: 34 dari 45 warga sudah bayar. Pemasukan: Rp3.400.000. Pengeluaran: Rp1.850.000. Saldo: Rp4.230.000.”
+- Share laporan ke WA group sebagai link
+- Reminder massal ke yang belum bayar (sopan, auto-generate text)
+
+**Sub-module Infaq & Donasi (mesjid, musholla, pengajian)**
+
+Fitur inti:
+
+- Catat infaq harian (kotak amal Jumat: total Rp2.350.000)
+- Donasi khusus: pembangunan mesjid, qurban, santunan anak yatim - per donatur (nama + nominal)
+- Laporan transparan: total infaq bulan ini, dipakai untuk apa, saldo
+- Target fundraising: “Renovasi toilet mesjid - target Rp15 juta - terkumpul Rp8.2 juta (55%)” -> progress bar yang bisa di-share
+- Laporan tahunan otomatis
+
+**Sub-module Jadwal & Giliran**
+
+Fitur inti:
+
+- Buat roster: daftar anggota + slot jadwal (shift pagi/malam, atau hari Senin/Selasa/dll)
+- Auto-generate jadwal yang fair (distribusi merata)
+- Publish ke semua anggota
+- Tuker shift: A request tuker dengan B -> B approve via link -> jadwal auto-update
+- Reminder H-1: “Besok giliran jaga malam kamu (22:00 - 06:00)”
+- Absensi: anggota tap “Hadir” saat mulai
+- Dashboard coordinator: siapa on-duty sekarang, history kehadiran, distribusi shift per orang
+
+**Sub-module Pengumuman**
+
+Fitur inti:
+
+- Buat pengumuman (judul + isi + lampiran opsional)
+- Share sebagai link ke WA group
+- Track: berapa orang yang sudah baca
+- Pin pengumuman penting
+
+### 7B. Consumer Side - Anggota Komunitas/Warga/Jamaah
+
+**Via Web (tanpa install):**
+
+Warga RT:
+
+- Ketua RT share link: berest.id/rt/siti
+- Warga buka -> lihat: status iuran, laporan keuangan kas RT, pengumuman terbaru, jadwal ronda
+- Konfirmasi bayar: upload bukti transfer -> status auto-update di dashboard pengurus
+
+Jamaah mesjid:
+
+- DKM share link laporan: berest.id/ms/laporan
+- Jamaah lihat: total infaq bulan ini, detail pengeluaran, saldo, progress fundraising
+
+**Via App (install beRest):**
+
+Semua fitur web PLUS:
+
+- Push notification: “Iuran Maret belum dibayar”, “Besok giliran ronda kamu”, “Pengumuman baru dari RT”
+- 1 dashboard semua komunitas yang lo tergabung (RT + pengajian + alumni + dll)
+- Request tuker shift langsung dari app
+- Bayar iuran -> upload bukti -> instant confirmation
+- Voting/polling fitur (future)
+
+-----
+
+## 9. MODULE DETAIL: beRest-in Hajat
+
+### 8A. Provider Side - Penyelenggara Acara
+
+**Sub-module Undangan Digital**
+
+Fitur inti:
+
+- Pilih tipe acara: Pernikahan, Khitanan, Aqiqah, Ulang Tahun, Syukuran, Tahlilan/Duka, Custom
+- Pilih template desain (10-15 template per kategori, clean dan modern)
+- Input detail: nama, tanggal, waktu, lokasi (embed Google Maps link), dresscode, info tambahan
+- AI generate text undangan yang proper (Gemini 2.5 Flash: input nama + acara -> generate wording sopan sesuai budaya)
+- Preview -> publish -> dapat link: berest.id/hj/andi-nina
+- Share per-orang via WA (personalized) atau share ke group
+
+**Sub-module RSVP & Guest Manager**
+
+Fitur inti:
+
+- Import guest list dari kontak HP atau input manual atau CSV
+- Track per tamu: Undangan Terkirim -> Dibuka -> Konfirmasi Hadir (ya + jumlah orang) / Tidak Hadir / Belum Respon
+- Dashboard: 250 diundang, 180 konfirmasi (320 orang total), 40 tidak hadir, 30 belum respon
+- Auto-reminder ke yang belum respon (H-7, H-3)
+- Day-of checklist: centang tamu yang datang
+- Analytics: response rate, jumlah pasti tamu
+
+**Sub-module Amplop Tracker**
+
+Fitur inti:
+
+- Catat amplop DITERIMA di acara sendiri: dari siapa, nominal, acara apa, tanggal
+- Catat amplop DIBERIKAN ke acara orang: ke siapa, nominal, acara apa, tanggal
+- History per orang: “Ahmad - Kasih ke kita Rp500K (nikahan kita 2024). Kita kasih Rp300K (khitanan anaknya 2023).”
+- Saat mau ke acara orang: search nama -> app suggest nominal berdasarkan history
+- Total statistik: total amplop diterima per acara, total amplop diberikan per tahun
+- Net balance per orang (social reciprocity awareness)
+
+### 8B. Consumer Side - Tamu/Undangan
+
+**Via Web (tanpa install):**
+
+Tamu undangan:
+
+- Host share link: berest.id/hj/andi-nina (atau personalized: berest.id/hj/andi-nina/siti)
+- Buka -> lihat undangan digital yang cantik (nama acara, foto, detail, maps)
+- RSVP: tap “Hadir” -> input jumlah orang -> “Konfirmasi terkirim!”
+- Info lengkap: lokasi (tap untuk buka Google Maps), waktu, dresscode, parking info
+- Ucapan digital: tulis ucapan selamat
+
+**Via App (install beRest):**
+
+Semua fitur web PLUS:
+
+- Push notification: “Reminder: kondangan Andi besok jam 11:00”
+- Amplop suggestion otomatis berdasarkan history: “Andi pernah kasih Rp500K. Suggested: Rp500-750K.”
+- All-in-one hajatan dashboard: semua undangan masuk + RSVP status + amplop tracker
+- History kondangan lengkap (siapa, kapan, di mana, berapa amplop)
+- Calendar view: hajatan bulan ini
+
+-----
+
+## 10. SHARED LAYER DETAIL
+
+### 9.1 Kontak Universal
+
+Satu database kontak yang shared across semua module. Saat provider input “Bu Siti” di module Sewa (penghuni kos), dan kemudian Bu Siti juga jadi customer di module Lapak (laundry), app auto-suggest: “Bu Siti (penghuni kamar 3) sudah ada di kontak kamu. Gunakan data yang sama?”
+
+Fields per kontak: nama, no HP, alamat, email (opsional), KTP foto (opsional), tags (penghuni, customer, warga, tamu), notes, history interaksi cross-module.
+
+Dari sisi consumer: 1 akun beRest = terhubung ke semua provider yang kenal nomor HP lo. Gak perlu register ulang per provider.
+
+### 9.2 Financial Dashboard
+
+Aggregated view dari semua uang yang dikelola user:
+
+```
+Bulan ini (Maret 2026):
+├── Lapak (Laundry): Rp3.200.000 omzet, Rp1.100.000 bahan = Rp2.100.000 profit
+├── Sewa (Kos 8 kamar): Rp4.800.000 sewa masuk, Rp350.000 maintenance
+├── Warga (Pengajian): Rp850.000 iuran masuk, Rp400.000 keluar = Rp450.000 saldo
+├── Hajat: Rp0 (tidak ada acara bulan ini)
+└── TOTAL DIKELOLA: Rp8.850.000
+```
+
+### 9.3 Reminder Center
+
+Centralized notification hub. Semua reminder dari semua module di 1 tempat:
+
+```
+Hari ini (18 Maret 2026):
+├── [Sewa] Bu Siti belum bayar kos bulan ini (jatuh tempo kemarin)
+├── [Lapak] 3 cucian ready, belum diambil >2 hari
+├── [Warga] 11 warga belum bayar iuran Maret
+├── [Lapak] Les Andi hari ini jam 16:00
+├── [Hajat] Kondangan Pak Ahmad besok - suggested amplop Rp500K
+└── [Sewa] Kontrak Dodi (kamar 3) habis 15 hari lagi
+```
+
+### 9.4 WA Share Engine
+
+1 engine untuk semua sharing needs. Output: link web + text sopan dan natural.
+
+Contoh output per module:
+
+- Tagihan kos: “Assalamualaikum Bu Siti, berikut tagihan kos bulan Maret: Rp800.000. Detail: berest.id/kh/siti. Terima kasih.”
+- Status cucian: “Kak, cucian kamu sudah siap diambil. Detail: berest.id/lb/0042”
+- Laporan kas: “Laporan keuangan RT 05 bulan Maret sudah tersedia: berest.id/rt/laporan”
+- Undangan: “Bismillah, kami mengundang Bapak/Ibu di acara… berest.id/hj/andi-nina”
+
+Semua link: **berest.id/[2-letter-code]/[identifier]**
+
+### 9.5 URL Structure
+
+Semua consumer-facing URL menggunakan format pendek: **berest.id/xx/xx**
+
+|Code|Module                        |Contoh                |Keterangan     |
+|----|------------------------------|----------------------|---------------|
+|lb  |Lapak - Laundry/Bisnis        |berest.id/lb/0042     |Status order   |
+|gp  |Lapak - Guru/Pelatih          |berest.id/gp/andi     |Portal murid   |
+|bb  |Lapak - Barbershop/Bisnis jasa|berest.id/bb/antrian  |Antrian live   |
+|wk  |Lapak - Warung/Katalog        |berest.id/wk/katalog  |Katalog produk |
+|kh  |Sewa - Kos/Hunian             |berest.id/kh/siti     |Portal penghuni|
+|rn  |Sewa - Rental                 |berest.id/rn/0087     |Status rental  |
+|rt  |Warga - RT/komunitas          |berest.id/rt/siti     |Portal warga   |
+|ms  |Warga - Mesjid                |berest.id/ms/laporan  |Laporan infaq  |
+|hj  |Hajat                         |berest.id/hj/andi-nina|Undangan       |
+
+Slugs setelah code bisa berupa: kode alfanumerik auto-generate (0042), nama pendek (siti, andi-nina), atau deskripsi (laporan, antrian, katalog).
+
+-----
+
+## 11. ONBOARDING FLOW
+
+### Provider Onboarding (install app)
+
+```
+Splash: "beRest - Be at Rest with beRest."
+
+-> Register: Google 1-tap / No HP + OTP
+
+-> "Halo! Kamu mau beRest-in apa?"
+   [Checklist - pilih minimal 1:]
+   [ ] Lapak (jualan, laundry, les, jasa)
+   [ ] Sewa (kos, kontrakan, rental barang)
+   [ ] Warga (RT/RW, mesjid, pengajian, klub)
+   [ ] Hajat (undangan, kondangan, amplop)
+
+-> Jika pilih Lapak:
+   "Jenis usahamu apa?"
+   [Pedagang/Warung] [Laundry] [Guru/Pelatih] [Jasa Lain]
+   -> Guided setup per tipe (2-3 langkah)
+
+-> Jika pilih Sewa:
+   "Apa yang kamu sewakan?"
+   [Kos-kosan/Kontrakan] [Rental Barang] [Keduanya]
+   -> Guided setup (tambah 1 properti/item pertama)
+
+-> Jika pilih Warga:
+   "Organisasi apa yang kamu kelola?"
+   [RT/RW] [Mesjid/Musholla] [Pengajian] [Klub/Komunitas] [Lainnya]
+   -> Guided setup (nama organisasi, tambah 3 anggota pertama)
+
+-> Jika pilih Hajat:
+   "Mau bikin undangan atau catat amplop?"
+   [Bikin Undangan Sekarang] [Mulai Catat Amplop Dulu]
+
+-> Home screen: HANYA module yang dipilih.
+   Footer: "Kamu bisa tambah module lain kapan saja."
+```
+
+### Consumer Onboarding (install app)
+
+```
+Splash: "beRest - Be at Rest with beRest."
+
+-> Register: Google 1-tap / No HP + OTP
+
+-> Auto-detect: system check nomor HP user di semua provider contacts
+   
+   JIKA ditemukan koneksi:
+   -> "Kami menemukan kamu terhubung dengan:"
+      [v] Laundry Bu Ningsih (customer)
+      [v] Kos Pak Hadi - Kamar 5 (penghuni)
+      [v] RT 05 RW 03 Pekayon (warga)
+      [ ] Les Piano Kak Dinda (murid)  <- user bisa uncheck
+      -> "Konfirmasi"
+   
+   JIKA tidak ditemukan:
+   -> "Masukkan kode koneksi dari provider kamu"
+      [______] atau [Scan QR]
+      -> "Belum punya kode? Lewati dulu"
+
+-> "Kamu juga punya usaha/sewaan/komunitas/acara yang mau dikelola?"
+   [Ya, aktifkan module provider] -> provider onboarding
+   [Tidak, cukup sebagai pengguna]
+
+-> Home screen: Consumer dashboard (semua provider yang terhubung)
+```
+
+### Web-to-App Conversion Flow
+
+```
+Consumer buka berest.id/lb/0042 di browser (dari link WA)
+
+-> Lihat status order (full info, functional)
+
+-> Smart banner (sticky, gak annoying):
+   "Download beRest - notifikasi real-time & semua status di 1 tempat"
+   [Install] [Nanti]
+
+-> Jika install:
+   -> App detect bahwa user baru datang dari web link
+   -> Auto-connect ke provider yang link-nya dibuka
+   -> "Mau tambah provider lain? Masukkan kode atau scan QR"
+```
+
+-----
+
+## 12. MONETISASI
+
+### Tier Structure
+
+|Feature                     |Gratis             |Starter Rp29K/bln|Pro Rp59K/bln  |
+|----------------------------|-------------------|-----------------|---------------|
+|Module aktif (provider)     |1                  |2                |Semua (4)      |
+|Consumer features           |Full               |Full             |Full           |
+|Consumer web portal         |Ya                 |Ya               |Ya             |
+|WA Share                    |Ya                 |Ya               |Ya             |
+|Kontak                      |50                 |200              |Unlimited      |
+|Lapak: catat penjualan      |Unlimited          |Unlimited        |Unlimited      |
+|Lapak: mode advanced        |1 mode, 10 customer|Full, 50 customer|Full, unlimited|
+|Lapak: antrian digital      |10/hari            |Unlimited        |Unlimited      |
+|Sewa: unit/item             |5                  |20               |Unlimited      |
+|Warga: anggota per org      |30                 |100              |Unlimited      |
+|Warga: multi-organisasi     |1                  |3                |Unlimited      |
+|Hajat: event                |1 aktif, 50 tamu   |3 aktif, 200 tamu|Unlimited      |
+|Hajat: amplop tracker       |20 records         |100              |Unlimited      |
+|Financial dashboard         |Basic              |Full             |Full + export  |
+|AI features (scan, template)|3x/bulan           |30x/bulan        |100x/bulan     |
+|Export PDF/CSV              |Tidak              |Ya               |Ya             |
+
+### Pricing Logic
+
+- **Consumer features 100% FREE.** Consumer gak bayar apapun. Mereka value-nya di sisi lain: data, engagement, dan potential conversion ke provider.
+- **Provider Free tier GENUINELY useful.** Ibu kos 5 kamar = gratis. Pedagang kaki lima = gratis. Bendahara RT kecil 30 KK = gratis.
+- **Upgrade trigger natural.** “Kamu sudah punya 35 anggota. Upgrade ke Starter untuk sampai 100 anggota - cuma Rp29K/bulan.”
+- **Consumer -> Provider conversion = monetization multiplier.** Consumer install app gratis -> sadar punya usaha sendiri -> aktifkan module Lapak -> hits limit -> upgrade.
+
+-----
+
+## 13. TECH STACK
+
+|Layer                           |Technology                                  |Notes                                                                                                                                  |
+|--------------------------------|--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+|Mobile App (Provider + Consumer)|React Native + Expo SDK 52+                 |Android-first, 1 codebase 2 views                                                                                                      |
+|Consumer Web Portal             |Next.js 15 (Static/SSR)                     |Hosted free di Vercel                                                                                                                  |
+|Backend                         |Supabase                                    |PostgreSQL, Auth, Storage, Realtime, Edge Functions                                                                                    |
+|AI                              |Google Gemini 2.5 Flash                     |Scan nota, generate kontrak/undangan text. Free tier: 15 RPM, 1000 RPD. Paid: $0.30/$2.50 per 1M tokens. Model string: gemini-2.5-flash|
+|Styling                         |NativeWind                                  |Tailwind for RN                                                                                                                        |
+|State                           |Zustand + TanStack Query                    |                                                                                                                                       |
+|Forms                           |React Hook Form + Zod                       |                                                                                                                                       |
+|Navigation                      |Expo Router                                 |File-based                                                                                                                             |
+|Push Notifications              |Expo Notifications                          |Provider + Consumer                                                                                                                    |
+|Image                           |Expo Image Picker + Camera                  |                                                                                                                                       |
+|PDF                             |expo-print + expo-sharing                   |                                                                                                                                       |
+|QR                              |react-native-qrcode-svg + expo-camera (scan)|                                                                                                                                       |
+|Charts                          |victory-native                              |                                                                                                                                       |
+|Icons                           |lucide-react-native                         |                                                                                                                                       |
+|Auth                            |Supabase Auth                               |Google + Phone OTP                                                                                                                     |
+|Offline                         |AsyncStorage + queue                        |Basic offline support                                                                                                                  |
+|Realtime                        |Supabase Realtime                           |Provider update -> Consumer instant                                                                                                    |
+|Deep Linking                    |Expo Linking + Universal Links              |berest.id/xx/xx -> app if installed                                                                                                    |
+
+### Gemini 2.5 Flash - Why This Model
+
+- Gemini 2.0 Flash RETIRED per Juni 2026. Jangan pakai.
+- Gemini 2.5 Flash = stable production model, free tier generous (15 RPM, ~1000 RPD), multimodal (bisa OCR scan nota/KTP), harga paid tier sangat murah ($0.30 input / $2.50 output per 1M tokens).
+- Gemini 3 Flash Preview = lebih baru tapi masih preview, bisa berubah. Gak recommended untuk production app.
+- Gemini 2.5 Flash-Lite = backup option kalau butuh lebih murah untuk simple text tasks.
+- Model string untuk API call: `gemini-2.5-flash`
+
+-----
+
+## 14. DATABASE SCHEMA
+
+```sql
+-- ============ USERS & AUTH ============
+
+CREATE TABLE profiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  full_name TEXT,
+  phone TEXT UNIQUE,
+  avatar_url TEXT,
+  role TEXT DEFAULT 'consumer' CHECK (role IN ('provider','consumer','both')),
+  active_modules TEXT[] DEFAULT '{}', -- ['lapak','sewa','warga','hajat']
+  subscription_tier TEXT DEFAULT 'free' CHECK (subscription_tier IN ('free','starter','pro')),
+  subscription_expires_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============ UNIVERSAL CONTACTS ============
+
+CREATE TABLE contacts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  phone TEXT,
+  address TEXT,
+  email TEXT,
+  ktp_photo TEXT,
+  tags TEXT[] DEFAULT '{}', -- ['penghuni','customer','warga','tamu']
+  notes TEXT,
+  metadata JSONB DEFAULT '{}',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_contacts_user ON contacts(user_id);
+CREATE INDEX idx_contacts_phone ON contacts(phone);
+CREATE INDEX idx_contacts_tags ON contacts USING GIN(tags);
+
+-- ============ CONSUMER CONNECTIONS ============
+
+CREATE TABLE consumer_connections (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  consumer_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  provider_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  module TEXT NOT NULL, -- 'lapak','sewa','warga','hajat'
+  connection_type TEXT NOT NULL, -- 'customer','tenant','member','guest'
+  reference_id UUID, -- business_id, property_unit_id, org_member_id, event_guest_id
+  connection_code TEXT, -- 6-digit code used to connect
+  status TEXT DEFAULT 'active' CHECK (status IN ('active','archived','pending')),
+  -- Lifecycle fields
+  connected_at TIMESTAMPTZ DEFAULT NOW(),
+  archived_at TIMESTAMPTZ, -- when connection ended
+  archived_by TEXT CHECK (archived_by IN ('consumer','provider','system')), -- who initiated
+  archive_reason TEXT, -- 'pindah','berhenti','keluar','tutup_usaha','event_selesai','kontrak_habis','rental_selesai'
+  auto_archive_at TIMESTAMPTZ, -- scheduled auto-archive (contract end + grace, event end + 7d)
+  notes TEXT -- optional note saat archive ("Pindah ke kos baru", etc)
+);
+CREATE INDEX idx_connections_consumer ON consumer_connections(consumer_id);
+CREATE INDEX idx_connections_provider ON consumer_connections(provider_id);
+CREATE INDEX idx_connections_status ON consumer_connections(status);
+CREATE INDEX idx_connections_auto_archive ON consumer_connections(auto_archive_at) WHERE auto_archive_at IS NOT NULL AND status = 'active';
+CREATE UNIQUE INDEX idx_connections_unique ON consumer_connections(consumer_id, provider_id, module, reference_id);
+
+-- ============ MODULE: LAPAK (beRest-in Lapak) ============
+
+CREATE TABLE businesses (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('pedagang','laundry','guru','jasa_umum')),
+  slug TEXT UNIQUE,
+  description TEXT,
+  address TEXT,
+  logo_url TEXT,
+  settings JSONB DEFAULT '{}',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE products (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  business_id UUID NOT NULL REFERENCES businesses(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  price BIGINT NOT NULL,
+  cost_price BIGINT,
+  stock INTEGER,
+  photo_url TEXT,
+  category TEXT,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE orders (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  business_id UUID NOT NULL REFERENCES businesses(id) ON DELETE CASCADE,
+  contact_id UUID REFERENCES contacts(id),
+  consumer_id UUID REFERENCES profiles(id), -- linked consumer account (nullable)
+  order_code TEXT NOT NULL UNIQUE, -- short code for URL: "0042"
+  items JSONB NOT NULL DEFAULT '[]',
+  total BIGINT NOT NULL DEFAULT 0,
+  status TEXT DEFAULT 'new' CHECK (status IN ('new','confirmed','in_progress','ready','completed','cancelled')),
+  payment_status TEXT DEFAULT 'unpaid' CHECK (payment_status IN ('unpaid','partial','paid')),
+  notes TEXT,
+  metadata JSONB DEFAULT '{}', -- laundry: {weight_kg, service_type}, guru: {subject, session_date}
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_orders_business ON orders(business_id);
+CREATE INDEX idx_orders_consumer ON orders(consumer_id);
+CREATE INDEX idx_orders_code ON orders(order_code);
+
+CREATE TABLE students (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  business_id UUID NOT NULL REFERENCES businesses(id) ON DELETE CASCADE,
+  contact_id UUID REFERENCES contacts(id),
+  consumer_id UUID REFERENCES profiles(id),
+  name TEXT NOT NULL,
+  parent_phone TEXT,
+  subject TEXT,
+  schedule JSONB DEFAULT '[]',
+  rate_per_session BIGINT,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE attendance_logs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  student_id UUID NOT NULL REFERENCES students(id) ON DELETE CASCADE,
+  session_date DATE NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('present','cancelled_student','cancelled_teacher','rescheduled')),
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE queue_tickets (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  business_id UUID NOT NULL REFERENCES businesses(id) ON DELETE CASCADE,
+  ticket_number INTEGER NOT NULL,
+  customer_name TEXT,
+  consumer_id UUID REFERENCES profiles(id),
+  status TEXT DEFAULT 'waiting' CHECK (status IN ('waiting','serving','completed','skipped')),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============ MODULE: SEWA (beRest-in Sewa) ============
+
+CREATE TABLE properties (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('kos','kontrakan','rumah_sewa','apartment')),
+  address TEXT,
+  total_units INTEGER,
+  photos TEXT[] DEFAULT '{}',
+  slug TEXT UNIQUE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE property_units (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  property_id UUID NOT NULL REFERENCES properties(id) ON DELETE CASCADE,
+  unit_name TEXT NOT NULL,
+  monthly_rent BIGINT NOT NULL,
+  status TEXT DEFAULT 'vacant' CHECK (status IN ('occupied','vacant','maintenance')),
+  current_tenant_id UUID REFERENCES contacts(id),
+  tenant_consumer_id UUID REFERENCES profiles(id), -- linked consumer account
+  tenant_start_date DATE,
+  contract_end_date DATE,
+  deposit_amount BIGINT DEFAULT 0,
+  notes TEXT,
+  photos TEXT[] DEFAULT '{}'
+);
+
+CREATE TABLE rental_items (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  category TEXT,
+  photo_url TEXT,
+  quantity_total INTEGER DEFAULT 1,
+  quantity_available INTEGER DEFAULT 1,
+  daily_rate BIGINT,
+  deposit_required BIGINT DEFAULT 0,
+  condition_notes TEXT
+);
+
+CREATE TABLE rentals (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  rental_item_id UUID NOT NULL REFERENCES rental_items(id) ON DELETE CASCADE,
+  contact_id UUID REFERENCES contacts(id),
+  consumer_id UUID REFERENCES profiles(id),
+  rental_code TEXT UNIQUE, -- for URL
+  quantity INTEGER DEFAULT 1,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  total_cost BIGINT,
+  deposit_paid BIGINT DEFAULT 0,
+  deposit_status TEXT DEFAULT 'held' CHECK (deposit_status IN ('held','returned','deducted')),
+  photo_before TEXT,
+  photo_after TEXT,
+  status TEXT DEFAULT 'active' CHECK (status IN ('active','returned','overdue')),
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE rent_payments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  unit_id UUID REFERENCES property_units(id),
+  rental_id UUID REFERENCES rentals(id),
+  contact_id UUID REFERENCES contacts(id),
+  consumer_id UUID REFERENCES profiles(id),
+  period TEXT,
+  amount BIGINT NOT NULL,
+  payment_date DATE,
+  status TEXT DEFAULT 'unpaid' CHECK (status IN ('unpaid','partial','paid','overdue')),
+  proof_photo TEXT,
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE contracts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  contact_id UUID REFERENCES contacts(id),
+  consumer_id UUID REFERENCES profiles(id),
+  type TEXT NOT NULL,
+  title TEXT NOT NULL,
+  content_json JSONB,
+  pdf_url TEXT,
+  start_date DATE,
+  end_date DATE,
+  status TEXT DEFAULT 'active' CHECK (status IN ('draft','active','expired','terminated')),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============ MODULE: WARGA (beRest-in Warga) ============
+
+CREATE TABLE organizations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('rt_rw','komplek','mesjid','pengajian','klub','sekolah','alumni','other')),
+  slug TEXT UNIQUE,
+  description TEXT,
+  logo_url TEXT,
+  settings JSONB DEFAULT '{}',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE org_members (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+  contact_id UUID REFERENCES contacts(id),
+  consumer_id UUID REFERENCES profiles(id), -- linked consumer account
+  name TEXT NOT NULL,
+  phone TEXT,
+  role TEXT DEFAULT 'member' CHECK (role IN ('admin','treasurer','member')),
+  member_code TEXT UNIQUE, -- for consumer portal + app connection
+  joined_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE org_dues (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+  member_id UUID NOT NULL REFERENCES org_members(id) ON DELETE CASCADE,
+  period TEXT NOT NULL,
+  amount BIGINT NOT NULL,
+  status TEXT DEFAULT 'unpaid' CHECK (status IN ('unpaid','paid','partial','exempt')),
+  paid_date DATE,
+  proof_photo TEXT,
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE org_transactions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+  type TEXT NOT NULL CHECK (type IN ('income','expense')),
+  category TEXT,
+  description TEXT NOT NULL,
+  amount BIGINT NOT NULL,
+  transaction_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  proof_photo TEXT,
+  donor_name TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE org_schedules (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  schedule_data JSONB NOT NULL,
+  period TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE org_announcements (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  body TEXT NOT NULL,
+  attachment_url TEXT,
+  is_pinned BOOLEAN DEFAULT false,
+  read_count INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============ MODULE: HAJAT (beRest-in Hajat) ============
+
+CREATE TABLE events (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('nikah','khitan','aqiqah','ultah','syukuran','duka','custom')),
+  slug TEXT UNIQUE, -- for URL: "andi-nina"
+  event_date DATE NOT NULL,
+  event_time TEXT,
+  location_name TEXT,
+  location_address TEXT,
+  location_maps_url TEXT,
+  template_id TEXT,
+  custom_message TEXT,
+  cover_photo TEXT,
+  settings JSONB DEFAULT '{}',
+  status TEXT DEFAULT 'draft' CHECK (status IN ('draft','published','completed')),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE event_guests (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  event_id UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+  contact_id UUID REFERENCES contacts(id),
+  consumer_id UUID REFERENCES profiles(id),
+  name TEXT NOT NULL,
+  phone TEXT,
+  guest_code TEXT UNIQUE, -- for personalized URL
+  invitation_sent BOOLEAN DEFAULT false,
+  invitation_opened BOOLEAN DEFAULT false,
+  rsvp_status TEXT DEFAULT 'pending' CHECK (rsvp_status IN ('pending','attending','not_attending','maybe')),
+  rsvp_count INTEGER DEFAULT 1,
+  checked_in BOOLEAN DEFAULT false,
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE gift_records (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  contact_id UUID REFERENCES contacts(id),
+  person_name TEXT NOT NULL,
+  direction TEXT NOT NULL CHECK (direction IN ('given','received')),
+  amount BIGINT,
+  event_type TEXT,
+  event_description TEXT,
+  event_date DATE,
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_gifts_user ON gift_records(user_id);
+CREATE INDEX idx_gifts_person ON gift_records(person_name);
+
+-- ============ SHARED: FINANCIAL ============
+
+CREATE TABLE expenses (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  module TEXT NOT NULL,
+  reference_id UUID,
+  category TEXT,
+  description TEXT NOT NULL,
+  amount BIGINT NOT NULL,
+  expense_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  receipt_photo TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============ SHARED: REMINDERS ============
+
+CREATE TABLE reminders (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  module TEXT NOT NULL,
+  type TEXT NOT NULL,
+  title TEXT NOT NULL,
+  body TEXT,
+  reference_id UUID,
+  remind_at TIMESTAMPTZ NOT NULL,
+  is_sent BOOLEAN DEFAULT false,
+  is_read BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_reminders_user ON reminders(user_id);
+CREATE INDEX idx_reminders_date ON reminders(remind_at);
+
+-- ============ SHARED: NOTIFICATIONS (for consumer app) ============
+
+CREATE TABLE notifications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  provider_id UUID REFERENCES profiles(id), -- who triggered this notification
+  module TEXT NOT NULL,
+  type TEXT NOT NULL, -- 'order_update','payment_due','announcement','rsvp_reminder','schedule_reminder'
+  title TEXT NOT NULL,
+  body TEXT,
+  reference_type TEXT, -- 'order','rent_payment','org_dues','event_guest'
+  reference_id UUID,
+  deep_link TEXT, -- berest.id/xx/xx for web fallback
+  is_read BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_notifications_user ON notifications(user_id);
+CREATE INDEX idx_notifications_read ON notifications(user_id, is_read);
+
+-- ============ SHARED: URL SLUGS ============
+
+CREATE TABLE short_urls (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  code TEXT NOT NULL, -- "lb", "kh", "rt", "hj", etc.
+  slug TEXT NOT NULL, -- "0042", "siti", "andi-nina"
+  module TEXT NOT NULL,
+  reference_type TEXT NOT NULL, -- 'order','property_unit','org_member','event'
+  reference_id UUID NOT NULL,
+  provider_id UUID NOT NULL REFERENCES profiles(id),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE UNIQUE INDEX idx_short_urls ON short_urls(code, slug);
+```
+
+-----
+
+## 15. CONSUMER WEB PORTAL ROUTES
+
+All routes: **berest.id/[code]/[slug]**
+
+```
+berest.id/                              -> Landing page + download app
+berest.id/lb/[order_code]              -> Order/laundry status (Lapak)
+berest.id/gp/[student_slug]            -> Student/parent portal (Lapak - Guru)
+berest.id/bb/[biz_slug]               -> Queue/storefront (Lapak - Jasa)
+berest.id/wk/[biz_slug]               -> Product catalog (Lapak - Warung)
+berest.id/kh/[tenant_code]            -> Tenant portal (Sewa - Kos/Hunian)
+berest.id/rn/[rental_code]            -> Rental status (Sewa - Rental)
+berest.id/rt/[member_code]            -> Member portal (Warga - RT)
+berest.id/rt/laporan                   -> Public financial report (Warga)
+berest.id/ms/[code]                    -> Mesjid portal (Warga - Mesjid)
+berest.id/ms/laporan                   -> Public infaq report (Warga)
+berest.id/hj/[event_slug]             -> Invitation page (Hajat)
+berest.id/hj/[event_slug]/[guest_code] -> Personalized RSVP (Hajat)
+```
+
+Semua route: static-generated atau server-rendered. Gak perlu install. Gak perlu login untuk view. Actions (RSVP, confirm payment) butuh simple verification (kode + no HP).
+
+Setiap halaman web punya **smart banner**: “Download beRest untuk notifikasi real-time” dengan deep link ke Play Store. Jika app sudah terinstall, deep link buka langsung ke screen yang relevan di app.
+
+-----
+
+## 16. PHASED BUILD STRATEGY
+
+### Phase 0: Foundation (Week 1-3)
+
+Setup project, Supabase, auth (Google + Phone OTP), shared layer (contacts, financial dashboard, reminder engine, WA share engine, notification system), UI component library, tab navigation, module selection onboarding, **consumer connection system** (kode koneksi, auto-detect nomor HP, QR scan), **consumer dashboard shell** (connected providers list, empty states).
+
+Quality gate: app boots, register/login works, module selection works, provider AND consumer onboarding both work, consumer can input connection code, empty state per module.
+
+### Phase 1: Module Warga - MVP (Week 4-8)
+
+Alasan build pertama: paling simple secara teknis, viral coefficient paling tinggi.
+
+Scope:
+
+- Provider: Kas & Iuran (full CRUD + laporan + share link) + Pengumuman (basic)
+- Consumer web: berest.id/rt/[code] (warga cek status + laporan publik)
+- Consumer app: warga dashboard (iuran status, pengumuman, jadwal), upload bukti bayar, push notification
+- Reminder pembayaran (provider -> consumer via push + WA)
+
+Quality gate: bendahara kelola 30 warga, warga cek status via web DAN app, laporan transparan via link, push notification consumer works.
+
+### Phase 2: Module Lapak - Mode Pedagang (Week 9-12)
+
+Scope:
+
+- Provider: Mode Pedagang (catat penjualan + pengeluaran + profit)
+- Consumer web: berest.id/wk/[slug] (katalog mini)
+- Consumer app: favorite stores, order history
+- Financial dashboard integration (Warga + Lapak aggregated)
+
+Quality gate: pedagang catat penjualan 3 detik/transaksi, consumer browse katalog via web, dashboard aggregated works.
+
+### Phase 3: Module Sewa - Properti (Week 13-17)
+
+Scope:
+
+- Provider: Kos/kontrakan (unit + penghuni + billing), Kontrak template (Gemini 2.5 Flash)
+- Consumer web: berest.id/kh/[code] (tenant cek tagihan + lapor masalah)
+- Consumer app: tenant dashboard (tagihan, kontrak, maintenance request), upload bukti bayar, push notification
+- Payment tracking + reminder
+
+Quality gate: pemilik kos kelola 10 kamar, penghuni cek via web DAN app, maintenance request flow works.
+
+### Phase 4: Module Lapak - Mode Advanced (Week 18-22)
+
+Scope:
+
+- Provider: Mode Laundry (order + status), Mode Guru/Pelatih (murid + jadwal + absensi + tagihan), Mode Jasa Umum (antrian QR)
+- Consumer web: berest.id/lb/[code] (laundry status), berest.id/gp/[code] (murid portal), berest.id/bb/[slug] (antrian)
+- Consumer app: multi-provider tracking (laundry + guru + antrian all in 1 dashboard), real-time status updates via Supabase Realtime, push notifications
+- Customer Database (cross-mode)
+
+Quality gate: laundry 20 order/hari, guru 15 murid, barbershop antrian digital, consumer app tracks all real-time.
+
+### Phase 5: Module Hajat (Week 23-27)
+
+Scope:
+
+- Provider: Undangan digital (templates + Gemini 2.5 Flash generate text), RSVP + guest manager, Amplop tracker
+- Consumer web: berest.id/hj/[slug] (invitation page + RSVP form)
+- Consumer app: incoming invitations dashboard, RSVP via app, amplop suggestion, hajatan calendar
+- Deep linking: undangan link -> app if installed -> direct to invitation screen
+
+Quality gate: bikin undangan nikahan, kirim ke 200 tamu, RSVP works web + app, amplop tracker works.
+
+### Phase 6: Sewa Rental + Polish + Launch (Week 28-32)
+
+Scope:
+
+- Provider: Rental items management, before/after photo
+- Consumer web + app: rental status
+- Warga Jadwal & Giliran sub-module + portal
+- AI scan features (nota, kontrak) via Gemini 2.5 Flash
+- Advanced analytics semua module
+- Export PDF/CSV
+- Subscription/paywall logic
+- Web-to-app conversion optimization (smart banners, deep links)
+- Performance optimization
+- Full regression test
+- Play Store listing prep
+
+Quality gate: semua module OK, semua web portals live, semua consumer app features work, app performant, ready for public launch.
+
+-----
+
+## 17. KPI FRAMEWORK
+
+|Metric                         |M3 (Warga only)|M6 (+Lapak+Sewa)|M12 (Full)|
+|-------------------------------|---------------|----------------|----------|
+|Downloads                      |5.000          |20.000          |80.000    |
+|Registered providers           |2.000          |10.000          |40.000    |
+|Registered consumers (app)     |3.000          |25.000          |120.000   |
+|Consumer portal visits/month   |10.000         |80.000          |500.000   |
+|Web-to-app conversion          |8%             |12%             |15%       |
+|Consumer-to-provider conversion|5%             |8%              |10%       |
+|MAU (providers)                |800            |5.000           |20.000    |
+|MAU (consumers)                |1.500          |12.000          |60.000    |
+|D7 retention (provider)        |>35%           |>35%            |>40%      |
+|D7 retention (consumer)        |>25%           |>30%            |>35%      |
+|D30 retention (provider)       |>15%           |>20%            |>25%      |
+|D30 retention (consumer)       |>10%           |>15%            |>20%      |
+|Free to paid (provider)        |3%             |5%              |7%        |
+|MRR                            |Rp700K         |Rp7.2 juta      |Rp58 juta |
+|Modules per provider avg       |1.0            |1.3             |1.8       |
+|Providers per consumer avg     |1.2            |1.8             |2.5       |
+|Consumer links shared/month    |5.000          |50.000          |300.000   |
+
+-----
+
+## 18. GO-TO-MARKET
+
+### Phase 1 (Warga launch): Community-first
+
+Target: ketua RT, bendahara komplek, pengurus DKM mesjid.
+
+Channel:
+
+- Approach 10-20 RT/mesjid di area Jabodetabek secara langsung
+- Offer: “Gratis selamanya. Kami bantu setup.”
+- Setiap RT yang pakai = 30-200 warga terekspos via laporan link -> subset install app sebagai consumer
+- Content: TikTok/Reels “Bendahara RT masih pakai buku tulis? beRest-in Warga, cuma 5 menit.”
+
+### Phase 2 (Lapak launch): Micro-business acquisition
+
+Target: pedagang kaki lima, laundry, guru les.
+
+Channel:
+
+- ASO: “catat penjualan harian”, “aplikasi laundry”, “aplikasi guru les”
+- TikTok: “Berapa omzet lo hari ini? Gak tahu? beRest-in Lapak.”
+- Cross-sell: warga yang sudah install app sbg consumer -> “Lo punya usaha? Aktifin Lapak.”
+
+### Phase 3 (Sewa + Hajat): Cross-sell + viral events
+
+Target: pemilik kos, penyelenggara acara.
+
+Channel:
+
+- Cross-sell: existing beRest users yang juga punya kos/mau bikin acara
+- Wedding season push: undangan digital gratis -> viral per event (100-500 tamu = 100-500 orang exposed)
+- Consumer virality: setiap undangan dikirim = consumer install app untuk RSVP + amplop tracking
+
+-----
+
+# PART 2: BUILD SYSTEM FILES
+
+-----
+
+## CLAUDE.md
+
+```markdown
+# beRest - Project Instructions for Claude Code
+
+## IDENTITY
+App beRest - "Be at Rest with beRest."
+Dual-sided modular platform: Provider (Android app) + Consumer (Android app + Web portal).
+4 Modules: beRest-in Lapak, beRest-in Sewa, beRest-in Warga, beRest-in Hajat.
+Indonesia-first.
+
+## CRITICAL RULES
+
+### Rule 1: SELALU baca PROGRESS.md sebelum mulai kerja
+Resume dari task terakhir. JANGAN ulangi task DONE.
+
+### Rule 2: SELALU update PROGRESS.md setelah selesai task
+Status, timestamp, files affected.
+
+### Rule 3: JANGAN modifikasi file DONE tanpa alasan
+Catat di MODIFICATIONS LOG jika terpaksa.
+
+### Rule 4: Test sebelum mark DONE
+Minimal: compiles. Ideal: manual test pass.
+
+### Rule 5: 1 file, 1 concern
+1 component = 1 file. 1 hook = 1 file. 1 service = 1 file.
+
+### Rule 6: YAGNI
+Jangan bikin fitur yang belum diminta di phase saat ini.
+
+### Rule 7: Indonesian context
+UI default Bahasa Indonesia. Rupiah (Rp 1.250.000). DD/MM/YYYY. Asia/Jakarta.
+
+### Rule 8: Dual-view awareness
+Setiap screen yang affect provider data HARUS juga consider consumer view (web + app). Status updates harus trigger Supabase Realtime + push notification ke consumer.
+
+### Rule 9: UI/UX Non-Negotiables (Low Digital Literacy Users)
+- SATU LAYAR SATU TUGAS. Max 3 input fields per screen. Lebih = pecah ke step.
+- BAHASA MANUSIA. Gak ada istilah teknis. Error bilang apa yang salah + cara benerin.
+- THUMB ZONE. Primary buttons di bottom 1/3. Touch target min 48dp. Tab bar di bawah.
+- VISUAL HIERARCHY. Angka uang = paling besar bold. Status = warna + icon + text.
+- KONFIRMASI untuk destructive actions (hapus, arsip). Instant untuk non-destructive (simpan).
+- NAVIGASI max 3 level depth dari tab. Back selalu predictable. Breadcrumb visible.
+- OFFLINE-TOLERANT. Cached data selalu visible. Queue actions saat offline. Auto-sync.
+- ONBOARDING max 2 langkah auth. Guided first action. Contextual tooltips, bukan tutorial slideshow.
+- FONT min 14sp body, 12sp caption. Contrast 4.5:1. Support font scaling.
+- KONSISTENSI. 1 pattern 1 action everywhere. Same card layout, same button colors, same positions.
+- SMART DEFAULTS. App harus jalan tanpa config. Pre-fill everything possible.
+- Refer to Section 4 "UI/UX Design Principles" in product concept for full specs.
+
+## TECH STACK (LOCKED)
+- Mobile: React Native + Expo SDK 52+ (TypeScript strict)
+- Web Portal: Next.js 15 (hosted Vercel free)
+- Navigation: Expo Router
+- State: Zustand + TanStack Query
+- Backend: Supabase (PostgreSQL, Auth, Storage, Realtime, Edge Functions)
+- Auth: Supabase Auth (Google + Phone OTP)
+- AI: Google Gemini 2.5 Flash (model: gemini-2.5-flash)
+- Styling: NativeWind (Tailwind CSS for RN)
+- Forms: React Hook Form + Zod
+- Icons: lucide-react-native
+- Push Notifications: Expo Notifications
+- PDF: expo-print + expo-sharing
+- QR: react-native-qrcode-svg + expo-camera
+- Charts: victory-native
+- Image: Expo Image Picker + Camera
+- Realtime: Supabase Realtime (for consumer live updates)
+- Deep Linking: Expo Linking
+
+## ARCHITECTURE PRINCIPLE
+
+### Dual-sided app in 1 codebase
+1 React Native app. 2 view modes: Provider dan Consumer.
+- User role stored in profile: 'provider' | 'consumer' | 'both'
+- App layout adapts based on role
+- Provider tabs: Home | [Active Modules] | Profile
+- Consumer tabs: Home (connected providers) | Notifications | Profile
+- User role 'both': toggle between provider/consumer view via switcher
+
+### Module lazy loading
+Inactive modules = zero memory footprint. Only import module code when activated.
+
+### Consumer connections
+- consumer_connections table links consumer to provider
+- 3 methods: link code, QR scan, phone auto-detect
+- Supabase Realtime subscriptions per connection for live updates
+
+### Web portal
+- Next.js 15 on Vercel
+- Routes: berest.id/[code]/[slug]
+- Static/SSR pages, gak butuh login untuk view
+- Actions (RSVP, confirm payment) need simple verification
+- Smart banner for app download with deep link
+
+## FOLDER STRUCTURE
+berest-app/
+├── CLAUDE.md
+├── PROGRESS.md
+├── app/                           # Expo Router
+│   ├── (auth)/                    # Login, register, phone OTP
+│   ├── (onboarding)/              # Module selection, guided setup
+│   │   ├── provider.tsx           # Provider module picker
+│   │   └── consumer.tsx           # Consumer connection setup
+│   ├── (provider)/                # Provider view
+│   │   ├── (tabs)/
+│   │   │   ├── index.tsx          # Provider home dashboard
+│   │   │   ├── lapak/             # beRest-in Lapak screens
+│   │   │   ├── sewa/              # beRest-in Sewa screens
+│   │   │   ├── warga/             # beRest-in Warga screens
+│   │   │   ├── hajat/             # beRest-in Hajat screens
+│   │   │   └── profile.tsx
+│   │   └── _layout.tsx
+│   ├── (consumer)/                # Consumer view
+│   │   ├── (tabs)/
+│   │   │   ├── index.tsx          # Consumer home (connected providers)
+│   │   │   ├── notifications.tsx  # All notifications
+│   │   │   └── profile.tsx
+│   │   ├── lapak/                 # Consumer Lapak detail screens
+│   │   ├── sewa/                  # Consumer Sewa detail screens
+│   │   ├── warga/                 # Consumer Warga detail screens
+│   │   ├── hajat/                 # Consumer Hajat detail screens
+│   │   └── _layout.tsx
+│   ├── connect/                   # Connection screens (QR, code input)
+│   └── _layout.tsx                # Root: role-based routing
+├── src/
+│   ├── components/
+│   │   ├── ui/                    # Shared UI primitives
+│   │   ├── shared/                # Cross-module (ContactPicker, CurrencyDisplay, etc)
+│   │   ├── provider/              # Provider-specific shared components
+│   │   ├── consumer/              # Consumer-specific shared components
+│   │   ├── lapak/
+│   │   ├── sewa/
+│   │   ├── warga/
+│   │   └── hajat/
+│   ├── hooks/
+│   │   ├── shared/                # useContacts, useFinancial, useReminders, useNotifications
+│   │   ├── consumer/              # useConnections, useProviderUpdates, useConsumerDashboard
+│   │   ├── lapak/
+│   │   ├── sewa/
+│   │   ├── warga/
+│   │   └── hajat/
+│   ├── services/
+│   │   ├── supabase.ts
+│   │   ├── auth.service.ts
+│   │   ├── contact.service.ts
+│   │   ├── connection.service.ts  # Consumer <-> Provider linking + lifecycle
+│   │   ├── connection-lifecycle.service.ts # Archive, disconnect, auto-archive
+│   │   ├── notification.service.ts # Push + in-app notifications
+│   │   ├── financial.service.ts
+│   │   ├── reminder.service.ts
+│   │   ├── wa-share.service.ts
+│   │   ├── deep-link.service.ts   # Handle berest.id deep links
+│   │   ├── gemini.service.ts      # Gemini 2.5 Flash
+│   │   ├── lapak.service.ts
+│   │   ├── sewa.service.ts
+│   │   ├── warga.service.ts
+│   │   └── hajat.service.ts
+│   ├── stores/
+│   │   ├── auth.store.ts
+│   │   ├── role.store.ts          # provider/consumer/both + view switcher
+│   │   ├── modules.store.ts
+│   │   ├── connections.store.ts   # Consumer connections state
+│   │   └── ui.store.ts
+│   ├── types/
+│   │   ├── shared.types.ts
+│   │   ├── consumer.types.ts      # Connection, notification types
+│   │   ├── lapak.types.ts
+│   │   ├── sewa.types.ts
+│   │   ├── warga.types.ts
+│   │   └── hajat.types.ts
+│   ├── utils/
+│   │   ├── format.ts
+│   │   ├── validation.ts
+│   │   ├── constants.ts
+│   │   ├── colors.ts
+│   │   └── helpers.ts
+│   └── config/
+│       ├── supabase.config.ts
+│       ├── gemini.config.ts
+│       └── app.config.ts
+├── portal/                        # Consumer web portal (Next.js)
+│   ├── app/
+│   │   ├── page.tsx               # Landing page
+│   │   ├── layout.tsx
+│   │   ├── lb/[code]/page.tsx     # Lapak order status
+│   │   ├── gp/[code]/page.tsx     # Guru/pelatih portal
+│   │   ├── bb/[slug]/page.tsx     # Jasa antrian/storefront
+│   │   ├── wk/[slug]/page.tsx     # Warung katalog
+│   │   ├── kh/[code]/page.tsx     # Kos/hunian tenant portal
+│   │   ├── rn/[code]/page.tsx     # Rental status
+│   │   ├── rt/
+│   │   │   ├── [code]/page.tsx    # Warga member portal
+│   │   │   └── laporan/page.tsx   # Public financial report
+│   │   ├── ms/
+│   │   │   ├── [code]/page.tsx    # Mesjid portal
+│   │   │   └── laporan/page.tsx   # Public infaq report
+│   │   └── hj/
+│   │       ├── [slug]/page.tsx    # Invitation page
+│   │       └── [slug]/[guest]/page.tsx  # Personalized RSVP
+│   ├── components/
+│   │   ├── SmartBanner.tsx        # App download banner
+│   │   └── ...
+│   ├── lib/
+│   │   └── supabase.ts
+│   └── next.config.js
+├── supabase/
+│   └── migrations/
+├── assets/
+├── app.json
+├── package.json
+└── .env
+
+## COLOR PALETTE
+Primary Navy: #1B3A5C
+Primary Orange: #FF4600
+beRest-in Lapak: #10B981 (green)
+beRest-in Sewa: #3B82F6 (blue)
+beRest-in Warga: #8B5CF6 (purple)
+beRest-in Hajat: #EC4899 (pink)
+Dark Text: #1E293B
+Grey Text: #64748B
+Light BG: #F8FAFC
+Border: #E2E8F0
+```
+
+-----
+
+## PROGRESS.md
+
+```markdown
+# beRest - Build Progress Tracker
+
+> Last updated: [TIMESTAMP]
+> Current phase: PHASE 0 - NOT STARTED
+> Overall progress: 0%
+
+## STATUS: TODO / IN_PROGRESS / DONE / BLOCKED / SKIPPED
+
+---
+
+## PHASE 0: FOUNDATION (Week 1-3)
+| # | Task | Status | Files | Notes |
+|---|------|--------|-------|-------|
+| 0.1 | Init Expo project + TypeScript strict | TODO | - | - |
+| 0.2 | Install all dependencies | TODO | - | - |
+| 0.3 | Configure NativeWind | TODO | - | - |
+| 0.4 | Configure Expo Router with role-based routing | TODO | - | (provider) vs (consumer) layout groups |
+| 0.5 | Setup Supabase client + env vars | TODO | - | - |
+| 0.6 | Create full folder structure | TODO | - | - |
+| 0.7 | Create shared UI components (Button, Input, Card, Badge, Modal, Toast, Skeleton) | TODO | - | - |
+| 0.8 | Create shared components (CurrencyInput, DatePicker, PhotoPicker, SearchBar, EmptyState, SmartBanner) | TODO | - | - |
+| 0.9 | Build auth screens (login + register + phone OTP) | TODO | - | - |
+| 0.10 | Build provider onboarding (module selection + guided setup) | TODO | - | - |
+| 0.11 | Build consumer onboarding (auto-detect + code input + QR scan) | TODO | - | - |
+| 0.12 | Build role switcher (provider <-> consumer toggle for role='both') | TODO | - | - |
+| 0.13 | Build provider tab navigation (dynamic based on active modules) | TODO | - | - |
+| 0.14 | Build consumer tab navigation (Home + Notifications + Profile) | TODO | - | - |
+| 0.15 | Build provider home dashboard (summary cards per module) | TODO | - | - |
+| 0.16 | Build consumer home dashboard (connected providers list + status summaries) | TODO | - | - |
+| 0.17 | Implement contacts service (shared CRUD) | TODO | - | - |
+| 0.18 | Implement connection service (link/unlink consumer-provider) | TODO | - | - |
+| 0.19 | Implement notification service (push + in-app) | TODO | - | - |
+| 0.20 | Implement WA share engine | TODO | - | - |
+| 0.21 | Implement reminder service + notification scheduling | TODO | - | - |
+| 0.22 | Implement deep link handler (berest.id/xx/xx -> app screen) | TODO | - | - |
+| 0.23 | Supabase migration: all tables + RLS policies | TODO | - | - |
+| 0.24 | Setup Supabase Realtime subscriptions (for consumer live updates) | TODO | - | - |
+| 0.25 | Implement connection lifecycle (archive, disconnect, auto-archive scheduler) | TODO | - | Grace periods: sewa 7d, rental 3d, hajat 7d, laundry 90d inactive prompt |
+| 0.26 | Build consumer "Riwayat" (archived connections) view | TODO | - | Collapsible, history accessible |
+| 0.27 | Build provider "Tandai Keluar" / "Arsipkan" flow | TODO | - | Both sides can initiate |
+| 0.28 | Setup Supabase Edge Function: auto-archive cron (daily check) | TODO | - | Check auto_archive_at dates |
+| 0.29 | Verify: app boots, auth works, both onboarding flows work, role switching works, connection lifecycle works | TODO | - | - |
+
+**Quality Gate 0:** ✅/❌
+
+---
+
+## PHASE 1: MODULE WARGA MVP (Week 4-8)
+| # | Task | Status | Files | Notes |
+|---|------|--------|-------|-------|
+| 1.1 | Implement warga types | TODO | - | - |
+| 1.2 | Implement warga service | TODO | - | - |
+| 1.3 | Provider: Create Organization screen | TODO | - | - |
+| 1.4 | Provider: Add Members screen (import contacts/manual) | TODO | - | Auto-generate member_code per member |
+| 1.5 | Provider: Set Dues (iuran amount + period) | TODO | - | - |
+| 1.6 | Provider: Payment Tracking screen (centang per member) | TODO | - | Trigger notification to consumer |
+| 1.7 | Provider: Add Expense screen (+ photo bukti) | TODO | - | - |
+| 1.8 | Provider: Financial Report screen | TODO | - | - |
+| 1.9 | Provider: Share Report (generate link + WA share) | TODO | - | berest.id/rt/laporan |
+| 1.10 | Provider: Reminder to unpaid members | TODO | - | Push + WA |
+| 1.11 | Provider: Announcement (create + share) | TODO | - | - |
+| 1.12 | Provider: Infaq/Donasi sub-module (mesjid mode) | TODO | - | - |
+| 1.13 | Provider: Fundraising tracker (target + progress bar) | TODO | - | - |
+| 1.14 | Consumer app: Warga dashboard (iuran status, pengumuman, jadwal per org) | TODO | - | - |
+| 1.15 | Consumer app: Upload bukti bayar + push to provider | TODO | - | - |
+| 1.16 | Consumer app: View announcements + read tracking | TODO | - | - |
+| 1.17 | Setup Next.js portal project | TODO | - | - |
+| 1.18 | Portal: berest.id/rt/[code] - warga status page | TODO | - | - |
+| 1.19 | Portal: berest.id/rt/laporan - public financial report | TODO | - | - |
+| 1.20 | Portal: berest.id/ms/laporan - infaq report | TODO | - | - |
+| 1.21 | Portal: Smart banner (download app CTA) | TODO | - | - |
+| 1.22 | Deploy portal to Vercel | TODO | - | - |
+| 1.23 | Integration test: provider create org -> add member -> share link -> consumer web view -> consumer app view -> upload bukti bayar -> provider sees update | TODO | - | Full e2e |
+| 1.24 | Verify quality gate | TODO | - | - |
+
+**Quality Gate 1:** ✅/❌
+
+---
+
+## PHASE 2: MODULE LAPAK - PEDAGANG (Week 9-12)
+| # | Task | Status | Files | Notes |
+|---|------|--------|-------|-------|
+| 2.1 | Implement lapak types | TODO | - | - |
+| 2.2 | Implement lapak service | TODO | - | - |
+| 2.3 | Provider: Business Setup screen | TODO | - | - |
+| 2.4 | Provider: 1-Tap Sales Logger | TODO | - | - |
+| 2.5 | Provider: Product catalog (CRUD) | TODO | - | - |
+| 2.6 | Provider: Expense logger | TODO | - | - |
+| 2.7 | Provider: Daily Dashboard (omzet, profit, trend) | TODO | - | - |
+| 2.8 | Consumer app: Browse catalog, order history | TODO | - | - |
+| 2.9 | Portal: berest.id/wk/[slug] - mini storefront | TODO | - | - |
+| 2.10 | Integrate financial dashboard (Warga + Lapak) | TODO | - | - |
+| 2.11 | Verify quality gate | TODO | - | - |
+
+**Quality Gate 2:** ✅/❌
+
+---
+
+## PHASE 3: MODULE SEWA - PROPERTI (Week 13-17)
+| # | Task | Status | Files | Notes |
+|---|------|--------|-------|-------|
+| 3.1 | Implement sewa types | TODO | - | - |
+| 3.2 | Implement sewa service | TODO | - | - |
+| 3.3 | Provider: Add Property screen | TODO | - | - |
+| 3.4 | Provider: Unit Management (list + status) | TODO | - | - |
+| 3.5 | Provider: Add Tenant (+ KTP scan via Gemini 2.5 Flash) | TODO | - | - |
+| 3.6 | Provider: Monthly Billing (auto-generate + share) | TODO | - | - |
+| 3.7 | Provider: Payment Tracking per tenant | TODO | - | Trigger push to consumer |
+| 3.8 | Provider: Contract Template (Gemini 2.5 Flash generate) | TODO | - | - |
+| 3.9 | Provider: Contract Vault | TODO | - | - |
+| 3.10 | Provider: Maintenance/Expense tracker | TODO | - | - |
+| 3.11 | Provider: Vacant Unit sharing | TODO | - | - |
+| 3.12 | Consumer app: Tenant dashboard (tagihan, kontrak, maintenance request) | TODO | - | - |
+| 3.13 | Consumer app: Upload bukti bayar + maintenance request with photo | TODO | - | - |
+| 3.14 | Portal: berest.id/kh/[code] - tenant portal | TODO | - | - |
+| 3.15 | Portal: Maintenance request form | TODO | - | - |
+| 3.16 | Integrate financial dashboard (+Sewa) | TODO | - | - |
+| 3.17 | Verify quality gate | TODO | - | - |
+
+**Quality Gate 3:** ✅/❌
+
+---
+
+## PHASE 4: MODULE LAPAK - ADVANCED MODES (Week 18-22)
+| # | Task | Status | Files | Notes |
+|---|------|--------|-------|-------|
+| 4.1 | Provider: Laundry Mode (order + status + pricing) | TODO | - | - |
+| 4.2 | Consumer app: Laundry tracking (real-time status via Supabase Realtime) | TODO | - | - |
+| 4.3 | Portal: berest.id/lb/[code] - laundry status | TODO | - | - |
+| 4.4 | Provider: Guru/Pelatih Mode (students + schedule + attendance) | TODO | - | - |
+| 4.5 | Provider: Auto-generate monthly billing (guru) | TODO | - | - |
+| 4.6 | Consumer app: Student/parent dashboard (jadwal + tagihan) | TODO | - | - |
+| 4.7 | Portal: berest.id/gp/[code] - student portal | TODO | - | - |
+| 4.8 | Provider: Jasa Umum Mode (queue + orders) | TODO | - | - |
+| 4.9 | Provider: QR code generator for queue | TODO | - | - |
+| 4.10 | Consumer app: Queue tracking (real-time) | TODO | - | - |
+| 4.11 | Portal: berest.id/bb/[slug] - queue portal | TODO | - | - |
+| 4.12 | Provider: Customer Database (cross-mode) | TODO | - | - |
+| 4.13 | Provider: AI scan nota (Gemini 2.5 Flash) | TODO | - | - |
+| 4.14 | Verify quality gate | TODO | - | - |
+
+**Quality Gate 4:** ✅/❌
+
+---
+
+## PHASE 5: MODULE HAJAT (Week 23-27)
+| # | Task | Status | Files | Notes |
+|---|------|--------|-------|-------|
+| 5.1 | Implement hajat types | TODO | - | - |
+| 5.2 | Implement hajat service | TODO | - | - |
+| 5.3 | Provider: Create Event screen | TODO | - | - |
+| 5.4 | Provider: Invitation Template picker | TODO | - | - |
+| 5.5 | Provider: AI generate invitation text (Gemini 2.5 Flash) | TODO | - | - |
+| 5.6 | Provider: Guest List management | TODO | - | - |
+| 5.7 | Provider: Send Invitations (per-person WA share) | TODO | - | - |
+| 5.8 | Provider: RSVP Tracker dashboard | TODO | - | - |
+| 5.9 | Provider: Day-of checklist (guest check-in) | TODO | - | - |
+| 5.10 | Provider: Amplop Tracker (give + receive + suggestion) | TODO | - | - |
+| 5.11 | Consumer app: Incoming invitations dashboard | TODO | - | - |
+| 5.12 | Consumer app: RSVP via app + amplop suggestion | TODO | - | - |
+| 5.13 | Consumer app: Hajatan calendar + amplop history | TODO | - | - |
+| 5.14 | Portal: berest.id/hj/[slug] - invitation page | TODO | - | - |
+| 5.15 | Portal: berest.id/hj/[slug]/[guest] - RSVP form | TODO | - | - |
+| 5.16 | Deep link: invitation URL -> app if installed | TODO | - | - |
+| 5.17 | Verify quality gate | TODO | - | - |
+
+**Quality Gate 5:** ✅/❌
+
+---
+
+## PHASE 6: SEWA RENTAL + WARGA JADWAL + POLISH + LAUNCH (Week 28-32)
+| # | Task | Status | Files | Notes |
+|---|------|--------|-------|-------|
+| 6.1 | Provider: Rental Items management | TODO | - | - |
+| 6.2 | Provider: Rental transaction (borrow + return + photo) | TODO | - | - |
+| 6.3 | Consumer: Rental status (app + web) | TODO | - | - |
+| 6.4 | Portal: berest.id/rn/[code] | TODO | - | - |
+| 6.5 | Provider: Warga Jadwal & Giliran sub-module | TODO | - | - |
+| 6.6 | Consumer: Schedule view + swap request | TODO | - | - |
+| 6.7 | Advanced analytics per module | TODO | - | - |
+| 6.8 | Export PDF/CSV | TODO | - | - |
+| 6.9 | Subscription/paywall logic | TODO | - | - |
+| 6.10 | Web-to-app conversion optimization (smart banners, deep links) | TODO | - | - |
+| 6.11 | App icon + splash + onboarding polish | TODO | - | - |
+| 6.12 | Performance optimization | TODO | - | - |
+| 6.13 | Full regression test all modules + all consumer flows | TODO | - | - |
+| 6.14 | Build APK/AAB | TODO | - | - |
+| 6.15 | Play Store listing prep | TODO | - | - |
+| 6.16 | Portal: berest.id landing page | TODO | - | - |
+
+**Quality Gate 6:** ✅/❌
+
+---
+
+## MODIFICATIONS LOG
+| Date | Phase | File | Reason | Impact |
+|------|-------|------|--------|--------|
+
+## KNOWN ISSUES
+| # | Issue | Phase | Severity | Status |
+|---|-------|-------|----------|--------|
+
+## DECISIONS LOG
+| Date | Decision | Reasoning |
+|------|----------|-----------|
+| 2026-03-18 | App name: beRest | "beres" + "rest". Natural, memorable, scalable. |
+| 2026-03-18 | Module names: beRest-in Lapak/Sewa/Warga/Hajat | Marketing names. Tab labels: Lapak/Sewa/Warga/Hajat. |
+| 2026-03-18 | AI model: Gemini 2.5 Flash | Gemini 2.0 Flash retired Juni 2026. 2.5 Flash stable, free tier, multimodal. |
+| 2026-03-18 | Consumer dual-access: web + app | Web for first-touch (zero friction), app for repeat users (push notif, dashboard). |
+| 2026-03-18 | URL structure: berest.id/xx/xx | Short 2-letter module codes + slug. Simple, clean. |
+| 2026-03-18 | Connection lifecycle: archive not delete | Data never deleted. Pindah/ganti/keluar = archive. History always accessible. Grace periods per module type. |
+| 2026-03-18 | UI/UX: low digital literacy first | 12 principles. Atomic flow (1 screen 1 task), bahasa manusia, thumb-zone, max 3 inputs/screen, offline-tolerant, smart defaults. Benchmark: kalau bisa buka WA = bisa pakai beRest. |
+```
+
+-----
+
+## RECOVERY PROMPT
+
+```
+RECOVERY MODE. Baca: CLAUDE.md lalu PROGRESS.md.
+Identifikasi phase, task terakhir DONE, task berikutnya.
+CONFIRM sebelum mulai:
+- "Phase: [X]"
+- "Last done: [X.Y]"
+- "Next: [X.Z]"
+Tunggu konfirmasi.
+```
+
+## REGRESSION CHECK PROMPT
+
+```
+REGRESSION CHECK. Run:
+1. npx tsc --noEmit
+2. npx expo start (verify boots)
+3. Check semua imports resolve
+4. Check consumer flow: connection works, notifications fire, dashboard populates
+5. Check provider flow: CRUD works, WA share generates correct links, consumer gets update
+Report: files checked, errors found, app boots YES/NO, consumer flow OK/FAIL, provider flow OK/FAIL.
+Fix CRITICAL sebelum lanjut.
+```
+
+## HOTFIX PROMPT
+
+```
+HOTFIX. Issue: [describe]. Affected phase: [N].
+Rules: minimal change, catat di MODIFICATIONS LOG, verify no new errors, verify both provider AND consumer views still work.
+```
