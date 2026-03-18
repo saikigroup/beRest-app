@@ -1,8 +1,8 @@
 # beRest - Build Progress Tracker
 
 > Last updated: 2026-03-18
-> Current phase: PHASE 0 - NOT STARTED
-> Overall progress: 0%
+> Current phase: PHASE 0 - IN PROGRESS
+> Overall progress: 1/128 tasks
 
 ## STATUS: TODO / IN_PROGRESS / DONE / BLOCKED / SKIPPED
 
@@ -11,12 +11,12 @@
 ## PHASE 0: FOUNDATION (Week 1-3)
 | # | Task | Status | Files | Notes |
 |---|------|--------|-------|-------|
-| 0.1 | Init Expo project + TypeScript strict | TODO | - | - |
-| 0.2 | Install all dependencies | TODO | - | - |
-| 0.3 | Configure NativeWind | TODO | - | - |
-| 0.4 | Configure Expo Router with role-based routing | TODO | - | (provider) vs (consumer) layout groups |
-| 0.5 | Setup Supabase client + env vars | TODO | - | - |
-| 0.6 | Create full folder structure | TODO | - | - |
+| 0.1 | Init Expo project + TypeScript strict | DONE | app.json, package.json, tsconfig.json, index.ts, App.tsx | Expo SDK 55, TS strict + path aliases, 0 errors |
+| 0.2 | Install all dependencies | DONE | package.json, .npmrc | Expo SDK 55, Supabase, Zustand, TanStack Query, NativeWind, RHF+Zod, lucide, victory-native, etc |
+| 0.3 | Configure NativeWind | DONE | tailwind.config.js, global.css, nativewind-env.d.ts, metro.config.js, babel.config.js | NativeWind v4 + custom beRest colors |
+| 0.4 | Configure Expo Router with role-based routing | DONE | app/_layout.tsx, app/index.tsx, app/(auth)/*, app/(onboarding)/*, app/(provider)/*, app/(consumer)/* | Root Stack -> (auth), (onboarding), (provider)/(tabs), (consumer)/(tabs) |
+| 0.5 | Setup Supabase client + env vars | DONE | .env, .env.example, src/config/supabase.config.ts, src/services/supabase.ts, .gitignore | Supabase client with AsyncStorage auth persistence |
+| 0.6 | Create full folder structure | DONE | src/types/*.ts, src/utils/*.ts, src/stores/*.ts, src/config/*.ts | All types, utils, stores, config created. Path alias @app-types instead of @types |
 | 0.7 | Create shared UI components (Button, Input, Card, Badge, Modal, Toast, Skeleton) | TODO | - | - |
 | 0.8 | Create shared components (CurrencyInput, DatePicker, PhotoPicker, SearchBar, EmptyState, SmartBanner) | TODO | - | - |
 | 0.9 | Build auth screens (login + register + phone OTP) | TODO | - | - |
