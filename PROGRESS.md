@@ -17,7 +17,7 @@
 | 0.4 | Configure Expo Router with role-based routing | DONE | app/_layout.tsx, app/index.tsx, app/(auth)/*, app/(onboarding)/*, app/(provider)/*, app/(consumer)/* | Root Stack -> (auth), (onboarding), (provider)/(tabs), (consumer)/(tabs) |
 | 0.5 | Setup Supabase client + env vars | DONE | .env, .env.example, src/config/supabase.config.ts, src/services/supabase.ts, .gitignore | Supabase client with AsyncStorage auth persistence |
 | 0.6 | Create full folder structure | DONE | src/types/*.ts, src/utils/*.ts, src/stores/*.ts, src/config/*.ts | All types, utils, stores, config created. Path alias @app-types instead of @types |
-| 0.7 | Create shared UI components (Button, Input, Card, Badge, Modal, Toast, Skeleton) | TODO | - | - |
+| 0.7 | Create shared UI components (Button, Input, Card, Badge, Modal, Toast, Skeleton) | DONE | src/components/ui/*.tsx, src/components/ui/index.ts | All 7 components per design system specs. Button: primary/secondary/destructive/whatsapp variants. Skeleton: shimmer animation. |
 | 0.8 | Create shared components (CurrencyInput, DatePicker, PhotoPicker, SearchBar, EmptyState, SmartBanner) | TODO | - | - |
 | 0.9 | Build auth screens (login + register + phone OTP) | TODO | - | - |
 | 0.10 | Build provider onboarding (module selection + guided setup) | TODO | - | - |
