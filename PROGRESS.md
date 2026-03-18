@@ -195,10 +195,26 @@
 ## MODIFICATIONS LOG
 | Date | Phase | File | Reason | Impact |
 |------|-------|------|--------|--------|
+| 2026-03-18 | Audit | portal/app/ms/[code]/page.tsx | Missing mesjid member portal page | Created: jamaah can view infaq history + dues + announcements via link |
+| 2026-03-18 | Audit | assets/notification-icon.png | Missing notification icon referenced in app.json | Created: 96x96 white A on orange circle |
+| 2026-03-18 | Audit | portal/app/hj/[slug]/[guest]/page.tsx | Type error: unknown not assignable to ReactNode | Fixed: changed `&&` to ternary + `String()` cast |
+| 2026-03-18 | Audit | src/services/financial.service.ts | Listed in CLAUDE.md but not created | SKIPPED: financial logic intentionally aggregated in module services |
 
 ## KNOWN ISSUES
 | # | Issue | Phase | Severity | Status |
 |---|-------|-------|----------|--------|
+| K1 | Provider profile screen is a stub (no logout, no settings) | 0 | MEDIUM | OPEN |
+| K2 | Consumer notifications screen is a stub (no notification list) | 0 | MEDIUM | OPEN |
+| K3 | Consumer profile screen is a stub (no logout, no connections) | 0 | MEDIUM | OPEN |
+| K4 | Subscription tier mismatch: constants.ts free.modules=1, subscription.service.ts free.maxModules=2 | 6 | LOW | OPEN |
+| K5 | Hooks directory severely incomplete: 1/17 hooks exist (useProviderUpdates only) | ALL | WARNING | OPEN |
+| K6 | No invitation template files (hajat invitations are text-only via WA) | 5 | LOW | OPEN |
+| K7 | Portal missing .env.example (deploy will fail without Supabase env vars) | 1 | MEDIUM | OPEN |
+| K8 | No analytics UI screens (service logic exists but no screens) | 6 | LOW | OPEN |
+| K9 | No subscription/paywall upgrade UI (service exists but no modal/screen) | 6 | LOW | OPEN |
+| K10 | No export PDF/CSV buttons in any screen (service exists but no UI integration) | 6 | LOW | OPEN |
+| K11 | Deep link handler only supports https://apick.id, not apick:// native scheme | 0 | LOW | OPEN |
+| K12 | Smart banner missing apick:// deep link fallback | 1 | LOW | OPEN |
 
 ## DECISIONS LOG
 | Date | Decision | Reasoning |
