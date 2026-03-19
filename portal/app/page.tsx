@@ -1,422 +1,62 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { ScrollReveal } from "../components/landing/ScrollReveal";
+import { AnimatedCounter } from "../components/landing/AnimatedCounter";
+import { StickyNav } from "../components/landing/StickyNav";
+import { PhoneMockup } from "../components/landing/PhoneMockup";
+import { ModuleShowcase } from "../components/landing/ModuleShowcase";
 
-/* ─── Flat Vector SVG Icons ─── */
-
-function IconLapak({ size = 48 }: { size?: number }) {
+/* ─── Play Store icon (reused) ─── */
+function PlayStoreIcon() {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <rect x="8" y="20" width="48" height="6" rx="3" fill="#10B981" />
-      <path d="M8 26 Q14 32 20 26 Q26 32 32 26 Q38 32 44 26 Q50 32 56 26" fill="#10B981" stroke="#059669" strokeWidth="1.5" />
-      <rect x="12" y="30" width="40" height="22" rx="2" fill="#D1FAE5" stroke="#10B981" strokeWidth="1.5" />
-      <rect x="26" y="38" width="12" height="14" rx="1" fill="#10B981" />
-      <circle cx="35" cy="46" r="1.5" fill="#059669" />
-      <rect x="16" y="34" width="8" height="8" rx="1" fill="#ECFDF5" stroke="#10B981" strokeWidth="1" />
-      <line x1="20" y1="34" x2="20" y2="42" stroke="#10B981" strokeWidth="0.8" />
-      <line x1="16" y1="38" x2="24" y2="38" stroke="#10B981" strokeWidth="0.8" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5Z" fill="white" />
+      <path d="M16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12Z" fill="white" opacity="0.8" />
+      <path d="M20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81Z" fill="white" opacity="0.6" />
+      <path d="M6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z" fill="white" opacity="0.9" />
     </svg>
   );
 }
 
-function IconSewa({ size = 48 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <path d="M10 28 L32 10 L54 28" fill="#DBEAFE" stroke="#3B82F6" strokeWidth="2" strokeLinejoin="round" />
-      <rect x="14" y="28" width="36" height="24" rx="2" fill="#EFF6FF" stroke="#3B82F6" strokeWidth="1.5" />
-      <circle cx="32" cy="37" r="5" fill="#3B82F6" />
-      <circle cx="32" cy="37" r="2.5" fill="#EFF6FF" />
-      <rect x="31" y="42" width="2" height="7" rx="1" fill="#3B82F6" />
-      <rect x="33" y="45" width="3" height="1.5" rx="0.5" fill="#3B82F6" />
-      <rect x="33" y="47" width="2" height="1.5" rx="0.5" fill="#3B82F6" />
-      <rect x="18" y="32" width="6" height="6" rx="1" fill="#BFDBFE" stroke="#3B82F6" strokeWidth="0.8" />
-      <rect x="40" y="32" width="6" height="6" rx="1" fill="#BFDBFE" stroke="#3B82F6" strokeWidth="0.8" />
-    </svg>
-  );
-}
-
-function IconWarga({ size = 48 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle cx="32" cy="20" r="7" fill="#8B5CF6" />
-      <path d="M20 44 Q20 33 32 33 Q44 33 44 44" fill="#C4B5FD" stroke="#8B5CF6" strokeWidth="1.5" />
-      <circle cx="16" cy="24" r="5" fill="#A78BFA" />
-      <path d="M8 42 Q8 34 16 34 Q22 34 23 38" fill="#DDD6FE" stroke="#8B5CF6" strokeWidth="1" />
-      <circle cx="48" cy="24" r="5" fill="#A78BFA" />
-      <path d="M56 42 Q56 34 48 34 Q42 34 41 38" fill="#DDD6FE" stroke="#8B5CF6" strokeWidth="1" />
-      <circle cx="44" cy="44" r="6" fill="#8B5CF6" />
-      <path d="M41 44 L43.5 46.5 L47 41.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function IconHajat({ size = 48 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <rect x="8" y="18" width="48" height="32" rx="4" fill="#FCE7F3" stroke="#EC4899" strokeWidth="1.5" />
-      <path d="M8 22 L32 38 L56 22" fill="#FBCFE8" stroke="#EC4899" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M27 28 Q27 24 31 24 Q33 24 33 27 Q33 24 35 24 Q39 24 39 28 Q39 33 33 37 Q27 33 27 28Z" fill="#EC4899" />
-      <circle cx="18" cy="14" r="1.5" fill="#F9A8D4" />
-      <circle cx="48" cy="12" r="2" fill="#FBCFE8" />
-      <path d="M14 10 L15 8 L16 10 L18 11 L16 12 L15 14 L14 12 L12 11Z" fill="#EC4899" />
-    </svg>
-  );
-}
-
-/* ─── Module Data ─── */
-
-const modules = [
-  {
-    id: "lapak",
-    name: "apick lapak",
-    color: "#10B981",
-    colorLight: "#D1FAE5",
-    colorMuted: "#ECFDF5",
-    icon: IconLapak,
-    headline: "Catat dagangan,\nfokus jualan.",
-    persona: "Pak Edi",
-    personaRole: "Pedagang Nasi Goreng",
-    storyLead: "Tiap malam jualan. Tiap pagi lupa berapa omzet kemarin.",
-    storyBody: "Nota kertas hilang kena minyak. Istri nanya \"untung berapa bulan ini?\", bingung jawabnya. Bukan karena ga laku, tapi karena ga pernah dicatat bener.",
-    solutionLead: "Sekarang Pak Edi tap 1 tombol tiap kali ada yang beli.",
-    solutionBody: "Malam selesai jualan, langsung keliatan: omzet hari ini, untung bersih, trend mingguan. Semua otomatis. Ga perlu kalkulator.",
-    features: [
-      { num: "01", title: "1-Tap Catat Jualan", desc: "Ketuk produk, otomatis tercatat. Secepat terima uang, secepat itu nyatatnya." },
-      { num: "02", title: "4 Mode Usaha", desc: "Pedagang, laundry (tracking 6 tahap), guru/pelatih (jadwal + billing), jasa antrian. Satu app." },
-      { num: "03", title: "Untung Rugi Otomatis", desc: "Catat pengeluaran, apick hitung profit. Harian, mingguan, bulanan. Lengkap dengan grafik." },
-      { num: "04", title: "Scan Nota AI", desc: "Foto struk belanja bahan, AI langsung baca dan masukkan sebagai pengeluaran. Tanpa ketik." },
-      { num: "05", title: "Database Pelanggan", desc: "Data pelanggan terkumpul otomatis. Siapa yang paling sering beli, total belanja berapa." },
-      { num: "06", title: "Web Katalog", desc: "Link apick.id/wk/namalapak yang bisa dishare. Pelanggan lihat menu dan harga dari browser, tanpa install." },
-    ],
-  },
-  {
-    id: "sewa",
-    name: "apick sewa",
-    color: "#3B82F6",
-    colorLight: "#DBEAFE",
-    colorMuted: "#EFF6FF",
-    icon: IconSewa,
-    headline: "Kelola properti,\ntanpa ribet.",
-    persona: "Bu Ratna",
-    personaRole: "Pemilik 12 Kamar Kos",
-    storyLead: "Tiap bulan pusing ngingetin anak kos bayar.",
-    storyBody: "Ada yang telat 3 bulan. Ada yang minta AC dibenerin dari minggu lalu. Kamar kosong belum diiklanin. Catatannya? Buku tulis yang udah kumel.",
-    solutionLead: "Semua status kamar, 1 layar.",
-    solutionBody: "Siapa yang udah bayar, siapa yang nunggak, maintenance mana yang belum dikerjain. Reminder otomatis ke anak kos tiap tanggal jatuh tempo.",
-    features: [
-      { num: "01", title: "Dashboard Properti", desc: "Kamar terisi, kosong, total pemasukan. Semua di 1 layar. Punya 5 properti? Tinggal swipe." },
-      { num: "02", title: "Tagihan Otomatis", desc: "Set jatuh tempo sekali, apick generate tagihan tiap bulan. Penghuni upload bukti bayar dari app." },
-      { num: "03", title: "Laporan Maintenance", desc: "Penghuni lapor kerusakan langsung dari app. Masuk ke dashboard dengan priority level." },
-      { num: "04", title: "Kontrak Digital", desc: "Template kontrak, isi data penghuni, simpan di vault digital. Ga perlu folder fisik." },
-      { num: "05", title: "Rental Barang", desc: "Track stok rental (kamera, sound system, camping). Siapa minjem, kapan balikin, biaya otomatis." },
-      { num: "06", title: "Share Kamar Kosong", desc: "1 tap share info kamar kosong (harga, fasilitas, foto) ke WhatsApp. Satu-satu atau semua." },
-    ],
-  },
-  {
-    id: "warga",
-    name: "apick warga",
-    color: "#8B5CF6",
-    colorLight: "#EDE9FE",
-    colorMuted: "#F5F3FF",
-    icon: IconWarga,
-    headline: "Iuran transparan,\nwarga tenang.",
-    persona: "Pak Bambang",
-    personaRole: "Bendahara RT, 3 Tahun",
-    storyLead: "Tiap bulan nagih iuran door-to-door. Dicatat di buku.",
-    storyBody: "Akhir tahun diminta laporan, harus ngitung ulang dari Januari. Ada warga yang nanya \"duit iuran dipake buat apa?\" dan harus buka-buka buku lagi. Capek, tapi ga enak kalau ga transparan.",
-    solutionLead: "Semua iuran tercatat digital. Laporan? Share link.",
-    solutionBody: "Warga bisa cek status bayar sendiri. Laporan keuangan otomatis update, transparan, ga ada yang curiga. Pak Bambang bisa fokus kerja, bukan ngitung.",
-    features: [
-      { num: "01", title: "Organisasi Fleksibel", desc: "RT/RW, pengajian, mesjid, arisan, komunitas. Apa aja yang butuh iuran dan anggota." },
-      { num: "02", title: "Catat Iuran 1 Tap", desc: "Checklist siapa yang bayar. Otomatis keliatan yang nunggak. Reminder ke WhatsApp langsung." },
-      { num: "03", title: "Laporan Publik", desc: "Link apick.id/rt/laporan bisa dibagikan. Seluruh warga lihat pemasukan, pengeluaran, saldo. Real-time." },
-      { num: "04", title: "Mode Mesjid", desc: "Catat infaq harian (bisa anonim), fundraising dengan progress bar, laporan infaq publik." },
-      { num: "05", title: "Pengumuman", desc: "Buat pengumuman, track siapa yang udah baca. Share ke WhatsApp group juga bisa." },
-      { num: "06", title: "Jadwal Piket", desc: "Atur jadwal ronda, piket kebersihan, jadwal imam. Request tukar jadwal, semua tercatat." },
-    ],
-  },
-  {
-    id: "hajat",
-    name: "apick hajat",
-    color: "#EC4899",
-    colorLight: "#FCE7F3",
-    colorMuted: "#FDF2F8",
-    icon: IconHajat,
-    headline: "Undang tamu,\ntanpa drama.",
-    persona: "Mbak Dina",
-    personaRole: "Calon Pengantin",
-    storyLead: "Undangan digital di platform lain, Rp 150.000 cuma buat 1 template.",
-    storyBody: "Input tamu satu-satu, ga bisa tracking siapa yang konfirmasi. Pas hari H, ngitung amplop manual sambil senyum-senyum ke tamu. Ribet banget padahal harusnya bahagia.",
-    solutionLead: "Bikin undangan gratis. Teks dibuatin AI.",
-    solutionBody: "Share ke WhatsApp per orang. Tamu RSVP dari link, tanpa install app. Hari H tinggal checklist kehadiran. Amplop dicatat, total keliatan real-time.",
-    features: [
-      { num: "01", title: "7 Jenis Acara", desc: "Nikahan, khitanan, aqiqah, tahlilan, syukuran, ulang tahun, acara custom. Template sesuai." },
-      { num: "02", title: "AI Bikin Undangan", desc: "Ketik nama acara + tanggal, AI buatkan teks sopan siap share ke WhatsApp. Tinggal edit." },
-      { num: "03", title: "RSVP Tracking", desc: "Tamu dapat link personal. Konfirmasi hadir/tidak dari browser. Status masuk dashboard real-time." },
-      { num: "04", title: "Check-in Hari H", desc: "Checklist tamu yang datang. Keliatan yang confirmed tapi absent, dan yang datang tanpa konfirmasi." },
-      { num: "05", title: "Amplop Tracker", desc: "Catat amplop saat acara. Dari siapa, berapa. Total keliatan langsung. Ga perlu ngitung di rumah." },
-      { num: "06", title: "Saran Amplop", desc: "Mau ke acara teman? apick kasih saran nominal wajar berdasarkan jenis acara dan hubungan." },
-    ],
-  },
-];
-
-/* ─── Module Editorial Section ─── */
-
-function ModuleEditorial({
-  mod,
-  index,
-  isExpanded,
-  onToggle,
+/* ─── Testimonial card ─── */
+function TestimonialCard({
+  name,
+  role,
+  text,
+  initial,
+  color,
 }: {
-  mod: (typeof modules)[0];
-  index: number;
-  isExpanded: boolean;
-  onToggle: () => void;
+  name: string;
+  role: string;
+  text: string;
+  initial: string;
+  color: string;
 }) {
-  const Icon = mod.icon;
-  const isReversed = index % 2 !== 0;
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const toggleBtnRef = useRef<HTMLButtonElement>(null);
-
-  // Focus trap + Escape key for modal
-  useEffect(() => {
-    if (!isExpanded) return;
-
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    // Focus the close button on open
-    const closeBtn = dialog.querySelector<HTMLButtonElement>('[data-close-btn]');
-    closeBtn?.focus();
-
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        onToggle();
-        toggleBtnRef.current?.focus();
-        return;
-      }
-
-      if (e.key === "Tab" && dialog) {
-        const focusable = dialog.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last?.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first?.focus();
-        }
-      }
-    }
-
-    document.addEventListener("keydown", handleKeyDown);
-    // Prevent body scroll
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [isExpanded, onToggle]);
-
-  const dialogId = `dialog-${mod.id}`;
-
   return (
-    <article id={mod.id} className="border-t border-[#E2E8F0]">
-      {/* Module header bar */}
-      <div className="max-w-[960px] mx-auto px-6 py-4 flex items-center gap-3">
-        <Icon size={24} />
-        <span
-          className="text-xs font-semibold tracking-[0.2em] uppercase"
-          style={{ color: mod.color }}
-        >
-          {mod.name}
-        </span>
-      </div>
-
-      {/* Hero split — headline + icon */}
-      <div className="max-w-[960px] mx-auto px-6 pb-16 pt-4">
+    <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] feature-card">
+      <p className="text-[14px] leading-[1.7] text-[#64748B] mb-4">
+        &ldquo;{text}&rdquo;
+      </p>
+      <div className="flex items-center gap-3">
         <div
-          className={`flex flex-col gap-10 ${
-            isReversed ? "md:flex-row-reverse" : "md:flex-row"
-          } md:items-center md:gap-16`}
+          className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold"
+          style={{ backgroundColor: color }}
+          aria-hidden="true"
         >
-          {/* Text side */}
-          <div className="flex-1 min-w-0">
-            <h2 className="text-[32px] leading-[1.15] md:text-[44px] md:leading-[1.1] font-extrabold text-[#1E293B] whitespace-pre-line">
-              {mod.headline}
-            </h2>
-
-            {/* Persona card */}
-            <div
-              className="mt-8 p-5 rounded-2xl"
-              style={{ backgroundColor: mod.colorMuted }}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                  style={{ backgroundColor: mod.color }}
-                  aria-hidden="true"
-                >
-                  {mod.persona.charAt(0)}
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-[#1E293B]">{mod.persona}</p>
-                  <p className="text-xs text-[#64748B]">{mod.personaRole}</p>
-                </div>
-              </div>
-
-              <p className="text-[15px] leading-[1.7] text-[#1E293B] font-semibold">
-                {mod.storyLead}
-              </p>
-              <p className="text-[15px] leading-[1.7] text-[#64748B] mt-2">
-                {mod.storyBody}
-              </p>
-            </div>
-
-            {/* Solution */}
-            <div className="mt-6">
-              <div className="editorial-divider mb-4" aria-hidden="true" />
-              <p className="text-[17px] leading-[1.7] text-[#1E293B] font-semibold">
-                {mod.solutionLead}
-              </p>
-              <p className="text-[15px] leading-[1.7] text-[#64748B] mt-1">
-                {mod.solutionBody}
-              </p>
-            </div>
-          </div>
-
-          {/* Icon side */}
-          <div className="hidden md:flex flex-shrink-0 w-[280px] h-[280px] rounded-3xl items-center justify-center"
-            style={{ backgroundColor: mod.colorMuted }}
-            aria-hidden="true"
-          >
-            <Icon size={140} />
-          </div>
+          {initial}
         </div>
-
-        {/* Learn more */}
-        <div className="mt-10">
-          <button
-            ref={toggleBtnRef}
-            onClick={onToggle}
-            aria-expanded={isExpanded}
-            aria-controls={dialogId}
-            className="group flex items-center gap-3 text-sm font-semibold transition-colors"
-            style={{ color: mod.color }}
-          >
-            <span className="border-b border-current pb-0.5">
-              Lihat semua fitur
-            </span>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M3 5L7 9L11 5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+        <div>
+          <p className="text-[13px] font-bold text-[#1E293B]">{name}</p>
+          <p className="text-[11px] text-[#94A3B8]">{role}</p>
         </div>
-
-        {/* Feature dialog */}
-        {isExpanded && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            role="dialog"
-            aria-modal="true"
-            aria-label={`Fitur ${mod.name}`}
-            id={dialogId}
-            ref={dialogRef}
-            onClick={onToggle}
-          >
-            {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" aria-hidden="true" />
-
-            {/* Dialog */}
-            <div
-              className="relative bg-white rounded-2xl w-full max-w-[640px] max-h-[85vh] overflow-y-auto shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Dialog header */}
-              <div
-                className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-[#E2E8F0] bg-white rounded-t-2xl"
-              >
-                <div className="flex items-center gap-3">
-                  <Icon size={20} />
-                  <span
-                    className="text-sm font-bold"
-                    style={{ color: mod.color }}
-                  >
-                    Fitur {mod.name}
-                  </span>
-                </div>
-                <button
-                  data-close-btn
-                  onClick={() => {
-                    onToggle();
-                    toggleBtnRef.current?.focus();
-                  }}
-                  aria-label={`Tutup dialog fitur ${mod.name}`}
-                  className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F1F5F9] transition-colors"
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path
-                      d="M4 4L12 12M12 4L4 12"
-                      stroke="#64748B"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Dialog content */}
-              <div className="px-6 py-6 flex flex-col gap-6">
-                {mod.features.map((f) => (
-                  <div key={f.num} className="flex gap-4">
-                    <span
-                      className="text-[13px] font-bold mt-0.5 shrink-0 w-7"
-                      style={{ color: mod.color }}
-                      aria-hidden="true"
-                    >
-                      {f.num}
-                    </span>
-                    <div>
-                      <h4 className="text-[15px] font-bold text-[#1E293B]">
-                        {f.title}
-                      </h4>
-                      <p className="text-[14px] leading-[1.65] text-[#64748B] mt-1">
-                        {f.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
-    </article>
+    </div>
   );
 }
 
 /* ─── Main Page ─── */
 
 export default function HomePage() {
-  const [expanded, setExpanded] = useState<string | null>(null);
-
   return (
     <main className="min-h-screen bg-white text-[#1E293B]">
       {/* Skip to content */}
@@ -427,10 +67,13 @@ export default function HomePage() {
         Langsung ke konten
       </a>
 
+      {/* Sticky nav (appears on scroll) */}
+      <StickyNav />
+
       {/* ═══ Masthead ═══ */}
       <header className="bg-[#1B3A5C]">
         <div className="max-w-[960px] mx-auto px-6 py-5 flex items-center justify-between">
-          <h1 className="text-white text-[22px] font-extrabold tracking-tight">
+          <h1 className="text-white text-[22px] font-extrabold tracking-tight hero-reveal">
             apick
           </h1>
           <a
@@ -442,56 +85,68 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* ═══ Hero — editorial style ═══ */}
-      <section id="content" className="bg-[#1B3A5C] text-white pb-20 pt-12 md:pt-20">
+      {/* ═══ Hero ═══ */}
+      <section id="content" className="bg-[#1B3A5C] text-white pb-20 pt-12 md:pt-20 overflow-hidden">
         <div className="max-w-[960px] mx-auto px-6">
-          {/* Kicker */}
-          <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-6">
-            Satu app, empat solusi
-          </p>
+          <div className="flex flex-col md:flex-row md:items-center md:gap-12">
+            {/* Text side */}
+            <div className="flex-1 min-w-0">
+              <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-6 hero-reveal">
+                Satu app, empat solusi
+              </p>
+              <h2 className="text-[36px] leading-[1.1] md:text-[56px] md:leading-[1.08] font-extrabold tracking-tight max-w-[540px] hero-reveal-2">
+                Hidup rapi dimulai dari catatan yang bener.
+              </h2>
+              <p className="mt-6 text-[17px] md:text-[19px] leading-[1.6] text-white/60 max-w-[460px] hero-reveal-3">
+                Pedagang kaki lima. Ibu kos. Bendahara RT. Calon pengantin.
+                Semua butuh app yang simpel buat ngatur hidup.
+              </p>
 
-          {/* Main headline */}
-          <h2 className="text-[40px] leading-[1.1] md:text-[64px] md:leading-[1.05] font-extrabold tracking-tight max-w-[640px]">
-            Hidup rapi dimulai dari catatan yang bener.
-          </h2>
+              {/* CTA */}
+              <div className="mt-10 flex flex-col sm:flex-row items-start gap-4 hero-reveal-4">
+                <a
+                  href="https://play.google.com/store/apps/details?id=id.apick.app"
+                  className="pulse-glow inline-flex items-center gap-2.5 bg-[#FF4600] text-white px-7 py-3.5 rounded-xl text-[15px] font-bold hover:bg-[#E63E00] transition-colors"
+                >
+                  <PlayStoreIcon />
+                  Download Gratis
+                </a>
+                <a
+                  href="#modules-heading"
+                  className="text-white/40 text-[14px] hover:text-white/70 transition-colors py-3.5"
+                >
+                  Baca dulu &#8595;
+                </a>
+              </div>
+            </div>
 
-          {/* Subhead */}
-          <p className="mt-6 text-[18px] md:text-[20px] leading-[1.6] text-white/60 max-w-[520px]">
-            Pedagang kaki lima. Ibu kos. Bendahara RT. Calon pengantin. Semua
-            punya satu kesamaan: butuh app yang simpel buat ngatur hidup.
-          </p>
-
-          {/* CTA row */}
-          <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
-            <a
-              href="https://play.google.com/store/apps/details?id=id.apick.app"
-              className="inline-flex items-center gap-2.5 bg-[#FF4600] text-white px-7 py-3.5 rounded-xl text-[15px] font-bold hover:bg-[#E63E00] transition-colors"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5Z" fill="white" />
-                <path d="M16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12Z" fill="white" opacity="0.8" />
-                <path d="M20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81Z" fill="white" opacity="0.6" />
-                <path d="M6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z" fill="white" opacity="0.9" />
-              </svg>
-              Download Gratis
-            </a>
-            <a
-              href="#lapak"
-              className="text-white/40 text-[14px] hover:text-white/70 transition-colors py-3.5"
-            >
-              Baca dulu &#8595;
-            </a>
+            {/* Phone mockup */}
+            <div className="hidden md:flex justify-center mt-12 md:mt-0 hero-reveal-4">
+              <PhoneMockup />
+            </div>
           </div>
 
           {/* Module pills */}
-          <div className="mt-14 flex flex-wrap gap-2">
-            {modules.map((m) => (
+          <div className="mt-14 flex flex-wrap gap-2 hero-reveal-4">
+            {[
+              { id: "lapak", name: "Lapak", color: "#10B981" },
+              { id: "sewa", name: "Sewa", color: "#3B82F6" },
+              { id: "warga", name: "Warga", color: "#8B5CF6" },
+              { id: "hajat", name: "Hajat", color: "#EC4899" },
+            ].map((m) => (
               <a
                 key={m.id}
-                href={`#${m.id}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-medium bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
+                href="#modules-heading"
+                onClick={() => {
+                  // Scroll handled by href
+                }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-medium transition-all duration-200 bg-white/10 text-white/80 hover:bg-white/20 hover:scale-105"
               >
-                <m.icon size={16} />
+                <span
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ backgroundColor: m.color }}
+                  aria-hidden="true"
+                />
                 {m.name}
               </a>
             ))}
@@ -502,37 +157,31 @@ export default function HomePage() {
       {/* ═══ Pull quote ═══ */}
       <section className="border-t border-b border-[#E2E8F0] py-14 md:py-20">
         <div className="max-w-[960px] mx-auto px-6 text-center">
-          <p className="editorial-serif text-[22px] md:text-[28px] leading-[1.5] text-[#64748B] max-w-[640px] mx-auto">
-            &ldquo;Kalau bisa buka WhatsApp, bisa pakai apick.&rdquo;
-          </p>
-          <p className="mt-4 text-[13px] font-semibold tracking-[0.15em] uppercase text-[#94A3B8]">
-            Prinsip desain kami
-          </p>
+          <ScrollReveal>
+            <p className="editorial-serif text-[22px] md:text-[28px] leading-[1.5] text-[#64748B] max-w-[640px] mx-auto">
+              &ldquo;Kalau bisa buka WhatsApp, bisa pakai apick.&rdquo;
+            </p>
+            <p className="mt-4 text-[13px] font-semibold tracking-[0.15em] uppercase text-[#94A3B8]">
+              Prinsip desain kami
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* ═══ Modules ═══ */}
-      {modules.map((mod, i) => (
-        <ModuleEditorial
-          key={mod.id}
-          mod={mod}
-          index={i}
-          isExpanded={expanded === mod.id}
-          onToggle={() =>
-            setExpanded(expanded === mod.id ? null : mod.id)
-          }
-        />
-      ))}
+      {/* ═══ Interactive Module Showcase (tabbed) ═══ */}
+      <ModuleShowcase />
 
       {/* ═══ How it works ═══ */}
-      <section className="border-t border-[#E2E8F0] py-16 md:py-20">
+      <section className="border-t border-[#E2E8F0] py-16 md:py-20 bg-[#F8FAFC]">
         <div className="max-w-[960px] mx-auto px-6">
-          <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-4">
-            Mulai
-          </p>
-          <h2 className="text-[32px] md:text-[40px] font-extrabold leading-[1.1] text-[#1E293B] mb-12">
-            2 menit, langsung pakai.
-          </h2>
+          <ScrollReveal>
+            <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-4">
+              Mulai
+            </p>
+            <h2 className="text-[32px] md:text-[40px] font-extrabold leading-[1.1] text-[#1E293B] mb-12">
+              2 menit, langsung pakai.
+            </h2>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[
@@ -540,30 +189,103 @@ export default function HomePage() {
                 num: "1",
                 title: "Download & Login",
                 desc: "Login pakai Google atau nomor HP. Itu aja.",
+                icon: (
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <rect x="10" y="4" width="12" height="24" rx="3" stroke="#1B3A5C" strokeWidth="2" fill="#EFF6FF" />
+                    <circle cx="16" cy="24" r="1.5" fill="#1B3A5C" />
+                    <path d="M14 12L16 14L18 10" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
               },
               {
                 num: "2",
                 title: "Pilih Modul",
                 desc: "Lapak? Kos-kosan? RT? Hajatan? Aktifin yang kamu butuh.",
+                icon: (
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <rect x="4" y="4" width="10" height="10" rx="2" fill="#10B981" opacity="0.3" stroke="#10B981" strokeWidth="1.5" />
+                    <rect x="18" y="4" width="10" height="10" rx="2" fill="#3B82F6" opacity="0.3" stroke="#3B82F6" strokeWidth="1.5" />
+                    <rect x="4" y="18" width="10" height="10" rx="2" fill="#8B5CF6" opacity="0.3" stroke="#8B5CF6" strokeWidth="1.5" />
+                    <rect x="18" y="18" width="10" height="10" rx="2" fill="#EC4899" opacity="0.3" stroke="#EC4899" strokeWidth="1.5" />
+                  </svg>
+                ),
               },
               {
                 num: "3",
                 title: "Langsung Jalan",
                 desc: "Ikuti panduan pertama. Data langsung bisa diisi. Gratis, tanpa trial.",
+                icon: (
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <circle cx="16" cy="16" r="11" stroke="#FF4600" strokeWidth="2" fill="#FFF7ED" />
+                    <path d="M12 16L15 19L21 13" stroke="#FF4600" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
               },
-            ].map((s) => (
-              <div key={s.num}>
-                <span className="text-[48px] font-extrabold text-[#E2E8F0] leading-none" aria-hidden="true">
-                  {s.num}
-                </span>
-                <h3 className="text-[17px] font-bold text-[#1E293B] mt-3">
-                  {s.title}
-                </h3>
-                <p className="text-[14px] leading-[1.65] text-[#64748B] mt-2">
-                  {s.desc}
-                </p>
-              </div>
+            ].map((s, i) => (
+              <ScrollReveal key={s.num} delay={i + 1}>
+                <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] feature-card h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    {s.icon}
+                    <span className="text-[36px] font-extrabold text-[#E2E8F0] leading-none" aria-hidden="true">
+                      {s.num}
+                    </span>
+                  </div>
+                  <h3 className="text-[17px] font-bold text-[#1E293B]">
+                    {s.title}
+                  </h3>
+                  <p className="text-[14px] leading-[1.65] text-[#64748B] mt-2">
+                    {s.desc}
+                  </p>
+                </div>
+              </ScrollReveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ Testimonials ═══ */}
+      <section className="border-t border-[#E2E8F0] py-16 md:py-20" aria-labelledby="testimonials">
+        <div className="max-w-[960px] mx-auto px-6">
+          <ScrollReveal>
+            <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#94A3B8] mb-4">
+              Cerita pengguna
+            </p>
+            <h2
+              id="testimonials"
+              className="text-[28px] md:text-[36px] font-extrabold leading-[1.1] text-[#1E293B] mb-10"
+            >
+              Dibuat untuk orang biasa.
+            </h2>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <ScrollReveal delay={1}>
+              <TestimonialCard
+                name="Pak Hadi"
+                role="Penjual Soto, Semarang"
+                text="Dulu catat di buku, sering lupa. Sekarang tinggal tap, semua keliatan. Istri seneng karena bisa cek omzet dari rumah."
+                initial="H"
+                color="#10B981"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={2}>
+              <TestimonialCard
+                name="Bu Ani"
+                role="Pemilik Kos, Malang"
+                text="12 kamar, 1 app. Anak kos bayar, langsung keliatan. Ga perlu WA satu-satu nagih. Kamar kosong langsung share."
+                initial="A"
+                color="#3B82F6"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={3}>
+              <TestimonialCard
+                name="Mas Faisal"
+                role="Ketua RT, Bekasi"
+                text="Warga bisa cek sendiri udah bayar apa belum. Laporan keuangan tinggal share link. Transparan, ga ada fitnah."
+                initial="F"
+                color="#8B5CF6"
+              />
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -571,92 +293,95 @@ export default function HomePage() {
       {/* ═══ Three pillars ═══ */}
       <section className="bg-[#F8FAFC] border-t border-[#E2E8F0] py-16 md:py-20" aria-labelledby="why-apick">
         <div className="max-w-[960px] mx-auto px-6">
-          <p id="why-apick" className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#94A3B8] mb-4">
-            Kenapa apick
-          </p>
+          <ScrollReveal>
+            <p
+              id="why-apick"
+              className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#94A3B8] mb-4"
+            >
+              Kenapa apick
+            </p>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mt-8">
-            <div>
-              <div className="editorial-divider mb-5" aria-hidden="true" />
-              <h3 className="text-[17px] font-bold text-[#1E293B] mb-2">
-                Gampang banget
-              </h3>
-              <p className="text-[14px] leading-[1.7] text-[#64748B]">
-                1 layar, 1 tugas. Bahasa manusia, bukan bahasa komputer. Tombol
-                gede, tulisan jelas. Dibuat untuk orang yang bukan &ldquo;tech
-                savvy&rdquo;. Dan itu bukan masalah.
-              </p>
-            </div>
-            <div>
-              <div className="editorial-divider mb-5" aria-hidden="true" />
-              <h3 className="text-[17px] font-bold text-[#1E293B] mb-2">
-                Nyambung real-time
-              </h3>
-              <p className="text-[14px] leading-[1.7] text-[#64748B]">
-                Kamu catat, pelanggan langsung lihat. Warga bayar iuran,
-                bendahara langsung tau. Penghuni lapor kerusakan, pemilik kos
-                langsung terima. Tanpa telepon.
-              </p>
-            </div>
-            <div>
-              <div className="editorial-divider mb-5" aria-hidden="true" />
-              <h3 className="text-[17px] font-bold text-[#1E293B] mb-2">
-                Bisa via browser
-              </h3>
-              <p className="text-[14px] leading-[1.7] text-[#64748B]">
-                Setiap data bisa di-share via link. Pelanggan, penyewa, warga,
-                cukup klik link di WhatsApp. Ga perlu install app, ga perlu
-                daftar. Langsung lihat.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mt-8">
+            {[
+              {
+                title: "Gampang banget",
+                desc: "1 layar, 1 tugas. Bahasa manusia, bukan bahasa komputer. Tombol gede, tulisan jelas. Dibuat untuk semua umur.",
+                icon: (
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                    <circle cx="14" cy="14" r="12" stroke="#FF4600" strokeWidth="2" fill="#FFF7ED" />
+                    <path d="M10 14.5L13 17.5L19 11" stroke="#FF4600" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Nyambung real-time",
+                desc: "Kamu catat, pelanggan langsung lihat. Warga bayar, bendahara langsung tau. Tanpa telepon, tanpa tunggu.",
+                icon: (
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                    <circle cx="14" cy="14" r="12" stroke="#3B82F6" strokeWidth="2" fill="#EFF6FF" />
+                    <path d="M9 14H19M14 9V19" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                ),
+              },
+              {
+                title: "Bisa via browser",
+                desc: "Setiap data bisa di-share via link. Pelanggan, penyewa, warga cukup klik link di WhatsApp. Ga perlu install.",
+                icon: (
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                    <circle cx="14" cy="14" r="12" stroke="#8B5CF6" strokeWidth="2" fill="#F5F3FF" />
+                    <path d="M11 14C11 12.3 12.3 11 14 11H17C18.7 11 20 12.3 20 14C20 15.7 18.7 17 17 17H14" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M17 14C17 15.7 15.7 17 14 17H11C9.3 17 8 15.7 8 14C8 12.3 9.3 11 11 11H14" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                ),
+              },
+            ].map((p, i) => (
+              <ScrollReveal key={p.title} delay={i + 1}>
+                <div className="feature-card bg-white rounded-2xl p-6 border border-[#E2E8F0] h-full">
+                  <div className="mb-4">{p.icon}</div>
+                  <h3 className="text-[17px] font-bold text-[#1E293B] mb-2">
+                    {p.title}
+                  </h3>
+                  <p className="text-[14px] leading-[1.7] text-[#64748B]">
+                    {p.desc}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ═══ Stats band ═══ */}
-      <section className="border-t border-[#E2E8F0] py-14">
+      <section className="border-t border-[#E2E8F0] py-14" aria-label="Statistik">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: "4", label: "Modul" },
-              { value: "Gratis", label: "Tanpa kartu kredit" },
-              { value: "< 2 mnt", label: "Mulai pakai" },
-              { value: "24/7", label: "Data aman" },
-            ].map((s) => (
-              <div key={s.label} className="text-center md:text-left">
-                <p className="text-[28px] md:text-[36px] font-extrabold text-[#1B3A5C] leading-none">
-                  {s.value}
-                </p>
-                <p className="text-[13px] text-[#94A3B8] mt-1 font-medium">
-                  {s.label}
-                </p>
-              </div>
-            ))}
+            <AnimatedCounter value="4" label="Modul" />
+            <AnimatedCounter value="Gratis" label="Tanpa kartu kredit" />
+            <AnimatedCounter value="< 2 mnt" label="Mulai pakai" />
+            <AnimatedCounter value="24/7" label="Data aman" />
           </div>
         </div>
       </section>
 
       {/* ═══ Final CTA ═══ */}
       <section className="bg-[#1B3A5C] py-20 md:py-24">
-        <div className="max-w-[960px] mx-auto px-6">
-          <h2 className="text-[32px] md:text-[44px] font-extrabold text-white leading-[1.1] max-w-[480px]">
-            Udah capek ngitung manual?
-          </h2>
-          <p className="mt-4 text-[16px] leading-[1.6] text-white/50 max-w-[400px]">
-            Download sekarang. Gratis, langsung pakai, tanpa iklan.
-          </p>
-          <a
-            href="https://play.google.com/store/apps/details?id=id.apick.app"
-            className="mt-8 inline-flex items-center gap-2.5 bg-[#FF4600] text-white px-7 py-3.5 rounded-xl text-[15px] font-bold hover:bg-[#E63E00] transition-colors"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5Z" fill="white" />
-              <path d="M16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12Z" fill="white" opacity="0.8" />
-              <path d="M20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81Z" fill="white" opacity="0.6" />
-              <path d="M6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z" fill="white" opacity="0.9" />
-            </svg>
-            Download apick
-          </a>
+        <div className="max-w-[960px] mx-auto px-6 text-center md:text-left">
+          <ScrollReveal>
+            <h2 className="text-[32px] md:text-[44px] font-extrabold text-white leading-[1.1] max-w-[480px] mx-auto md:mx-0">
+              Udah capek ngitung manual?
+            </h2>
+            <p className="mt-4 text-[16px] leading-[1.6] text-white/50 max-w-[400px] mx-auto md:mx-0">
+              Download sekarang. Gratis, langsung pakai, tanpa iklan.
+            </p>
+            <a
+              href="https://play.google.com/store/apps/details?id=id.apick.app"
+              className="mt-8 pulse-glow inline-flex items-center gap-2.5 bg-[#FF4600] text-white px-7 py-3.5 rounded-xl text-[15px] font-bold hover:bg-[#E63E00] transition-colors"
+            >
+              <PlayStoreIcon />
+              Download apick
+            </a>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -669,13 +394,13 @@ export default function HomePage() {
           </div>
           <nav aria-label="Modul">
             <div className="flex items-center gap-5 text-[13px]">
-              {modules.map((m) => (
+              {["lapak", "sewa", "warga", "hajat"].map((id) => (
                 <a
-                  key={m.id}
-                  href={`#${m.id}`}
+                  key={id}
+                  href={`#modules-heading`}
                   className="hover:text-white/70 transition-colors capitalize"
                 >
-                  {m.id}
+                  {id}
                 </a>
               ))}
             </div>
