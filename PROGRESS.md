@@ -1,8 +1,8 @@
 # Apick - Build Progress Tracker
 
-> Last updated: 2026-03-18
-> Current phase: ALL PHASES COMPLETE 🎉
-> Overall progress: 128/128 tasks
+> Last updated: 2026-03-19
+> Current phase: PRE-LAUNCH PREP
+> Overall progress: 128/128 tasks (dev) + publishing in progress
 
 ## STATUS: TODO / IN_PROGRESS / DONE / BLOCKED / SKIPPED
 
@@ -192,6 +192,27 @@
 
 ---
 
+## PHASE 7: PRE-LAUNCH & PUBLISHING
+| # | Task | Status | Files | Notes |
+|---|------|--------|-------|-------|
+| 7.1 | Setup Firebase project + google-services.json | DONE | google-services.json (gitignored) | Firebase project: apick-82c58, package: id.apick.app |
+| 7.2 | Register Google Play Console | DONE | - | $25 fee paid |
+| 7.3 | Register Expo.dev account | DONE | - | Account created |
+| 7.4 | Add google-services.json + GoogleService-Info.plist to .gitignore | DONE | .gitignore | Prevent credential leak |
+| 7.5 | Setup .env with real Supabase + Gemini keys | DONE | .env (gitignored) | Supabase project already running |
+| 7.6 | Bump app.json version to 1.0.0 | TODO | app.json | Currently 0.0.1 |
+| 7.7 | Run `eas init` to link Expo project | TODO | app.json | Need CLI on laptop/PC |
+| 7.8 | Fix EAS submit track: internal → production | TODO | eas.json | |
+| 7.9 | Build preview APK (`eas build --profile preview`) | TODO | - | Test on real device |
+| 7.10 | Build production AAB (`eas build --profile production`) | TODO | - | For Play Store |
+| 7.11 | Play Store listing (screenshots, description, privacy policy) | TODO | - | |
+| 7.12 | Submit to Play Store | TODO | - | Review 3-7 days |
+| 7.13 | Deploy portal to Vercel | TODO | portal/ | Need Vercel account |
+| 7.14 | Setup custom domain apick.id | TODO | - | DNS config |
+| 7.15 | Redesign portal landing page | TODO | portal/app/page.tsx | User requested |
+
+---
+
 ## MODIFICATIONS LOG
 | Date | Phase | File | Reason | Impact |
 |------|-------|------|--------|--------|
@@ -227,6 +248,8 @@
 | 2026-03-18 | Rebrand | 13+ files | "Apick" → "apick" lowercase | All user-facing text: SmartBanner, footer, WA messages, constants, app config |
 | 2026-03-19 | Fix | supabase/migrations/00002_warga_module.sql | Policy references org_members before table exists | Moved org_members CREATE TABLE before the organizations policy that JOINs it |
 | 2026-03-19 | Fix | src/services/analytics.service.ts | References non-existent "sales" table + wrong column "user_id" | Changed to "sales_entries" + "business_id" to match migration 003 schema |
+| 2026-03-19 | New | google-services.json | Firebase config for Android push notifications | File gitignored, not committed |
+| 2026-03-19 | Fix | .gitignore | Add Firebase credential files | google-services.json + GoogleService-Info.plist |
 
 ## KNOWN ISSUES
 | # | Issue | Phase | Severity | Status |
