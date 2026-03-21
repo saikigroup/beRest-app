@@ -395,23 +395,42 @@ export default function HomePage() {
                     <span className="text-[14px] text-[#94A3B8]">selamanya</span>
                   </div>
                   <p className="mt-3 text-[14px] leading-[1.6] text-[#64748B]">
-                    Cocok buat yang baru mulai. 1 modul, fitur inti lengkap, tanpa batas waktu.
+                    Cocok buat yang baru mulai atau usaha kecil. Semua fitur dasar, tanpa batas waktu.
                   </p>
                 </div>
-                <ul className="space-y-2.5 mb-6 flex-1">
+                <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[#94A3B8] mb-2">Yang kamu dapat:</p>
+                <ul className="space-y-2 mb-6 flex-1">
                   {[
-                    "1 modul aktif",
-                    "Maks 30 anggota / pelanggan",
-                    "Maks 5 unit properti",
-                    "Maks 20 produk",
-                    "Maks 100 tamu undangan",
+                    "1 modul aktif (pilih salah satu)",
+                    "30 anggota / pelanggan",
+                    "5 unit properti (kamar/kontrakan)",
+                    "20 produk jualan",
+                    "1 acara hajatan",
+                    "100 tamu undangan",
                     "Catat transaksi & iuran",
-                    "Share link ke WhatsApp",
+                    "Share data via link WhatsApp",
+                    "Portal web untuk pelanggan",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-[13px] text-[#64748B]">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
                         <circle cx="8" cy="8" r="7" stroke="#10B981" strokeWidth="1.5" />
                         <path d="M5 8L7 10L11 6" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[#94A3B8] mb-2">Belum termasuk:</p>
+                <ul className="space-y-1.5 mb-6">
+                  {[
+                    "AI scan nota",
+                    "Export laporan PDF",
+                    "Analisa & statistik",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[13px] text-[#CBD5E1]">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
+                        <circle cx="8" cy="8" r="7" stroke="#CBD5E1" strokeWidth="1.5" />
+                        <path d="M5 8H11" stroke="#CBD5E1" strokeWidth="1.5" strokeLinecap="round" />
                       </svg>
                       {item}
                     </li>
@@ -444,25 +463,27 @@ export default function HomePage() {
                     Atau Rp 290rb/tahun (hemat 2 bulan)
                   </p>
                   <p className="mt-3 text-[14px] leading-[1.6] text-[#64748B]">
-                    Butuh modul kedua? Tambah 1 modul lagi, plus AI scan nota dan export PDF.
+                    Usaha mulai berkembang. Tambah 1 modul lagi, pakai AI buat scan nota, dan export laporan ke PDF.
                   </p>
                 </div>
-                <ul className="space-y-2.5 mb-6 flex-1">
+                <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[#FF4600] mb-2">Semua di Gratis, plus:</p>
+                <ul className="space-y-2 mb-6 flex-1">
                   {[
-                    { text: "2 modul aktif", highlight: true },
-                    { text: "Maks 100 anggota / pelanggan", highlight: true },
-                    { text: "Maks 20 unit properti", highlight: true },
-                    { text: "Maks 100 produk", highlight: true },
-                    { text: "Maks 500 tamu undangan", highlight: true },
-                    { text: "Scan nota otomatis pakai AI", highlight: true },
-                    { text: "Export laporan ke PDF", highlight: true },
+                    "2 modul aktif (kombinasi bebas)",
+                    "100 anggota / pelanggan",
+                    "20 unit properti",
+                    "100 produk jualan",
+                    "3 acara hajatan",
+                    "500 tamu undangan",
+                    "Scan nota otomatis pakai AI",
+                    "Export laporan keuangan ke PDF",
                   ].map((item) => (
-                    <li key={item.text} className="flex items-start gap-2.5 text-[13px] text-[#1E293B] font-medium">
+                    <li key={item} className="flex items-start gap-2.5 text-[13px] text-[#1E293B] font-medium">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
                         <circle cx="8" cy="8" r="7" fill="#FF4600" />
                         <path d="M5 8L7 10L11 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      {item.text}
+                      {item}
                     </li>
                   ))}
                 </ul>
@@ -488,18 +509,20 @@ export default function HomePage() {
                     Atau Rp 790rb/tahun (hemat 2 bulan)
                   </p>
                   <p className="mt-3 text-[14px] leading-[1.6] text-white/60">
-                    Buat yang serius. Semua modul aktif, anggota tanpa batas, dan analisa lengkap.
+                    Buat yang serius kelola banyak hal. Semua modul, semua fitur, tanpa batasan jumlah.
                   </p>
                 </div>
-                <ul className="space-y-2.5 mb-6 flex-1">
+                <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-white/40 mb-2">Semua di Starter, plus:</p>
+                <ul className="space-y-2 mb-6 flex-1">
                   {[
-                    "Semua 4 modul aktif",
+                    "Semua 4 modul aktif sekaligus",
                     "Anggota & pelanggan tanpa batas",
                     "Unit properti tanpa batas",
-                    "Produk tanpa batas",
+                    "Produk jualan tanpa batas",
+                    "Acara hajatan tanpa batas",
                     "Tamu undangan tanpa batas",
-                    "Semua fitur Starter",
                     "Analisa & statistik lengkap",
+                    "Prioritas fitur baru",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-[13px] text-white/80">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
@@ -520,11 +543,50 @@ export default function HomePage() {
             </ScrollReveal>
           </div>
 
+          {/* Comparison table */}
+          <ScrollReveal>
+            <div className="mt-12 overflow-x-auto">
+              <table className="w-full text-[13px] border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-[#E2E8F0]">
+                    <th className="text-left py-3 pr-4 text-[#64748B] font-semibold w-[40%]">Fitur</th>
+                    <th className="text-center py-3 px-2 text-[#1E293B] font-bold">Gratis</th>
+                    <th className="text-center py-3 px-2 text-[#FF4600] font-bold">Starter</th>
+                    <th className="text-center py-3 px-2 text-[#1B3A5C] font-bold">Pro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { feature: "Modul aktif", free: "1", starter: "2", pro: "4 (semua)" },
+                    { feature: "Anggota / pelanggan", free: "30", starter: "100", pro: "Tanpa batas" },
+                    { feature: "Unit properti", free: "5", starter: "20", pro: "Tanpa batas" },
+                    { feature: "Produk jualan", free: "20", starter: "100", pro: "Tanpa batas" },
+                    { feature: "Acara hajatan", free: "1", starter: "3", pro: "Tanpa batas" },
+                    { feature: "Tamu undangan", free: "100", starter: "500", pro: "Tanpa batas" },
+                    { feature: "Catat transaksi & iuran", free: "✓", starter: "✓", pro: "✓" },
+                    { feature: "Share via WhatsApp", free: "✓", starter: "✓", pro: "✓" },
+                    { feature: "Portal web pelanggan", free: "✓", starter: "✓", pro: "✓" },
+                    { feature: "AI scan nota", free: "—", starter: "✓", pro: "✓" },
+                    { feature: "Export PDF", free: "—", starter: "✓", pro: "✓" },
+                    { feature: "Analisa & statistik", free: "—", starter: "—", pro: "✓" },
+                  ].map((row, i) => (
+                    <tr key={row.feature} className={i % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}>
+                      <td className="py-2.5 pr-4 text-[#1E293B] font-medium">{row.feature}</td>
+                      <td className="py-2.5 px-2 text-center text-[#64748B]">{row.free}</td>
+                      <td className="py-2.5 px-2 text-center text-[#1E293B] font-medium">{row.starter}</td>
+                      <td className="py-2.5 px-2 text-center text-[#1E293B] font-bold">{row.pro}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
+
           {/* Reassurance */}
           <ScrollReveal>
             <div className="mt-10 text-center">
-              <p className="text-[14px] text-[#64748B] leading-[1.6] max-w-[480px] mx-auto">
-                Ga perlu langsung bayar. Mulai dari Gratis, rasakan sendiri manfaatnya. Upgrade nanti kalau memang butuh.
+              <p className="text-[14px] text-[#64748B] leading-[1.6] max-w-[520px] mx-auto">
+                Ga perlu langsung bayar. Mulai dari Gratis, rasakan sendiri manfaatnya. Upgrade kapan aja kalau memang butuh — bisa bulanan atau tahunan (hemat 2 bulan).
               </p>
             </div>
           </ScrollReveal>
