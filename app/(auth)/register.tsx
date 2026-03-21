@@ -73,7 +73,7 @@ export default function RegisterScreen() {
               1 modul aktif, 30 anggota, 20 produk
             </Text>
             <Text className="text-xs text-grey-text mt-1">
-              Mau lebih? Upgrade mulai Rp 29.000/bulan
+              Mau lebih? Mulai Rp 29.000/bln atau Rp 290.000/thn (hemat 2 bln)
             </Text>
           </View>
         </View>

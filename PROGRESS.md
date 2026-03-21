@@ -19,6 +19,11 @@
 | 2026-03-21 | app/(consumer)/(tabs)/profile.tsx | Fixed logout redirect to welcome screen |
 | 2026-03-21 | src/hooks/shared/useSubscription.ts (NEW) | Hook for subscription tier checks + paywall trigger |
 | 2026-03-21 | tailwind.config.js | Added darkMode: 'class' to fix NativeWind web mode error |
+| 2026-03-21 | src/types/shared.types.ts | Added BillingCycle type + billing_cycle field to Profile |
+| 2026-03-21 | src/services/subscription.service.ts | Added annual pricing (hemat 2 bln), getMonthlyEquivalent, getAnnualSavings |
+| 2026-03-21 | src/components/shared/UpgradeModal.tsx | Added monthly/annual toggle with savings badge |
+| 2026-03-21 | app/(provider)/(tabs)/profile.tsx | Show billing cycle in subscription card, Ganti Paket for paid tiers |
+| 2026-03-21 | app/(auth)/register.tsx | Updated pricing info to mention annual option |
 
 ## STATUS: TODO / IN_PROGRESS / DONE / BLOCKED / SKIPPED
 
