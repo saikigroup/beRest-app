@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Card } from "@components/ui/Card";
 import { Button } from "@components/ui/Button";
 import { Badge } from "@components/ui/Badge";
+import { UpgradeModal } from "@components/shared/UpgradeModal";
 import { useAuthStore } from "@stores/auth.store";
 import { useModulesStore } from "@stores/modules.store";
 import { useRoleStore } from "@stores/role.store";
@@ -24,6 +25,7 @@ export default function ProviderProfileScreen() {
   const [tier, setTier] = useState<SubscriptionTier>("free");
   const [expiresAt, setExpiresAt] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showUpgrade, setShowUpgrade] = useState(false);
 
   useEffect(() => {
     if (session?.user.id) {
@@ -47,7 +49,7 @@ export default function ProviderProfileScreen() {
             setLoading(true);
             await signOut();
             reset();
-            router.replace("/(auth)/login");
+            router.replace("/(auth)/welcome");
           },
         },
       ]
@@ -120,9 +122,7 @@ export default function ProviderProfileScreen() {
             {tier === "free" && (
               <TouchableOpacity
                 className="bg-orange/10 rounded-lg px-3 py-2"
-                onPress={() => {
-                  // Future: navigate to upgrade screen
-                }}
+                onPress={() => setShowUpgrade(true)}
               >
                 <Text className="text-orange text-xs font-bold">Upgrade</Text>
               </TouchableOpacity>
@@ -184,6 +184,12 @@ export default function ProviderProfileScreen() {
           />
         </View>
       </ScrollView>
+
+      <UpgradeModal
+        visible={showUpgrade}
+        onClose={() => setShowUpgrade(false)}
+        currentTier={tier}
+      />
     </SafeAreaView>
   );
 }
