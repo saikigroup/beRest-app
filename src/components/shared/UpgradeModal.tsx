@@ -22,7 +22,7 @@ interface UpgradeModalProps {
 const TIER_FEATURES: Record<SubscriptionTier, string[]> = {
   free: ["1 modul aktif", "30 anggota/penghuni", "5 unit", "20 produk"],
   starter: [
-    "3 modul aktif",
+    "2 modul aktif",
     "100 anggota/penghuni",
     "20 unit",
     "100 produk",

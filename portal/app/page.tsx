@@ -95,11 +95,11 @@ export default function HomePage() {
                 Satu app, empat solusi
               </p>
               <h2 className="text-[36px] leading-[1.1] md:text-[56px] md:leading-[1.08] font-extrabold tracking-tight max-w-[540px] hero-reveal-2">
-                Hidup rapi dimulai dari catatan yang bener.
+                Semua tercatat rapi, hidup jadi tenang.
               </h2>
               <p className="mt-6 text-[17px] md:text-[19px] leading-[1.6] text-white/60 max-w-[460px] hero-reveal-3">
                 Pedagang kaki lima. Ibu kos. Bendahara RT. Calon pengantin.
-                Semua butuh app yang simpel buat ngatur hidup.
+                Satu app simpel yang bantu ngatur semuanya.
               </p>
 
               {/* CTA */}
@@ -213,7 +213,7 @@ export default function HomePage() {
               {
                 num: "3",
                 title: "Langsung Jalan",
-                desc: "Ikuti panduan pertama. Data langsung bisa diisi. Gratis, tanpa trial.",
+                desc: "Ikuti panduan pertama, data langsung bisa diisi. Paket Gratis, tanpa batas waktu.",
                 icon: (
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <circle cx="16" cy="16" r="11" stroke="#FF4600" strokeWidth="2" fill="#FFF7ED" />
@@ -254,7 +254,7 @@ export default function HomePage() {
               id="testimonials"
               className="text-[28px] md:text-[36px] font-extrabold leading-[1.1] text-[#1E293B] mb-10"
             >
-              Dibuat untuk orang biasa.
+              Mereka udah pakai, kamu kapan?
             </h2>
           </ScrollReveal>
 
@@ -356,11 +356,178 @@ export default function HomePage() {
       <section className="border-t border-[#E2E8F0] py-14" aria-label="Statistik">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <AnimatedCounter value="4" label="Modul" />
-            <AnimatedCounter value="Gratis" label="Tanpa kartu kredit" />
-            <AnimatedCounter value="< 2 mnt" label="Mulai pakai" />
-            <AnimatedCounter value="24/7" label="Data aman" />
+            <AnimatedCounter value="4" label="Modul tersedia" />
+            <AnimatedCounter value="Rp 0" label="Mulai tanpa bayar" />
+            <AnimatedCounter value="< 2 mnt" label="Langsung pakai" />
+            <AnimatedCounter value="24/7" label="Data tersimpan aman" />
           </div>
+        </div>
+      </section>
+
+      {/* ═══ Pricing ═══ */}
+      <section className="border-t border-[#E2E8F0] py-16 md:py-24 bg-[#F8FAFC]" aria-labelledby="pricing-heading">
+        <div className="max-w-[960px] mx-auto px-6">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-4">
+                Harga
+              </p>
+              <h2
+                id="pricing-heading"
+                className="text-[28px] md:text-[40px] font-extrabold leading-[1.1] text-[#1E293B] mb-4"
+              >
+                Coba dulu, gratis.
+              </h2>
+              <p className="text-[16px] leading-[1.6] text-[#64748B] max-w-[520px] mx-auto">
+                Paket Gratis sudah lengkap buat mulai. Kalau usaha makin berkembang, upgrade kapan aja sesuai kebutuhan.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Gratis */}
+            <ScrollReveal delay={1}>
+              <div className="bg-white rounded-2xl border-2 border-[#E2E8F0] p-6 h-full flex flex-col feature-card">
+                <div className="mb-5">
+                  <h3 className="text-[18px] font-extrabold text-[#1E293B]">Gratis</h3>
+                  <div className="mt-2 flex items-baseline gap-1">
+                    <span className="text-[36px] font-extrabold text-[#1E293B]">Rp 0</span>
+                    <span className="text-[14px] text-[#94A3B8]">selamanya</span>
+                  </div>
+                  <p className="mt-3 text-[14px] leading-[1.6] text-[#64748B]">
+                    Cocok buat yang baru mulai. 1 modul, fitur inti lengkap, tanpa batas waktu.
+                  </p>
+                </div>
+                <ul className="space-y-2.5 mb-6 flex-1">
+                  {[
+                    "1 modul aktif",
+                    "Maks 30 anggota / pelanggan",
+                    "Maks 5 unit properti",
+                    "Maks 20 produk",
+                    "Maks 100 tamu undangan",
+                    "Catat transaksi & iuran",
+                    "Share link ke WhatsApp",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[13px] text-[#64748B]">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
+                        <circle cx="8" cy="8" r="7" stroke="#10B981" strokeWidth="1.5" />
+                        <path d="M5 8L7 10L11 6" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="https://play.google.com/store/apps/details?id=id.apick.app"
+                  className="block text-center bg-[#F1F5F9] text-[#1E293B] px-5 py-3 rounded-xl text-[14px] font-bold hover:bg-[#E2E8F0] transition-colors"
+                >
+                  Mulai Gratis
+                </a>
+              </div>
+            </ScrollReveal>
+
+            {/* Starter */}
+            <ScrollReveal delay={2}>
+              <div className="bg-white rounded-2xl border-2 border-[#FF4600] p-6 h-full flex flex-col relative feature-card shadow-lg">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="bg-[#FF4600] text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                    Paling Populer
+                  </span>
+                </div>
+                <div className="mb-5">
+                  <h3 className="text-[18px] font-extrabold text-[#1E293B]">Starter</h3>
+                  <div className="mt-2 flex items-baseline gap-1">
+                    <span className="text-[36px] font-extrabold text-[#FF4600]">Rp 29rb</span>
+                    <span className="text-[14px] text-[#94A3B8]">/bulan</span>
+                  </div>
+                  <p className="mt-1 text-[12px] text-[#10B981] font-semibold">
+                    Atau Rp 290rb/tahun (hemat 2 bulan)
+                  </p>
+                  <p className="mt-3 text-[14px] leading-[1.6] text-[#64748B]">
+                    Butuh modul kedua? Tambah 1 modul lagi, plus AI scan nota dan export PDF.
+                  </p>
+                </div>
+                <ul className="space-y-2.5 mb-6 flex-1">
+                  {[
+                    { text: "2 modul aktif", highlight: true },
+                    { text: "Maks 100 anggota / pelanggan", highlight: true },
+                    { text: "Maks 20 unit properti", highlight: true },
+                    { text: "Maks 100 produk", highlight: true },
+                    { text: "Maks 500 tamu undangan", highlight: true },
+                    { text: "Scan nota otomatis pakai AI", highlight: true },
+                    { text: "Export laporan ke PDF", highlight: true },
+                  ].map((item) => (
+                    <li key={item.text} className="flex items-start gap-2.5 text-[13px] text-[#1E293B] font-medium">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
+                        <circle cx="8" cy="8" r="7" fill="#FF4600" />
+                        <path d="M5 8L7 10L11 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="https://play.google.com/store/apps/details?id=id.apick.app"
+                  className="block text-center bg-[#FF4600] text-white px-5 py-3 rounded-xl text-[14px] font-bold hover:bg-[#E63E00] transition-colors"
+                >
+                  Coba Starter
+                </a>
+              </div>
+            </ScrollReveal>
+
+            {/* Pro */}
+            <ScrollReveal delay={3}>
+              <div className="bg-[#1B3A5C] rounded-2xl border-2 border-[#1B3A5C] p-6 h-full flex flex-col feature-card">
+                <div className="mb-5">
+                  <h3 className="text-[18px] font-extrabold text-white">Pro</h3>
+                  <div className="mt-2 flex items-baseline gap-1">
+                    <span className="text-[36px] font-extrabold text-white">Rp 79rb</span>
+                    <span className="text-[14px] text-white/50">/bulan</span>
+                  </div>
+                  <p className="mt-1 text-[12px] text-[#10B981] font-semibold">
+                    Atau Rp 790rb/tahun (hemat 2 bulan)
+                  </p>
+                  <p className="mt-3 text-[14px] leading-[1.6] text-white/60">
+                    Buat yang serius. Semua modul aktif, anggota tanpa batas, dan analisa lengkap.
+                  </p>
+                </div>
+                <ul className="space-y-2.5 mb-6 flex-1">
+                  {[
+                    "Semua 4 modul aktif",
+                    "Anggota & pelanggan tanpa batas",
+                    "Unit properti tanpa batas",
+                    "Produk tanpa batas",
+                    "Tamu undangan tanpa batas",
+                    "Semua fitur Starter",
+                    "Analisa & statistik lengkap",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[13px] text-white/80">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
+                        <circle cx="8" cy="8" r="7" stroke="white" strokeWidth="1.5" opacity="0.5" />
+                        <path d="M5 8L7 10L11 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="https://play.google.com/store/apps/details?id=id.apick.app"
+                  className="block text-center bg-white text-[#1B3A5C] px-5 py-3 rounded-xl text-[14px] font-bold hover:bg-white/90 transition-colors"
+                >
+                  Pilih Pro
+                </a>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Reassurance */}
+          <ScrollReveal>
+            <div className="mt-10 text-center">
+              <p className="text-[14px] text-[#64748B] leading-[1.6] max-w-[480px] mx-auto">
+                Ga perlu langsung bayar. Mulai dari Gratis, rasakan sendiri manfaatnya. Upgrade nanti kalau memang butuh.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -369,10 +536,10 @@ export default function HomePage() {
         <div className="max-w-[960px] mx-auto px-6 text-center md:text-left">
           <ScrollReveal>
             <h2 className="text-[32px] md:text-[44px] font-extrabold text-white leading-[1.1] max-w-[480px] mx-auto md:mx-0">
-              Udah capek ngitung manual?
+              Mulai dari yang gratis dulu.
             </h2>
             <p className="mt-4 text-[16px] leading-[1.6] text-white/50 max-w-[400px] mx-auto md:mx-0">
-              Download sekarang. Gratis, langsung pakai, tanpa iklan.
+              Paket Gratis sudah cukup buat mulai. Nanti kalau butuh lebih, tinggal upgrade kapan aja.
             </p>
             <a
               href="https://play.google.com/store/apps/details?id=id.apick.app"
@@ -392,17 +559,23 @@ export default function HomePage() {
             <span className="text-white text-[15px] font-bold">apick</span>
             <span className="text-[13px]">Life, well arranged.</span>
           </div>
-          <nav aria-label="Modul">
+          <nav aria-label="Navigasi">
             <div className="flex items-center gap-5 text-[13px]">
               {["lapak", "sewa", "warga", "hajat"].map((id) => (
                 <a
                   key={id}
-                  href={`#modules-heading`}
+                  href="#modules-heading"
                   className="hover:text-white/70 transition-colors capitalize"
                 >
                   {id}
                 </a>
               ))}
+              <a
+                href="#pricing-heading"
+                className="hover:text-white/70 transition-colors"
+              >
+                Harga
+              </a>
             </div>
           </nav>
         </div>

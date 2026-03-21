@@ -18,7 +18,7 @@ const TIER_LIMITS: Record<SubscriptionTier, SubscriptionLimits> = {
     canExportPDF: false, canUseAI: false, canUseAdvancedAnalytics: false,
   },
   starter: {
-    maxModules: 3, maxMembers: 100, maxUnits: 20, maxProducts: 100, maxGuests: 500,
+    maxModules: 2, maxMembers: 100, maxUnits: 20, maxProducts: 100, maxGuests: 500,
     canExportPDF: true, canUseAI: true, canUseAdvancedAnalytics: false,
   },
   pro: {
