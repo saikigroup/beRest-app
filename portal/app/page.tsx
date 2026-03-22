@@ -194,13 +194,16 @@ export default function HomePage() {
               </ScrollReveal>
               <ScrollReveal delay={1}>
                 <p className="text-[15px] leading-[1.8] text-[#64748B] mb-4">
-                  Kebanyakan app pengelolaan dibuat buat perusahaan besar. Bahasa Inggris, fitur bertumpuk, langganan mahal. Orang-orang di sekitar kita — yang usahanya jalan tiap hari — malah masih pakai cara manual.
+                  Kebanyakan app pengelolaan dibuat buat perusahaan besar. Bahasa Inggris, fitur bertumpuk, dashboard yang bikin pusing, langganan ratusan ribu per bulan. Orang-orang di sekitar kita — yang usahanya jalan tiap hari, yang ngurusin hajat hidup orang banyak — malah masih pakai cara manual.
                 </p>
                 <p className="text-[15px] leading-[1.8] text-[#64748B] mb-4">
-                  Bukan karena mereka ga mau pakai teknologi. <span className="text-[#1E293B] font-semibold">Tapi belum ada yang bikin teknologi untuk mereka.</span>
+                  Bukan karena mereka ga mau pakai teknologi. <span className="text-[#1E293B] font-semibold">Tapi belum ada yang bikin teknologi untuk mereka.</span> Yang bahasa Indonesia. Yang ga minta belajar dulu seminggu sebelum bisa dipakai. Yang harganya masuk akal — atau bahkan gratis.
+                </p>
+                <p className="text-[15px] leading-[1.8] text-[#64748B] mb-4">
+                  Kami mulai dari pertanyaan simpel: kenapa app buat catat jualan harus serumit software akuntansi? Kenapa ngatur iuran warga harus pakai spreadsheet? Kenapa bikin undangan digital harus bayar ratusan ribu?
                 </p>
                 <p className="text-[15px] leading-[1.8] text-[#64748B]">
-                  apick lahir dari keyakinan sederhana: kalau seseorang bisa pakai WhatsApp, dia harusnya bisa pakai app untuk ngatur hidupnya. Tanpa pelatihan. Tanpa biaya besar. Tanpa baca manual 50 halaman. Cukup buka, pakai, beres.
+                  apick lahir dari keyakinan bahwa kalau seseorang bisa pakai WhatsApp, dia harusnya bisa pakai app untuk ngatur hidupnya. Tanpa pelatihan. Tanpa biaya besar. Tanpa baca manual 50 halaman. Cukup buka, pakai, beres. <span className="text-[#1E293B] font-semibold">Hidup jadi rapi, tanpa harus jadi ahli teknologi.</span>
                 </p>
               </ScrollReveal>
             </div>
