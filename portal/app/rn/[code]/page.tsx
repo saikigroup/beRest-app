@@ -31,7 +31,7 @@ export default async function RentalStatusPage({ params }: Props) {
         <div className="flex justify-between"><span className="text-gray-500">Tanggal Pinjam</span><span>{startDate.toLocaleDateString("id-ID")}</span></div>
         <div className="flex justify-between"><span className="text-gray-500">Durasi</span><span>{days} hari</span></div>
         <div className="flex justify-between"><span className="text-gray-500">Tarif</span><span>Rp {tx.daily_rate.toLocaleString("id-ID")}/hari</span></div>
-        {tx.total_cost && <div className="flex justify-between border-t pt-3 border-gray-100"><span className="text-gray-500 font-bold">Total</span><span className="font-bold text-[#3B82F6]">Rp {tx.total_cost.toLocaleString("id-ID")}</span></div>}
+        {tx.total_cost && <div className="flex justify-between border-t pt-3 border-gray-100"><span className="text-gray-500 font-bold">Total</span><span className="font-bold text-[#00C49A]">Rp {tx.total_cost.toLocaleString("id-ID")}</span></div>}
       </div>
       <p className="text-center text-xs text-gray-400 mt-8">Dibuat dengan apick</p>
     </main></>

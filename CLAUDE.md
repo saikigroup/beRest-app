@@ -209,12 +209,12 @@ apick-app/
 └── .env
 
 ## COLOR PALETTE
-Primary Navy: #1B3A5C
-Primary Orange: #FF4600
-Apick Lapak: #10B981 (green)
-Apick Sewa: #3B82F6 (blue)
-Apick Warga: #8B5CF6 (purple)
-Apick Hajat: #EC4899 (pink)
+Primary Teal: #2C7695
+Primary Dark Teal: #156064
+Apick Lapak: #50BFC3 (cyan/teal)
+Apick Sewa: #00C49A (green/teal)
+Apick Warga: #FB8F67 (coral/orange)
+Apick Hajat: #D95877 (rose/pink)
 Dark Text: #1E293B
 Grey Text: #64748B
 Light BG: #F8FAFC

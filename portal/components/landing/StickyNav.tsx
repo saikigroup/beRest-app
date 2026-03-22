@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 
 const modules = [
-  { id: "lapak", name: "Lapak", color: "#10B981" },
-  { id: "sewa", name: "Sewa", color: "#3B82F6" },
-  { id: "warga", name: "Warga", color: "#8B5CF6" },
-  { id: "hajat", name: "Hajat", color: "#EC4899" },
+  { id: "lapak", name: "Lapak", color: "#50BFC3" },
+  { id: "sewa", name: "Sewa", color: "#00C49A" },
+  { id: "warga", name: "Warga", color: "#FB8F67" },
+  { id: "hajat", name: "Hajat", color: "#D95877" },
 ];
 
 export function StickyNav() {
@@ -43,11 +43,8 @@ export function StickyNav() {
       aria-label="Navigasi modul"
     >
       <div className="max-w-[960px] mx-auto px-6 py-3 flex items-center justify-between">
-        <a
-          href="#content"
-          className="text-[#1B3A5C] text-[18px] font-extrabold tracking-tight"
-        >
-          apick
+        <a href="#content">
+          <img src="/logos/apick-logo-full.svg" alt="apick" className="h-7" />
         </a>
         <div className="hidden sm:flex items-center gap-1">
           {modules.map((m) => (
@@ -66,14 +63,14 @@ export function StickyNav() {
           ))}
           <a
             href="#pricing-heading"
-            className="px-3 py-1.5 rounded-full text-[13px] font-semibold text-[#64748B] hover:text-[#FF4600] transition-colors"
+            className="px-3 py-1.5 rounded-full text-[13px] font-semibold text-[#64748B] hover:text-[#156064] transition-colors"
           >
             Harga
           </a>
         </div>
         <a
           href="https://play.google.com/store/apps/details?id=id.apick.app"
-          className="bg-[#FF4600] text-white px-4 py-1.5 rounded-lg text-[13px] font-bold hover:bg-[#E63E00] transition-colors"
+          className="bg-[#156064] text-white px-4 py-1.5 rounded-lg text-[13px] font-bold hover:bg-[#0E4A4D] transition-colors"
         >
           Download
         </a>

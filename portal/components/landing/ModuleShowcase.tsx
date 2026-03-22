@@ -8,14 +8,14 @@ import { ScrollReveal } from "./ScrollReveal";
 function IconLapak({ size = 48 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <rect x="8" y="20" width="48" height="6" rx="3" fill="#10B981" />
-      <path d="M8 26 Q14 32 20 26 Q26 32 32 26 Q38 32 44 26 Q50 32 56 26" fill="#10B981" stroke="#059669" strokeWidth="1.5" />
-      <rect x="12" y="30" width="40" height="22" rx="2" fill="#D1FAE5" stroke="#10B981" strokeWidth="1.5" />
-      <rect x="26" y="38" width="12" height="14" rx="1" fill="#10B981" />
-      <circle cx="35" cy="46" r="1.5" fill="#059669" />
-      <rect x="16" y="34" width="8" height="8" rx="1" fill="#ECFDF5" stroke="#10B981" strokeWidth="1" />
-      <line x1="20" y1="34" x2="20" y2="42" stroke="#10B981" strokeWidth="0.8" />
-      <line x1="16" y1="38" x2="24" y2="38" stroke="#10B981" strokeWidth="0.8" />
+      <rect x="8" y="20" width="48" height="6" rx="3" fill="#50BFC3" />
+      <path d="M8 26 Q14 32 20 26 Q26 32 32 26 Q38 32 44 26 Q50 32 56 26" fill="#50BFC3" stroke="#3DA8AC" strokeWidth="1.5" />
+      <rect x="12" y="30" width="40" height="22" rx="2" fill="#D4F1F2" stroke="#50BFC3" strokeWidth="1.5" />
+      <rect x="26" y="38" width="12" height="14" rx="1" fill="#50BFC3" />
+      <circle cx="35" cy="46" r="1.5" fill="#3DA8AC" />
+      <rect x="16" y="34" width="8" height="8" rx="1" fill="#E8F7F8" stroke="#50BFC3" strokeWidth="1" />
+      <line x1="20" y1="34" x2="20" y2="42" stroke="#50BFC3" strokeWidth="0.8" />
+      <line x1="16" y1="38" x2="24" y2="38" stroke="#50BFC3" strokeWidth="0.8" />
     </svg>
   );
 }
@@ -23,13 +23,13 @@ function IconLapak({ size = 48 }: { size?: number }) {
 function IconSewa({ size = 48 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <path d="M10 28 L32 10 L54 28" fill="#DBEAFE" stroke="#3B82F6" strokeWidth="2" strokeLinejoin="round" />
-      <rect x="14" y="28" width="36" height="24" rx="2" fill="#EFF6FF" stroke="#3B82F6" strokeWidth="1.5" />
-      <circle cx="32" cy="37" r="5" fill="#3B82F6" />
-      <circle cx="32" cy="37" r="2.5" fill="#EFF6FF" />
-      <rect x="31" y="42" width="2" height="7" rx="1" fill="#3B82F6" />
-      <rect x="18" y="32" width="6" height="6" rx="1" fill="#BFDBFE" stroke="#3B82F6" strokeWidth="0.8" />
-      <rect x="40" y="32" width="6" height="6" rx="1" fill="#BFDBFE" stroke="#3B82F6" strokeWidth="0.8" />
+      <path d="M10 28 L32 10 L54 28" fill="#C2F0E5" stroke="#00C49A" strokeWidth="2" strokeLinejoin="round" />
+      <rect x="14" y="28" width="36" height="24" rx="2" fill="#E5F8F3" stroke="#00C49A" strokeWidth="1.5" />
+      <circle cx="32" cy="37" r="5" fill="#00C49A" />
+      <circle cx="32" cy="37" r="2.5" fill="#E5F8F3" />
+      <rect x="31" y="42" width="2" height="7" rx="1" fill="#00C49A" />
+      <rect x="18" y="32" width="6" height="6" rx="1" fill="#A8E8D6" stroke="#00C49A" strokeWidth="0.8" />
+      <rect x="40" y="32" width="6" height="6" rx="1" fill="#A8E8D6" stroke="#00C49A" strokeWidth="0.8" />
     </svg>
   );
 }
@@ -37,13 +37,13 @@ function IconSewa({ size = 48 }: { size?: number }) {
 function IconWarga({ size = 48 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle cx="32" cy="20" r="7" fill="#8B5CF6" />
-      <path d="M20 44 Q20 33 32 33 Q44 33 44 44" fill="#C4B5FD" stroke="#8B5CF6" strokeWidth="1.5" />
-      <circle cx="16" cy="24" r="5" fill="#A78BFA" />
-      <path d="M8 42 Q8 34 16 34 Q22 34 23 38" fill="#DDD6FE" stroke="#8B5CF6" strokeWidth="1" />
-      <circle cx="48" cy="24" r="5" fill="#A78BFA" />
-      <path d="M56 42 Q56 34 48 34 Q42 34 41 38" fill="#DDD6FE" stroke="#8B5CF6" strokeWidth="1" />
-      <circle cx="44" cy="44" r="6" fill="#8B5CF6" />
+      <circle cx="32" cy="20" r="7" fill="#FB8F67" />
+      <path d="M20 44 Q20 33 32 33 Q44 33 44 44" fill="#FCC7B3" stroke="#FB8F67" strokeWidth="1.5" />
+      <circle cx="16" cy="24" r="5" fill="#FCAB8D" />
+      <path d="M8 42 Q8 34 16 34 Q22 34 23 38" fill="#FDD5C5" stroke="#FB8F67" strokeWidth="1" />
+      <circle cx="48" cy="24" r="5" fill="#FCAB8D" />
+      <path d="M56 42 Q56 34 48 34 Q42 34 41 38" fill="#FDD5C5" stroke="#FB8F67" strokeWidth="1" />
+      <circle cx="44" cy="44" r="6" fill="#FB8F67" />
       <path d="M41 44 L43.5 46.5 L47 41.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -52,12 +52,12 @@ function IconWarga({ size = 48 }: { size?: number }) {
 function IconHajat({ size = 48 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <rect x="8" y="18" width="48" height="32" rx="4" fill="#FCE7F3" stroke="#EC4899" strokeWidth="1.5" />
-      <path d="M8 22 L32 38 L56 22" fill="#FBCFE8" stroke="#EC4899" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M27 28 Q27 24 31 24 Q33 24 33 27 Q33 24 35 24 Q39 24 39 28 Q39 33 33 37 Q27 33 27 28Z" fill="#EC4899" />
-      <circle cx="18" cy="14" r="1.5" fill="#F9A8D4" />
-      <circle cx="48" cy="12" r="2" fill="#FBCFE8" />
-      <path d="M14 10 L15 8 L16 10 L18 11 L16 12 L15 14 L14 12 L12 11Z" fill="#EC4899" />
+      <rect x="8" y="18" width="48" height="32" rx="4" fill="#F9DDE5" stroke="#D95877" strokeWidth="1.5" />
+      <path d="M8 22 L32 38 L56 22" fill="#F4C1CE" stroke="#D95877" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M27 28 Q27 24 31 24 Q33 24 33 27 Q33 24 35 24 Q39 24 39 28 Q39 33 33 37 Q27 33 27 28Z" fill="#D95877" />
+      <circle cx="18" cy="14" r="1.5" fill="#EDA0B5" />
+      <circle cx="48" cy="12" r="2" fill="#F4C1CE" />
+      <path d="M14 10 L15 8 L16 10 L18 11 L16 12 L15 14 L14 12 L12 11Z" fill="#D95877" />
     </svg>
   );
 }
@@ -69,9 +69,9 @@ const modules = [
     id: "lapak",
     name: "apick lapak",
     tabLabel: "Lapak",
-    color: "#10B981",
-    colorLight: "#D1FAE5",
-    colorMuted: "#ECFDF5",
+    color: "#50BFC3",
+    colorLight: "#D4F1F2",
+    colorMuted: "#E8F7F8",
     icon: IconLapak,
     headline: "Catat dagangan, fokus jualan.",
     persona: "Pak Edi",
@@ -93,9 +93,9 @@ const modules = [
     id: "sewa",
     name: "apick sewa",
     tabLabel: "Sewa",
-    color: "#3B82F6",
-    colorLight: "#DBEAFE",
-    colorMuted: "#EFF6FF",
+    color: "#00C49A",
+    colorLight: "#C2F0E5",
+    colorMuted: "#E5F8F3",
     icon: IconSewa,
     headline: "Kelola properti, tanpa ribet.",
     persona: "Bu Ratna",
@@ -117,9 +117,9 @@ const modules = [
     id: "warga",
     name: "apick warga",
     tabLabel: "Warga",
-    color: "#8B5CF6",
-    colorLight: "#EDE9FE",
-    colorMuted: "#F5F3FF",
+    color: "#FB8F67",
+    colorLight: "#FDE8DF",
+    colorMuted: "#FFF0EB",
     icon: IconWarga,
     headline: "Iuran transparan, warga tenang.",
     persona: "Pak Bambang",
@@ -141,9 +141,9 @@ const modules = [
     id: "hajat",
     name: "apick hajat",
     tabLabel: "Hajat",
-    color: "#EC4899",
-    colorLight: "#FCE7F3",
-    colorMuted: "#FDF2F8",
+    color: "#D95877",
+    colorLight: "#F9DDE5",
+    colorMuted: "#FCEDF1",
     icon: IconHajat,
     headline: "Undang tamu, tanpa drama.",
     persona: "Mbak Dina",
@@ -257,7 +257,7 @@ export function ModuleShowcase() {
     <section className="py-16 md:py-24" aria-labelledby="modules-heading">
       <div className="max-w-[960px] mx-auto px-6">
         <ScrollReveal>
-          <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-4">
+          <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#156064] mb-4">
             Empat Modul
           </p>
           <h2

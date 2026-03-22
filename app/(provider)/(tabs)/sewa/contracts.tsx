@@ -174,7 +174,7 @@ export default function ContractsScreen() {
         <View className="mt-4">
           {generateLoading ? (
             <View className="items-center py-4">
-              <ActivityIndicator size="large" color="#3B82F6" />
+              <ActivityIndicator size="large" color="#00C49A" />
               <Text className="text-sm text-grey-text mt-2">AI sedang buat kontrak...</Text>
             </View>
           ) : (

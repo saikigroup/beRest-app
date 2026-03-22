@@ -31,7 +31,8 @@ export function SmartBanner() {
   }
 
   return (
-    <div className="bg-[#1B3A5C] text-white flex items-center px-4 py-3 sticky top-0 z-50">
+    <div className="bg-[#2C7695] text-white flex items-center px-4 py-3 sticky top-0 z-50">
+      <img src="/logos/apick-logo-white.svg" alt="apick" className="h-6 mr-3" />
       <div className="flex-1">
         <div className="font-bold text-sm">Download apick</div>
         <div className="text-white/70 text-xs">
@@ -40,7 +41,7 @@ export function SmartBanner() {
       </div>
       <button
         onClick={handleInstall}
-        className="bg-[#FF4600] text-white text-xs font-bold px-4 py-2 rounded-lg mr-2 hover:opacity-90"
+        className="bg-[#156064] text-white text-xs font-bold px-4 py-2 rounded-lg mr-2 hover:opacity-90"
       >
         Install
       </button>

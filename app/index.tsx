@@ -42,7 +42,7 @@ export default function Index() {
   return (
     <View className="flex-1 bg-light-bg items-center justify-center">
       <Text className="text-3xl font-bold text-navy mb-4">Apick</Text>
-      <ActivityIndicator size="large" color="#FF4600" />
+      <ActivityIndicator size="large" color="#156064" />
     </View>
   );
 }

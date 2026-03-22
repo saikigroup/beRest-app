@@ -28,14 +28,14 @@ export default async function LaundryStatusPage({ params }: Props) {
       </div>
       <div className="bg-white rounded-xl p-4 border border-gray-200 mb-4 text-center">
         <p className="text-xs text-gray-500">Status</p>
-        <p className="text-2xl font-bold text-[#10B981]">{STATUS_LABELS[order.status]}</p>
+        <p className="text-2xl font-bold text-[#50BFC3]">{STATUS_LABELS[order.status]}</p>
         <p className="text-lg font-bold text-gray-900 mt-2">Rp {order.total.toLocaleString("id-ID")}</p>
       </div>
       <div className="bg-white rounded-xl p-4 border border-gray-200">
         <p className="text-sm font-bold text-gray-500 mb-3">PROGRESS</p>
         {STEPS.map((step, i) => (
           <div key={step} className="flex items-center mb-3">
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 ${i <= currentStep ? "bg-[#10B981] text-white" : "bg-gray-200 text-gray-400"}`}>
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 ${i <= currentStep ? "bg-[#50BFC3] text-white" : "bg-gray-200 text-gray-400"}`}>
               {i <= currentStep ? <span className="text-xs">✓</span> : <span className="text-xs">{i + 1}</span>}
             </div>
             <span className={`text-sm ${i <= currentStep ? "font-bold text-gray-900" : "text-gray-400"}`}>{STATUS_LABELS[step]}</span>

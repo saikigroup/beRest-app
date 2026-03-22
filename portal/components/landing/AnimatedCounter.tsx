@@ -32,7 +32,7 @@ export function AnimatedCounter({ value, label }: AnimatedCounterProps) {
   return (
     <div ref={ref} className="text-center md:text-left">
       <p
-        className={`text-[28px] md:text-[36px] font-extrabold text-[#1B3A5C] leading-none transition-all duration-700 ${
+        className={`text-[28px] md:text-[36px] font-extrabold text-[#2C7695] leading-none transition-all duration-700 ${
           visible
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"

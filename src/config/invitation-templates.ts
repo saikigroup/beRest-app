@@ -29,7 +29,7 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
     event_type: "nikah",
     preview_url: null,
     bg_color: "#F0F4FF",
-    text_color: "#1B3A5C",
+    text_color: "#2C7695",
   },
 
   // ==================== KHITAN ====================
@@ -121,7 +121,7 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
     event_type: "custom",
     preview_url: null,
     bg_color: "#F0F4FF",
-    text_color: "#1B3A5C",
+    text_color: "#2C7695",
   },
 ];
 

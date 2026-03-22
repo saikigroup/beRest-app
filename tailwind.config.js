@@ -9,12 +9,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: "#1B3A5C",
-        orange: "#FF4600",
-        lapak: "#10B981",
-        sewa: "#3B82F6",
-        warga: "#8B5CF6",
-        hajat: "#EC4899",
+        navy: "#2C7695",
+        orange: "#156064",
+        lapak: "#50BFC3",
+        sewa: "#00C49A",
+        warga: "#FB8F67",
+        hajat: "#D95877",
         "dark-text": "#1E293B",
         "grey-text": "#64748B",
         "light-bg": "#F8FAFC",
