@@ -28,14 +28,13 @@ function createSafeClient(): SupabaseClient {
   const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: {
       storage: AsyncStorage,
-      autoRefreshToken: false, // We handle refresh manually via AppState
+      autoRefreshToken: true,
       persistSession: true,
       detectSessionInUrl: false,
     },
   });
 
-  // Manually refresh token when app comes to foreground
-  // This prevents unhandled network errors during cold start
+  // Pause/resume auto-refresh based on app state to save battery
   AppState.addEventListener("change", (state) => {
     if (state === "active") {
       client.auth.startAutoRefresh();
