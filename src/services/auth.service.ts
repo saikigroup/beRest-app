@@ -10,6 +10,16 @@ export async function signInWithGoogle() {
 
 export async function signInWithPhone(phone: string) {
   const { data, error } = await supabase.auth.signInWithOtp({ phone });
+  if (error) {
+    const msg = error.message?.toLowerCase() ?? "";
+    if (msg.includes("rate limit") || msg.includes("too many")) {
+      error.message = "Terlalu sering kirim OTP. Tunggu beberapa menit ya.";
+    } else if (msg.includes("invalid") && msg.includes("phone")) {
+      error.message = "Format nomor HP tidak valid. Coba pakai format 08xx.";
+    } else if (msg.includes("not authorized") || msg.includes("unverified")) {
+      error.message = "Nomor ini belum bisa menerima SMS. Hubungi admin.";
+    }
+  }
   return { data, error };
 }
 
@@ -19,6 +29,14 @@ export async function verifyOtp(phone: string, token: string) {
     token,
     type: "sms",
   });
+  if (error) {
+    const msg = error.message?.toLowerCase() ?? "";
+    if (msg.includes("expired")) {
+      error.message = "Kode OTP sudah kedaluwarsa. Kirim ulang ya.";
+    } else if (msg.includes("invalid") || msg.includes("token")) {
+      error.message = "Kode OTP salah. Cek lagi ya.";
+    }
+  }
   return { data, error };
 }
 

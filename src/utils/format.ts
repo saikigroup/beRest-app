@@ -37,3 +37,26 @@ export function formatRelativeTime(dateStr: string): string {
   if (diffDays < 7) return `${diffDays} hari lalu`;
   return formatDate(dateStr);
 }
+
+/**
+ * Format phone number to international format (+62)
+ * Handles: 08xx, 8xx, 628xx, +628xx
+ */
+export function formatPhoneE164(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.startsWith("0")) return `+62${digits.slice(1)}`;
+  if (digits.startsWith("62")) return `+${digits}`;
+  if (digits.startsWith("8")) return `+62${digits}`;
+  return `+${digits}`;
+}
+
+/**
+ * Format phone for display: +628123456789 -> 0812-3456-789
+ */
+export function formatPhoneDisplay(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  const local = digits.startsWith("62") ? `0${digits.slice(2)}` : digits;
+  if (local.length <= 4) return local;
+  if (local.length <= 8) return `${local.slice(0, 4)}-${local.slice(4)}`;
+  return `${local.slice(0, 4)}-${local.slice(4, 8)}-${local.slice(8)}`;
+}
