@@ -103,7 +103,9 @@ export default function OtpScreen() {
             Masukkan Kode OTP
           </Text>
           <Text className="text-sm text-grey-text mt-2">
-            Kode 6 digit sudah dikirim via {channelText} ke {destination}
+            {isEmail
+              ? `Cek email ${destination} — klik link yang dikirim, atau masukkan kode 6 digit di bawah.`
+              : `Kode 6 digit sudah dikirim via ${channelText} ke ${destination}`}
           </Text>
 
           {/* OTP inputs */}

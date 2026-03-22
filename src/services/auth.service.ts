@@ -99,7 +99,12 @@ export async function verifyOtp(phone: string, token: string) {
 // ─── Email OTP ──────────────────────────────────────────────────
 
 export async function signInWithEmail(email: string) {
-  const { data, error } = await supabase.auth.signInWithOtp({ email });
+  const { data, error } = await supabase.auth.signInWithOtp({
+    email,
+    options: {
+      emailRedirectTo: "apick://auth/callback",
+    },
+  });
   if (error) {
     const msg = error.message?.toLowerCase() ?? "";
     if (msg.includes("rate limit") || msg.includes("too many")) {

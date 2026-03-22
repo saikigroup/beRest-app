@@ -6,11 +6,13 @@ import { StatusBar } from "expo-status-bar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as Notifications from "expo-notifications";
+import * as Linking from "expo-linking";
 import { useAuthStore } from "@stores/auth.store";
 import { onAuthStateChange, getProfile } from "@services/auth.service";
 import { registerPushToken } from "@services/notification.service";
 import { useRoleStore } from "@stores/role.store";
 import { useModulesStore } from "@stores/modules.store";
+import { supabase } from "@services/supabase";
 
 class AppErrorBoundary extends React.Component<
   { children: React.ReactNode },
@@ -100,6 +102,40 @@ function AuthInitializer({ children }: { children: React.ReactNode }) {
   const setRole = useRoleStore((s) => s.setRole);
   const setActiveView = useRoleStore((s) => s.setActiveView);
   const setActiveModules = useModulesStore((s) => s.setActiveModules);
+
+  // Handle magic link deep links (apick://auth/callback#access_token=...&refresh_token=...)
+  useEffect(() => {
+    function handleDeepLink(event: { url: string }) {
+      const url = event.url;
+      if (!url) return;
+
+      // Extract tokens from fragment (#) or query params
+      const hashIndex = url.indexOf("#");
+      if (hashIndex === -1) return;
+
+      const params = new URLSearchParams(url.substring(hashIndex + 1));
+      const accessToken = params.get("access_token");
+      const refreshToken = params.get("refresh_token");
+
+      if (accessToken && refreshToken) {
+        supabase.auth
+          .setSession({ access_token: accessToken, refresh_token: refreshToken })
+          .catch((err) => console.warn("[Apick] Magic link session error:", err));
+      }
+    }
+
+    // Handle URL that launched the app
+    Linking.getInitialURL().then((url) => {
+      if (url) handleDeepLink({ url });
+    });
+
+    // Handle URL while app is open
+    const linkSub = Linking.addEventListener("url", handleDeepLink);
+
+    return () => {
+      linkSub.remove();
+    };
+  }, []);
 
   useEffect(() => {
     let subscription: { unsubscribe: () => void } | undefined;
