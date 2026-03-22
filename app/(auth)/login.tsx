@@ -68,6 +68,121 @@ export default function LoginScreen() {
     router.push({ pathname: '/(auth)/otp', params: { email: trimmed, via: 'email' } });
   }
 
+  const formContent = (
+    <>
+      {error ? (
+        <View
+          style={{
+            backgroundColor: '#FEE2E2',
+            borderRadius: RADIUS.md,
+            padding: 12,
+            marginBottom: SPACING.md,
+          }}
+        >
+          <Text style={{ ...TYPO.caption, color: '#DC2626', textAlign: 'center' }}>{error}</Text>
+        </View>
+      ) : null}
+
+      {/* Tab switcher */}
+      <View
+        style={{
+          flexDirection: 'row',
+          backgroundColor: GLASS.card.background,
+          borderRadius: RADIUS.md,
+          padding: 4,
+          marginBottom: SPACING.md,
+          borderWidth: 1,
+          borderColor: GLASS.card.border,
+        }}
+      >
+        {(['phone', 'email'] as const).map((tab) => (
+          <TouchableOpacity
+            key={tab}
+            onPress={() => { setActiveTab(tab); setError(''); }}
+            style={{
+              flex: 1,
+              paddingVertical: 10,
+              borderRadius: RADIUS.sm,
+              alignItems: 'center',
+              ...(activeTab === tab
+                ? { backgroundColor: '#2C7695', ...GLASS.shadow.sm }
+                : {}),
+            }}
+          >
+            <Text
+              style={{
+                ...TYPO.captionBold,
+                color: activeTab === tab ? '#FFFFFF' : '#64748B',
+              }}
+            >
+              {tab === 'phone' ? 'Nomor HP' : 'Email'}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      {activeTab === 'phone' ? (
+        <>
+          <Input
+            placeholder="contoh: 08123456789"
+            value={phone}
+            onChangeText={(text) => { setPhone(text.replace(/\D/g, '')); setError(''); }}
+            keyboardType="phone-pad"
+            label="Nomor HP"
+          />
+          <View style={{ marginTop: SPACING.md }}>
+            <Button title="Masuk dengan Nomor HP" onPress={handlePhoneLogin} loading={loading} />
+          </View>
+        </>
+      ) : (
+        <>
+          <Input
+            placeholder="contoh: nama@email.com"
+            value={email}
+            onChangeText={(text) => { setEmail(text); setError(''); }}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            label="Alamat Email"
+          />
+          <View style={{ marginTop: SPACING.md }}>
+            <Button title="Masuk dengan Email" onPress={handleEmailLogin} loading={loading} />
+          </View>
+        </>
+      )}
+
+      {/* Divider */}
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: SPACING.lg }}>
+        <View style={{ flex: 1, height: 1, backgroundColor: '#E2E8F0' }} />
+        <Text style={{ ...TYPO.caption, color: '#94A3B8', marginHorizontal: 16 }}>atau</Text>
+        <View style={{ flex: 1, height: 1, backgroundColor: '#E2E8F0' }} />
+      </View>
+
+      <Button
+        title="Masuk dengan Google"
+        variant="secondary"
+        onPress={handleGoogleLogin}
+        loading={googleLoading}
+      />
+
+      <TouchableOpacity
+        onPress={() => router.push('/(auth)/register')}
+        style={{ marginTop: SPACING.md, alignItems: 'center', paddingVertical: 8 }}
+      >
+        <Text style={{ ...TYPO.caption, color: '#64748B' }}>
+          Belum punya akun?{' '}
+          <Text style={{ color: '#2C7695', fontWeight: '700' }}>Daftar</Text>
+        </Text>
+      </TouchableOpacity>
+    </>
+  );
+
+  const scrollProps = {
+    contentContainerStyle: { flexGrow: 1, justifyContent: 'flex-end' as const, paddingHorizontal: SPACING.lg, paddingBottom: insets.bottom + SPACING.lg },
+    keyboardShouldPersistTaps: 'handled' as const,
+    keyboardDismissMode: 'none' as const,
+    showsVerticalScrollIndicator: false,
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: '#F8FAFC' }}>
       {/* Gradient header */}
@@ -106,120 +221,13 @@ export default function LoginScreen() {
         </View>
       </LinearGradient>
 
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end', paddingHorizontal: SPACING.lg, paddingBottom: insets.bottom + SPACING.lg }}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
-        >
-          {error ? (
-            <View
-              style={{
-                backgroundColor: '#FEE2E2',
-                borderRadius: RADIUS.md,
-                padding: 12,
-                marginBottom: SPACING.md,
-              }}
-            >
-              <Text style={{ ...TYPO.caption, color: '#DC2626', textAlign: 'center' }}>{error}</Text>
-            </View>
-          ) : null}
-
-          {/* Tab switcher */}
-          <View
-            style={{
-              flexDirection: 'row',
-              backgroundColor: GLASS.card.background,
-              borderRadius: RADIUS.md,
-              padding: 4,
-              marginBottom: SPACING.md,
-              borderWidth: 1,
-              borderColor: GLASS.card.border,
-            }}
-          >
-            {(['phone', 'email'] as const).map((tab) => (
-              <TouchableOpacity
-                key={tab}
-                onPress={() => { setActiveTab(tab); setError(''); }}
-                style={{
-                  flex: 1,
-                  paddingVertical: 10,
-                  borderRadius: RADIUS.sm,
-                  alignItems: 'center',
-                  ...(activeTab === tab
-                    ? { backgroundColor: '#2C7695', ...GLASS.shadow.sm }
-                    : {}),
-                }}
-              >
-                <Text
-                  style={{
-                    ...TYPO.captionBold,
-                    color: activeTab === tab ? '#FFFFFF' : '#64748B',
-                  }}
-                >
-                  {tab === 'phone' ? 'Nomor HP' : 'Email'}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-
-          {activeTab === 'phone' ? (
-            <>
-              <Input
-                placeholder="contoh: 08123456789"
-                value={phone}
-                onChangeText={(text) => { setPhone(text.replace(/\D/g, '')); setError(''); }}
-                keyboardType="phone-pad"
-                label="Nomor HP"
-              />
-              <View style={{ marginTop: SPACING.md }}>
-                <Button title="Masuk dengan Nomor HP" onPress={handlePhoneLogin} loading={loading} />
-              </View>
-            </>
-          ) : (
-            <>
-              <Input
-                placeholder="contoh: nama@email.com"
-                value={email}
-                onChangeText={(text) => { setEmail(text); setError(''); }}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                label="Alamat Email"
-              />
-              <View style={{ marginTop: SPACING.md }}>
-                <Button title="Masuk dengan Email" onPress={handleEmailLogin} loading={loading} />
-              </View>
-            </>
-          )}
-
-          {/* Divider */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: SPACING.lg }}>
-            <View style={{ flex: 1, height: 1, backgroundColor: '#E2E8F0' }} />
-            <Text style={{ ...TYPO.caption, color: '#94A3B8', marginHorizontal: 16 }}>atau</Text>
-            <View style={{ flex: 1, height: 1, backgroundColor: '#E2E8F0' }} />
-          </View>
-
-          <Button
-            title="Masuk dengan Google"
-            variant="secondary"
-            onPress={handleGoogleLogin}
-            loading={googleLoading}
-          />
-
-          <TouchableOpacity
-            onPress={() => router.push('/(auth)/register')}
-            style={{ marginTop: SPACING.md, alignItems: 'center', paddingVertical: 8 }}
-          >
-            <Text style={{ ...TYPO.caption, color: '#64748B' }}>
-              Belum punya akun?{' '}
-              <Text style={{ color: '#2C7695', fontWeight: '700' }}>Daftar</Text>
-            </Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </KeyboardAvoidingView>
+      {Platform.OS === 'ios' ? (
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+          <ScrollView {...scrollProps}>{formContent}</ScrollView>
+        </KeyboardAvoidingView>
+      ) : (
+        <ScrollView {...scrollProps}>{formContent}</ScrollView>
+      )}
     </View>
   );
 }
