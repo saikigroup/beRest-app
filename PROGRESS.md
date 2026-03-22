@@ -7,6 +7,7 @@
 ## MODIFICATIONS LOG
 | Date | Files Modified | Reason |
 |------|---------------|--------|
+| 2026-03-22 | app/_layout.tsx, src/services/supabase.ts, src/config/supabase.config.ts | Fix Android APK force close - ErrorBoundary, safe Supabase init, auth try-catch |
 | 2026-03-22 | portal/app/page.tsx | Redesigned landing page hero with logo-centric layout, added logo showcase section |
 | 2026-03-22 | portal/app/globals.css | Added logo animations (entrance, glow, shimmer, card hover) |
 | 2026-03-22 | portal/components/landing/StickyNav.tsx | Increased sticky nav logo size |
