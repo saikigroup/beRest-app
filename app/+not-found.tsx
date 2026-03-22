@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
-import { router, usePathname } from "expo-router";
+import { router } from "expo-router";
 import { useAuthStore } from "@stores/auth.store";
 
 export default function NotFoundScreen() {
   const session = useAuthStore((s) => s.session);
   const isLoading = useAuthStore((s) => s.isLoading);
-  const pathname = usePathname();
 
   useEffect(() => {
     if (isLoading) return;

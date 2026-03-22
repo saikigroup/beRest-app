@@ -233,6 +233,7 @@ export default function RootLayout() {
               <Stack.Screen name="(consumer)" />
               <Stack.Screen name="connect" />
               <Stack.Screen name="linked-accounts" />
+              <Stack.Screen name="edit-profile" />
               <Stack.Screen name="auth/callback" />
               <Stack.Screen name="+not-found" />
             </Stack>
