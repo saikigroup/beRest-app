@@ -53,7 +53,7 @@ export default function RsvpPage() {
 
   return (
     <><SmartBanner /><main className="max-w-md mx-auto pb-20">
-      <div className="bg-gradient-to-b from-[#EC4899] to-[#DB2777] text-white text-center py-10 px-6 rounded-b-3xl">
+      <div className="bg-gradient-to-b from-[#D95877] to-[#B8445F] text-white text-center py-10 px-6 rounded-b-3xl">
         <p className="text-sm opacity-80">{TYPE_LABELS[event.type as string] ?? "Acara"}</p>
         <h1 className="text-2xl font-bold mt-1">{event.title as string}</h1>
         <p className="text-sm opacity-80 mt-2">Kepada Yth. <strong>{guest.name as string}</strong></p>
@@ -62,7 +62,7 @@ export default function RsvpPage() {
       <div className="px-4 -mt-6">
         <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 text-center">
           <p className="text-sm text-gray-500">📅 {eventDate}</p>
-          {event.event_time ? <p className="text-sm text-[#EC4899]">🕐 {String(event.event_time)} WIB</p> : null}
+          {event.event_time ? <p className="text-sm text-[#D95877]">🕐 {String(event.event_time)} WIB</p> : null}
           {event.location_name ? <p className="text-sm font-bold text-gray-900 mt-2">📍 {String(event.location_name)}</p> : null}
         </div>
 
@@ -72,7 +72,7 @@ export default function RsvpPage() {
           <div className="space-y-2 mb-4">
             {[{ key: "attending", label: "Ya, saya hadir", icon: "✅" }, { key: "not_attending", label: "Maaf, tidak bisa hadir", icon: "❌" }, { key: "maybe", label: "Belum pasti", icon: "🤔" }].map((opt) => (
               <button key={opt.key} onClick={() => setRsvp(opt.key)}
-                className={`w-full text-left px-4 py-3 rounded-xl border transition ${rsvp === opt.key ? "border-[#EC4899] bg-pink-50" : "border-gray-200"}`}>
+                className={`w-full text-left px-4 py-3 rounded-xl border transition ${rsvp === opt.key ? "border-[#D95877] bg-pink-50" : "border-gray-200"}`}>
                 <span className="mr-2">{opt.icon}</span>{opt.label}
               </button>
             ))}
@@ -89,7 +89,7 @@ export default function RsvpPage() {
             </div>
           )}
 
-          <button onClick={handleSubmit} className="w-full bg-[#EC4899] text-white py-3 rounded-xl font-bold hover:opacity-90 transition">
+          <button onClick={handleSubmit} className="w-full bg-[#D95877] text-white py-3 rounded-xl font-bold hover:opacity-90 transition">
             Konfirmasi
           </button>
         </div>

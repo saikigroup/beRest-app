@@ -167,7 +167,7 @@ export default function PrivacyPolicyPage() {
         <div className="mt-12 pt-8 border-t border-[#E2E8F0]">
           <a
             href="/"
-            className="text-[14px] font-semibold text-[#FF4600] hover:underline"
+            className="text-[14px] font-semibold text-[#156064] hover:underline"
           >
             &larr; Kembali ke beranda
           </a>

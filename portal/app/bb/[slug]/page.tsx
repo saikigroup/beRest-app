@@ -28,7 +28,7 @@ export default async function QueuePortalPage({ params }: Props) {
       </div>
 
       {/* Now serving */}
-      <div className="bg-[#10B981] rounded-xl p-6 text-center mb-4">
+      <div className="bg-[#50BFC3] rounded-xl p-6 text-center mb-4">
         <p className="text-white/70 text-sm">Sedang Dilayani</p>
         <p className="text-white text-5xl font-bold mt-1">#{serving?.queue_number ?? "-"}</p>
         {serving && <p className="text-white/80 text-sm mt-1">{serving.customer_name}</p>}

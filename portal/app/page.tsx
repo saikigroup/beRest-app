@@ -62,7 +62,7 @@ export default function HomePage() {
       {/* Skip to content */}
       <a
         href="#content"
-        className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-[#FF4600] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-bold"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-[#156064] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-bold"
       >
         Langsung ke konten
       </a>
@@ -71,10 +71,10 @@ export default function HomePage() {
       <StickyNav />
 
       {/* ═══ Masthead ═══ */}
-      <header className="bg-[#1B3A5C]">
+      <header className="bg-[#2C7695]">
         <div className="max-w-[960px] mx-auto px-6 py-5 flex items-center justify-between">
-          <h1 className="text-white text-[22px] font-extrabold tracking-tight hero-reveal">
-            apick
+          <h1 className="hero-reveal">
+            <img src="/logos/apick-logo-white.svg" alt="apick" className="h-8" />
           </h1>
           <a
             href="https://play.google.com/store/apps/details?id=id.apick.app"
@@ -86,12 +86,12 @@ export default function HomePage() {
       </header>
 
       {/* ═══ Hero ═══ */}
-      <section id="content" className="bg-[#1B3A5C] text-white pb-20 pt-12 md:pt-20 overflow-hidden">
+      <section id="content" className="bg-[#2C7695] text-white pb-20 pt-12 md:pt-20 overflow-hidden">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-center md:gap-12">
             {/* Text side */}
             <div className="flex-1 min-w-0">
-              <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-6 hero-reveal">
+              <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#156064] mb-6 hero-reveal">
                 Satu app, empat solusi
               </p>
               <h2 className="text-[36px] leading-[1.1] md:text-[56px] md:leading-[1.08] font-extrabold tracking-tight max-w-[540px] hero-reveal-2">
@@ -106,7 +106,7 @@ export default function HomePage() {
               <div className="mt-10 flex flex-col sm:flex-row items-start gap-4 hero-reveal-4">
                 <a
                   href="https://play.google.com/store/apps/details?id=id.apick.app"
-                  className="pulse-glow inline-flex items-center gap-2.5 bg-[#FF4600] text-white px-7 py-3.5 rounded-xl text-[15px] font-bold hover:bg-[#E63E00] transition-colors"
+                  className="pulse-glow inline-flex items-center gap-2.5 bg-[#156064] text-white px-7 py-3.5 rounded-xl text-[15px] font-bold hover:bg-[#0E4A4D] transition-colors"
                 >
                   <PlayStoreIcon />
                   Download Gratis
@@ -129,10 +129,10 @@ export default function HomePage() {
           {/* Module pills */}
           <div className="mt-14 flex flex-wrap gap-2 hero-reveal-4">
             {[
-              { id: "lapak", name: "Lapak", color: "#10B981" },
-              { id: "sewa", name: "Sewa", color: "#3B82F6" },
-              { id: "warga", name: "Warga", color: "#8B5CF6" },
-              { id: "hajat", name: "Hajat", color: "#EC4899" },
+              { id: "lapak", name: "Lapak", color: "#50BFC3" },
+              { id: "sewa", name: "Sewa", color: "#00C49A" },
+              { id: "warga", name: "Warga", color: "#FB8F67" },
+              { id: "hajat", name: "Hajat", color: "#D95877" },
             ].map((m) => (
               <a
                 key={m.id}
@@ -175,7 +175,7 @@ export default function HomePage() {
       <section className="border-t border-[#E2E8F0] py-16 md:py-20 bg-[#F8FAFC]">
         <div className="max-w-[960px] mx-auto px-6">
           <ScrollReveal>
-            <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-4">
+            <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#156064] mb-4">
               Mulai
             </p>
             <h2 className="text-[32px] md:text-[40px] font-extrabold leading-[1.1] text-[#1E293B] mb-12">
@@ -191,9 +191,9 @@ export default function HomePage() {
                 desc: "Login pakai Google atau nomor HP. Itu aja.",
                 icon: (
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                    <rect x="10" y="4" width="12" height="24" rx="3" stroke="#1B3A5C" strokeWidth="2" fill="#EFF6FF" />
-                    <circle cx="16" cy="24" r="1.5" fill="#1B3A5C" />
-                    <path d="M14 12L16 14L18 10" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <rect x="10" y="4" width="12" height="24" rx="3" stroke="#2C7695" strokeWidth="2" fill="#E5F8F3" />
+                    <circle cx="16" cy="24" r="1.5" fill="#2C7695" />
+                    <path d="M14 12L16 14L18 10" stroke="#50BFC3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 ),
               },
@@ -203,10 +203,10 @@ export default function HomePage() {
                 desc: "Lapak? Kos-kosan? RT? Hajatan? Aktifin yang kamu butuh.",
                 icon: (
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                    <rect x="4" y="4" width="10" height="10" rx="2" fill="#10B981" opacity="0.3" stroke="#10B981" strokeWidth="1.5" />
-                    <rect x="18" y="4" width="10" height="10" rx="2" fill="#3B82F6" opacity="0.3" stroke="#3B82F6" strokeWidth="1.5" />
-                    <rect x="4" y="18" width="10" height="10" rx="2" fill="#8B5CF6" opacity="0.3" stroke="#8B5CF6" strokeWidth="1.5" />
-                    <rect x="18" y="18" width="10" height="10" rx="2" fill="#EC4899" opacity="0.3" stroke="#EC4899" strokeWidth="1.5" />
+                    <rect x="4" y="4" width="10" height="10" rx="2" fill="#50BFC3" opacity="0.3" stroke="#50BFC3" strokeWidth="1.5" />
+                    <rect x="18" y="4" width="10" height="10" rx="2" fill="#00C49A" opacity="0.3" stroke="#00C49A" strokeWidth="1.5" />
+                    <rect x="4" y="18" width="10" height="10" rx="2" fill="#FB8F67" opacity="0.3" stroke="#FB8F67" strokeWidth="1.5" />
+                    <rect x="18" y="18" width="10" height="10" rx="2" fill="#D95877" opacity="0.3" stroke="#D95877" strokeWidth="1.5" />
                   </svg>
                 ),
               },
@@ -216,8 +216,8 @@ export default function HomePage() {
                 desc: "Ikuti panduan pertama, data langsung bisa diisi. Paket Gratis, tanpa batas waktu.",
                 icon: (
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                    <circle cx="16" cy="16" r="11" stroke="#FF4600" strokeWidth="2" fill="#FFF7ED" />
-                    <path d="M12 16L15 19L21 13" stroke="#FF4600" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="16" cy="16" r="11" stroke="#156064" strokeWidth="2" fill="#E6F3F4" />
+                    <path d="M12 16L15 19L21 13" stroke="#156064" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 ),
               },
@@ -265,7 +265,7 @@ export default function HomePage() {
                 role="Penjual Soto, Semarang"
                 text="Dulu catat di buku, sering lupa. Sekarang tinggal tap, semua keliatan. Istri seneng karena bisa cek omzet dari rumah."
                 initial="H"
-                color="#10B981"
+                color="#50BFC3"
               />
             </ScrollReveal>
             <ScrollReveal delay={2}>
@@ -274,7 +274,7 @@ export default function HomePage() {
                 role="Pemilik Kos, Malang"
                 text="12 kamar, 1 app. Anak kos bayar, langsung keliatan. Ga perlu WA satu-satu nagih. Kamar kosong langsung share."
                 initial="A"
-                color="#3B82F6"
+                color="#00C49A"
               />
             </ScrollReveal>
             <ScrollReveal delay={3}>
@@ -283,7 +283,7 @@ export default function HomePage() {
                 role="Ketua RT, Bekasi"
                 text="Warga bisa cek sendiri udah bayar apa belum. Laporan keuangan tinggal share link. Transparan, ga ada fitnah."
                 initial="F"
-                color="#8B5CF6"
+                color="#FB8F67"
               />
             </ScrollReveal>
           </div>
@@ -309,8 +309,8 @@ export default function HomePage() {
                 desc: "1 layar, 1 tugas. Bahasa manusia, bukan bahasa komputer. Tombol gede, tulisan jelas. Dibuat untuk semua umur.",
                 icon: (
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                    <circle cx="14" cy="14" r="12" stroke="#FF4600" strokeWidth="2" fill="#FFF7ED" />
-                    <path d="M10 14.5L13 17.5L19 11" stroke="#FF4600" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="14" cy="14" r="12" stroke="#156064" strokeWidth="2" fill="#E6F3F4" />
+                    <path d="M10 14.5L13 17.5L19 11" stroke="#156064" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 ),
               },
@@ -319,8 +319,8 @@ export default function HomePage() {
                 desc: "Kamu catat, pelanggan langsung lihat. Warga bayar, bendahara langsung tau. Tanpa telepon, tanpa tunggu.",
                 icon: (
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                    <circle cx="14" cy="14" r="12" stroke="#3B82F6" strokeWidth="2" fill="#EFF6FF" />
-                    <path d="M9 14H19M14 9V19" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+                    <circle cx="14" cy="14" r="12" stroke="#00C49A" strokeWidth="2" fill="#E5F8F3" />
+                    <path d="M9 14H19M14 9V19" stroke="#00C49A" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 ),
               },
@@ -329,9 +329,9 @@ export default function HomePage() {
                 desc: "Setiap data bisa di-share via link. Pelanggan, penyewa, warga cukup klik link di WhatsApp. Ga perlu install.",
                 icon: (
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                    <circle cx="14" cy="14" r="12" stroke="#8B5CF6" strokeWidth="2" fill="#F5F3FF" />
-                    <path d="M11 14C11 12.3 12.3 11 14 11H17C18.7 11 20 12.3 20 14C20 15.7 18.7 17 17 17H14" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M17 14C17 15.7 15.7 17 14 17H11C9.3 17 8 15.7 8 14C8 12.3 9.3 11 11 11H14" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" />
+                    <circle cx="14" cy="14" r="12" stroke="#FB8F67" strokeWidth="2" fill="#FFF0EB" />
+                    <path d="M11 14C11 12.3 12.3 11 14 11H17C18.7 11 20 12.3 20 14C20 15.7 18.7 17 17 17H14" stroke="#FB8F67" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M17 14C17 15.7 15.7 17 14 17H11C9.3 17 8 15.7 8 14C8 12.3 9.3 11 11 11H14" stroke="#FB8F67" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 ),
               },
@@ -369,7 +369,7 @@ export default function HomePage() {
         <div className="max-w-[960px] mx-auto px-6">
           <ScrollReveal>
             <div className="text-center mb-12">
-              <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#FF4600] mb-4">
+              <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-[#156064] mb-4">
                 Harga
               </p>
               <h2
@@ -413,8 +413,8 @@ export default function HomePage() {
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-[13px] text-[#64748B]">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
-                        <circle cx="8" cy="8" r="7" stroke="#10B981" strokeWidth="1.5" />
-                        <path d="M5 8L7 10L11 6" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <circle cx="8" cy="8" r="7" stroke="#50BFC3" strokeWidth="1.5" />
+                        <path d="M5 8L7 10L11 6" stroke="#50BFC3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       {item}
                     </li>
@@ -447,26 +447,26 @@ export default function HomePage() {
 
             {/* Starter */}
             <ScrollReveal delay={2}>
-              <div className="bg-white rounded-2xl border-2 border-[#FF4600] p-6 h-full flex flex-col relative feature-card shadow-lg">
+              <div className="bg-white rounded-2xl border-2 border-[#156064] p-6 h-full flex flex-col relative feature-card shadow-lg">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-[#FF4600] text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                  <span className="bg-[#156064] text-white text-[11px] font-bold px-3 py-1 rounded-full">
                     Paling Populer
                   </span>
                 </div>
                 <div className="mb-5">
                   <h3 className="text-[18px] font-extrabold text-[#1E293B]">Starter</h3>
                   <div className="mt-2 flex items-baseline gap-1">
-                    <span className="text-[36px] font-extrabold text-[#FF4600]">Rp 29rb</span>
+                    <span className="text-[36px] font-extrabold text-[#156064]">Rp 29rb</span>
                     <span className="text-[14px] text-[#94A3B8]">/bulan</span>
                   </div>
-                  <p className="mt-1 text-[12px] text-[#10B981] font-semibold">
+                  <p className="mt-1 text-[12px] text-[#50BFC3] font-semibold">
                     Atau Rp 290rb/tahun (hemat 2 bulan)
                   </p>
                   <p className="mt-3 text-[14px] leading-[1.6] text-[#64748B]">
                     Usaha mulai berkembang. Tambah 1 modul lagi, pakai AI buat scan nota, dan export laporan ke PDF.
                   </p>
                 </div>
-                <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[#FF4600] mb-2">Semua di Gratis, plus:</p>
+                <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[#156064] mb-2">Semua di Gratis, plus:</p>
                 <ul className="space-y-2 mb-6 flex-1">
                   {[
                     "2 modul aktif (kombinasi bebas)",
@@ -480,7 +480,7 @@ export default function HomePage() {
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-[13px] text-[#1E293B] font-medium">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" aria-hidden="true">
-                        <circle cx="8" cy="8" r="7" fill="#FF4600" />
+                        <circle cx="8" cy="8" r="7" fill="#156064" />
                         <path d="M5 8L7 10L11 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       {item}
@@ -489,7 +489,7 @@ export default function HomePage() {
                 </ul>
                 <a
                   href="https://play.google.com/store/apps/details?id=id.apick.app"
-                  className="block text-center bg-[#FF4600] text-white px-5 py-3 rounded-xl text-[14px] font-bold hover:bg-[#E63E00] transition-colors"
+                  className="block text-center bg-[#156064] text-white px-5 py-3 rounded-xl text-[14px] font-bold hover:bg-[#0E4A4D] transition-colors"
                 >
                   Coba Starter
                 </a>
@@ -498,14 +498,14 @@ export default function HomePage() {
 
             {/* Pro */}
             <ScrollReveal delay={3}>
-              <div className="bg-[#1B3A5C] rounded-2xl border-2 border-[#1B3A5C] p-6 h-full flex flex-col feature-card">
+              <div className="bg-[#2C7695] rounded-2xl border-2 border-[#2C7695] p-6 h-full flex flex-col feature-card">
                 <div className="mb-5">
                   <h3 className="text-[18px] font-extrabold text-white">Pro</h3>
                   <div className="mt-2 flex items-baseline gap-1">
                     <span className="text-[36px] font-extrabold text-white">Rp 79rb</span>
                     <span className="text-[14px] text-white/50">/bulan</span>
                   </div>
-                  <p className="mt-1 text-[12px] text-[#10B981] font-semibold">
+                  <p className="mt-1 text-[12px] text-[#50BFC3] font-semibold">
                     Atau Rp 790rb/tahun (hemat 2 bulan)
                   </p>
                   <p className="mt-3 text-[14px] leading-[1.6] text-white/60">
@@ -535,7 +535,7 @@ export default function HomePage() {
                 </ul>
                 <a
                   href="https://play.google.com/store/apps/details?id=id.apick.app"
-                  className="block text-center bg-white text-[#1B3A5C] px-5 py-3 rounded-xl text-[14px] font-bold hover:bg-white/90 transition-colors"
+                  className="block text-center bg-white text-[#2C7695] px-5 py-3 rounded-xl text-[14px] font-bold hover:bg-white/90 transition-colors"
                 >
                   Pilih Pro
                 </a>
@@ -551,8 +551,8 @@ export default function HomePage() {
                   <tr className="border-b-2 border-[#E2E8F0]">
                     <th className="text-left py-3 pr-4 text-[#64748B] font-semibold w-[40%]">Fitur</th>
                     <th className="text-center py-3 px-2 text-[#1E293B] font-bold">Gratis</th>
-                    <th className="text-center py-3 px-2 text-[#FF4600] font-bold">Starter</th>
-                    <th className="text-center py-3 px-2 text-[#1B3A5C] font-bold">Pro</th>
+                    <th className="text-center py-3 px-2 text-[#156064] font-bold">Starter</th>
+                    <th className="text-center py-3 px-2 text-[#2C7695] font-bold">Pro</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -594,7 +594,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══ Final CTA ═══ */}
-      <section className="bg-[#1B3A5C] py-20 md:py-24">
+      <section className="bg-[#2C7695] py-20 md:py-24">
         <div className="max-w-[960px] mx-auto px-6 text-center md:text-left">
           <ScrollReveal>
             <h2 className="text-[32px] md:text-[44px] font-extrabold text-white leading-[1.1] max-w-[480px] mx-auto md:mx-0">
@@ -605,7 +605,7 @@ export default function HomePage() {
             </p>
             <a
               href="https://play.google.com/store/apps/details?id=id.apick.app"
-              className="mt-8 pulse-glow inline-flex items-center gap-2.5 bg-[#FF4600] text-white px-7 py-3.5 rounded-xl text-[15px] font-bold hover:bg-[#E63E00] transition-colors"
+              className="mt-8 pulse-glow inline-flex items-center gap-2.5 bg-[#156064] text-white px-7 py-3.5 rounded-xl text-[15px] font-bold hover:bg-[#0E4A4D] transition-colors"
             >
               <PlayStoreIcon />
               Download apick
@@ -615,10 +615,10 @@ export default function HomePage() {
       </section>
 
       {/* ═══ Footer ═══ */}
-      <footer className="bg-[#152E4A] text-white/40 py-10">
+      <footer className="bg-[#1E5A6F] text-white/40 py-10">
         <div className="max-w-[960px] mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-center gap-6">
-            <span className="text-white text-[15px] font-bold">apick</span>
+            <img src="/logos/apick-logo-white.svg" alt="apick" className="h-6" />
             <span className="text-[13px]">Life, well arranged.</span>
           </div>
           <nav aria-label="Navigasi">

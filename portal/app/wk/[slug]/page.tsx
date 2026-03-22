@@ -70,7 +70,7 @@ export default async function StorefrontPage({ params }: Props) {
         {/* Products */}
         {Array.from(categories.entries()).map(([cat, prods]) => (
           <div key={cat} className="mb-6">
-            <h2 className="text-sm font-bold text-[#10B981] mb-2">{cat}</h2>
+            <h2 className="text-sm font-bold text-[#50BFC3] mb-2">{cat}</h2>
             <div className="space-y-2">
               {prods.map(
                 (p: {
@@ -97,7 +97,7 @@ export default async function StorefrontPage({ params }: Props) {
                         <p className="text-xs text-gray-500">{p.description}</p>
                       )}
                     </div>
-                    <p className="font-bold text-[#10B981]">
+                    <p className="font-bold text-[#50BFC3]">
                       Rp {p.price.toLocaleString("id-ID")}
                     </p>
                   </div>

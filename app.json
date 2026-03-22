@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#1B3A5C"
+      "backgroundColor": "#2C7695"
     },
     "ios": {
       "supportsTablet": true,
@@ -19,7 +19,7 @@
     "android": {
       "package": "id.apick.app",
       "adaptiveIcon": {
-        "backgroundColor": "#1B3A5C",
+        "backgroundColor": "#2C7695",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -38,7 +38,7 @@
       ],
       [
         "expo-notifications",
-        { "icon": "./assets/notification-icon.png", "color": "#FF4600" }
+        { "icon": "./assets/notification-icon.png", "color": "#156064" }
       ]
     ],
     "extra": {

@@ -73,7 +73,7 @@ export default async function InfaqReportPage({ searchParams }: Props) {
         {/* Total */}
         <div className="bg-white rounded-xl p-4 border border-gray-200 mb-4 text-center">
           <p className="text-xs text-gray-500">Total Infaq Terkumpul</p>
-          <p className="text-3xl font-bold text-[#8B5CF6]">
+          <p className="text-3xl font-bold text-[#FB8F67]">
             Rp {totalInfaq.toLocaleString("id-ID")}
           </p>
           <p className="text-xs text-gray-400 mt-1">
@@ -119,12 +119,12 @@ export default async function InfaqReportPage({ searchParams }: Props) {
                       </div>
                       <div className="h-2 bg-gray-200 rounded-full overflow-hidden mb-2">
                         <div
-                          className="h-full bg-[#8B5CF6] rounded-full"
+                          className="h-full bg-[#FB8F67] rounded-full"
                           style={{ width: `${progress}%` }}
                         />
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="font-bold text-[#8B5CF6]">
+                        <span className="font-bold text-[#FB8F67]">
                           Rp {f.collected_amount.toLocaleString("id-ID")}
                         </span>
                         <span className="text-gray-500">
@@ -166,7 +166,7 @@ export default async function InfaqReportPage({ searchParams }: Props) {
                     {new Date(tx.transaction_date).toLocaleDateString("id-ID")}
                   </p>
                 </div>
-                <p className="font-bold text-[#8B5CF6]">
+                <p className="font-bold text-[#FB8F67]">
                   +Rp {tx.amount.toLocaleString("id-ID")}
                 </p>
               </div>

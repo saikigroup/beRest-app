@@ -117,7 +117,7 @@ export default async function MesjidMemberPage({ params }: Props) {
         {/* Infaq Summary */}
         <div className="bg-white rounded-xl p-4 border border-gray-200 mb-6 text-center">
           <p className="text-xs text-gray-500">Total Kontribusi Infaq Anda</p>
-          <p className="text-3xl font-bold text-[#8B5CF6]">
+          <p className="text-3xl font-bold text-[#FB8F67]">
             Rp {totalInfaq.toLocaleString("id-ID")}
           </p>
           <p className="text-xs text-gray-400 mt-1">

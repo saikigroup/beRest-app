@@ -30,7 +30,7 @@ export default async function StudentPortalPage({ params }: Props) {
         {(schedules ?? []).map((sc: { id: string; day_of_week: number; start_time: string; end_time: string; subject: string | null }) => (
           <div key={sc.id} className="bg-white rounded-xl p-4 border border-gray-200">
             <p className="font-bold text-gray-900">{DAY_LABELS[sc.day_of_week]}</p>
-            <p className="text-sm text-[#10B981]">{sc.start_time} - {sc.end_time}</p>
+            <p className="text-sm text-[#50BFC3]">{sc.start_time} - {sc.end_time}</p>
             {sc.subject && <p className="text-xs text-gray-500">{sc.subject}</p>}
           </div>
         ))}
@@ -41,7 +41,7 @@ export default async function StudentPortalPage({ params }: Props) {
         {(students ?? []).map((s: { id: string; name: string; monthly_fee: number }) => (
           <div key={s.id} className="bg-white rounded-xl p-4 border border-gray-200 flex justify-between items-center">
             <p className="font-bold text-gray-900">{s.name}</p>
-            <p className="text-sm font-bold text-[#10B981]">Rp {s.monthly_fee.toLocaleString("id-ID")}/bln</p>
+            <p className="text-sm font-bold text-[#50BFC3]">Rp {s.monthly_fee.toLocaleString("id-ID")}/bln</p>
           </div>
         ))}
       </div>

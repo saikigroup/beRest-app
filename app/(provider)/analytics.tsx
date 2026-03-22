@@ -84,7 +84,7 @@ export default function AnalyticsScreen() {
       <ScrollView className="flex-1 px-4 pt-3">
         {loading ? (
           <View className="items-center py-16">
-            <ActivityIndicator size="large" color="#1B3A5C" />
+            <ActivityIndicator size="large" color="#2C7695" />
             <Text className="text-sm text-grey-text mt-3">
               Memuat analitik...
             </Text>

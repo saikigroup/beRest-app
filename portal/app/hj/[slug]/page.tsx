@@ -18,7 +18,7 @@ export default async function InvitationPage({ params }: Props) {
   return (
     <><SmartBanner /><main className="max-w-md mx-auto pb-20">
       {/* Hero */}
-      <div className="bg-gradient-to-b from-[#EC4899] to-[#DB2777] text-white text-center py-12 px-6 rounded-b-3xl">
+      <div className="bg-gradient-to-b from-[#D95877] to-[#B8445F] text-white text-center py-12 px-6 rounded-b-3xl">
         <p className="text-sm opacity-80">{TYPE_LABELS[event.type] ?? "Acara"}</p>
         <h1 className="text-3xl font-bold mt-2">{event.title}</h1>
       </div>
@@ -29,7 +29,7 @@ export default async function InvitationPage({ params }: Props) {
           <div className="text-center mb-4">
             <p className="text-sm text-gray-500">📅 Tanggal</p>
             <p className="text-lg font-bold text-gray-900">{eventDate}</p>
-            {event.event_time && <p className="text-sm text-[#EC4899]">🕐 {event.event_time} WIB</p>}
+            {event.event_time && <p className="text-sm text-[#D95877]">🕐 {event.event_time} WIB</p>}
           </div>
 
           {event.location_name && (
@@ -38,7 +38,7 @@ export default async function InvitationPage({ params }: Props) {
               <p className="text-lg font-bold text-gray-900">{event.location_name}</p>
               {event.location_address && <p className="text-xs text-gray-500">{event.location_address}</p>}
               {event.location_maps_url && (
-                <a href={event.location_maps_url} target="_blank" rel="noopener" className="text-sm text-[#EC4899] font-bold mt-1 inline-block">Buka Maps →</a>
+                <a href={event.location_maps_url} target="_blank" rel="noopener" className="text-sm text-[#D95877] font-bold mt-1 inline-block">Buka Maps →</a>
               )}
             </div>
           )}

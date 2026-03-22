@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 const screens = [
   {
     id: "lapak",
-    color: "#10B981",
-    colorLight: "#D1FAE5",
+    color: "#50BFC3",
+    colorLight: "#D4F1F2",
     title: "Penjualan Hari Ini",
     stats: [
       { label: "Omzet", value: "Rp 847.000" },
@@ -16,8 +16,8 @@ const screens = [
   },
   {
     id: "sewa",
-    color: "#3B82F6",
-    colorLight: "#DBEAFE",
+    color: "#00C49A",
+    colorLight: "#C2F0E5",
     title: "Properti Kos Melati",
     stats: [
       { label: "Terisi", value: "10/12" },
@@ -27,8 +27,8 @@ const screens = [
   },
   {
     id: "warga",
-    color: "#8B5CF6",
-    colorLight: "#EDE9FE",
+    color: "#FB8F67",
+    colorLight: "#FDE8DF",
     title: "Iuran RT 05",
     stats: [
       { label: "Terkumpul", value: "Rp 3.1jt" },
@@ -38,8 +38,8 @@ const screens = [
   },
   {
     id: "hajat",
-    color: "#EC4899",
-    colorLight: "#FCE7F3",
+    color: "#D95877",
+    colorLight: "#F9DDE5",
     title: "Pernikahan Dina & Ari",
     stats: [
       { label: "Hadir", value: "127" },

@@ -7,11 +7,11 @@ export async function exportPDF(title: string, htmlContent: string): Promise<voi
   const html = `
     <html><head><meta charset="utf-8"><style>
       body { font-family: sans-serif; padding: 20px; color: #1E293B; }
-      h1 { color: #1B3A5C; font-size: 24px; }
+      h1 { color: #2C7695; font-size: 24px; }
       table { width: 100%; border-collapse: collapse; margin-top: 16px; }
       th, td { border: 1px solid #E2E8F0; padding: 8px; text-align: left; font-size: 12px; }
       th { background: #F8FAFC; font-weight: bold; }
-      .total { font-weight: bold; font-size: 16px; color: #1B3A5C; }
+      .total { font-weight: bold; font-size: 16px; color: #2C7695; }
       .footer { margin-top: 24px; font-size: 10px; color: #94A3B8; text-align: center; }
     </style></head><body>
       <h1>${title}</h1>

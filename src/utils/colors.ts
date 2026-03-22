@@ -1,12 +1,12 @@
 import type { ModuleKey } from "@app-types/shared.types";
 
 export const COLORS = {
-  navy: "#1B3A5C",
-  orange: "#FF4600",
-  lapak: "#10B981",
-  sewa: "#3B82F6",
-  warga: "#8B5CF6",
-  hajat: "#EC4899",
+  navy: "#2C7695",
+  orange: "#156064",
+  lapak: "#50BFC3",
+  sewa: "#00C49A",
+  warga: "#FB8F67",
+  hajat: "#D95877",
   darkText: "#1E293B",
   greyText: "#64748B",
   lightBg: "#F8FAFC",

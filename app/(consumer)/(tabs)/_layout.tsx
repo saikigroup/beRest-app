@@ -6,7 +6,7 @@ export default function ConsumerTabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: { height: 64, paddingBottom: 8, paddingTop: 4 },
-        tabBarActiveTintColor: "#FF4600",
+        tabBarActiveTintColor: "#156064",
         tabBarInactiveTintColor: "#94A3B8",
         tabBarLabelStyle: { fontSize: 11 },
       }}

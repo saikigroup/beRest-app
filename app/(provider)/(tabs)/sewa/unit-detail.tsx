@@ -129,7 +129,7 @@ export default function UnitDetailScreen() {
           }} />
           {ktpScanLoading && (
             <View className="flex-row items-center mt-2">
-              <ActivityIndicator size="small" color="#3B82F6" />
+              <ActivityIndicator size="small" color="#00C49A" />
               <Text className="text-xs text-sewa ml-2">AI sedang baca KTP...</Text>
             </View>
           )}

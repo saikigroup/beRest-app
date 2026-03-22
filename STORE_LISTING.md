@@ -109,7 +109,7 @@ privacy@apick.id
 6. **Sharing** — Contoh share link ke WhatsApp
 
 ### Feature Graphic (1024x500)
-- Background navy (#1B3A5C)
+- Background navy (#2C7695)
 - Logo "apick" putih di tengah
 - Tagline "Life, well arranged." di bawah
 - 4 module color dots di bawah tagline

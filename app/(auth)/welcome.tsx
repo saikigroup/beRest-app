@@ -24,35 +24,35 @@ const SLIDES: SlideData[] = [
     title: "Apick",
     description:
       "Life, well arranged.\n\nKelola usaha, properti, komunitas, dan acara kamu — semua dalam satu aplikasi.",
-    color: "#1B3A5C",
+    color: "#2C7695",
   },
   {
     icon: "🏪",
     title: "Apick Lapak",
     description:
       "Catat penjualan, atur pelanggan, kirim tagihan.\nCocok buat warung, laundry, les privat, jasa.",
-    color: "#10B981",
+    color: "#50BFC3",
   },
   {
     icon: "🏠",
     title: "Apick Sewa",
     description:
       "Kelola kos, kontrakan, dan rental barang.\nTagihan otomatis, kontrak, data penghuni.",
-    color: "#3B82F6",
+    color: "#00C49A",
   },
   {
     icon: "👥",
     title: "Apick Warga",
     description:
       "Urus iuran RT/RW, kas mesjid, dan komunitas.\nTransparan, rapi, bisa di-share lewat WhatsApp.",
-    color: "#8B5CF6",
+    color: "#FB8F67",
   },
   {
     icon: "🎉",
     title: "Apick Hajat",
     description:
       "Bikin undangan digital, tracking RSVP, catat amplop.\nPernikahan, khitanan, syukuran — semua terdata.",
-    color: "#EC4899",
+    color: "#D95877",
   },
 ];
 

@@ -182,7 +182,7 @@ export default function ExpensesScreen() {
         </Text>
         {scanLoading ? (
           <View className="items-center py-8">
-            <ActivityIndicator size="large" color="#10B981" />
+            <ActivityIndicator size="large" color="#50BFC3" />
             <Text className="text-sm font-bold text-dark-text mt-3">AI sedang membaca nota...</Text>
             <Text className="text-xs text-grey-text mt-1">Tunggu sebentar</Text>
           </View>
