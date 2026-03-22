@@ -7,7 +7,6 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
 const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-const EXPO_PUSH_URL = "https://exp.host/--/api/v2/push/send";
 
 Deno.serve(async (_req) => {
   const supabase = createClient(supabaseUrl, supabaseKey);
@@ -44,41 +43,17 @@ Deno.serve(async (_req) => {
     if (!updateError) {
       archived++;
 
-      // Notify consumer (in-app + push)
-      const notifTitle = "Koneksi Diarsipkan";
-      const notifBody = `Koneksi dengan ${conn.notes ?? "provider"} sudah diarsipkan otomatis. Kamu bisa hubungkan kembali di Riwayat.`;
-
+      // Notify consumer (in-app notification)
+      // Push notification otomatis dikirim via database trigger (pg_net)
       await supabase.from("notifications").insert({
         user_id: conn.consumer_id,
         provider_id: conn.provider_id,
         module: conn.module,
         type: "announcement",
-        title: notifTitle,
-        body: notifBody,
+        title: "Koneksi Diarsipkan",
+        body: `Koneksi dengan ${conn.notes ?? "provider"} sudah diarsipkan otomatis. Kamu bisa hubungkan kembali di Riwayat.`,
         is_read: false,
       });
-
-      // Send push notification
-      const { data: tokens } = await supabase
-        .from("push_tokens")
-        .select("token")
-        .eq("user_id", conn.consumer_id);
-
-      if (tokens?.length) {
-        await fetch(EXPO_PUSH_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(
-            tokens.map((t) => ({
-              to: t.token,
-              sound: "default",
-              title: notifTitle,
-              body: notifBody,
-              data: {},
-            }))
-          ),
-        }).catch(() => {});
-      }
     }
   }
 

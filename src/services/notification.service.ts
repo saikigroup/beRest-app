@@ -131,33 +131,6 @@ export async function createNotification(params: {
   });
 
   if (error) throw error;
-
-  // Send push notification to device (fire-and-forget)
-  sendPush({
-    userIds: [params.userId],
-    title: params.title,
-    body: params.body,
-    deepLink: params.deepLink,
-  }).catch((err) =>
-    console.warn("[Apick] Push send failed:", err)
-  );
-}
-
-/** Send push to multiple users via Supabase Edge Function */
-export async function sendPush(params: {
-  userIds: string[];
-  title: string;
-  body?: string;
-  deepLink?: string;
-}): Promise<void> {
-  const { error } = await supabase.functions.invoke("send-push", {
-    body: {
-      user_ids: params.userIds,
-      title: params.title,
-      body: params.body ?? "",
-      data: params.deepLink ? { deep_link: params.deepLink } : {},
-    },
-  });
-
-  if (error) throw error;
+  // Push notification dikirim otomatis via database trigger (pg_net)
+  // Tidak perlu panggil Edge Function
 }
