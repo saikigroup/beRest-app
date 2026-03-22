@@ -17,6 +17,7 @@ interface ButtonProps extends TouchableOpacityProps {
   fullWidth?: boolean;
   icon?: React.ReactNode;
   size?: 'sm' | 'md' | 'lg';
+  textColor?: string;
 }
 
 const sizeConfig = {
@@ -32,6 +33,7 @@ export function Button({
   fullWidth = true,
   icon,
   size = 'lg',
+  textColor: customTextColor,
   disabled,
   style,
   ...props
@@ -175,11 +177,11 @@ export function Button({
       {...props}
     >
       {loading ? (
-        <ActivityIndicator color={cfg2.loaderColor} />
+        <ActivityIndicator color={customTextColor ?? cfg2.loaderColor} />
       ) : (
         <>
           {icon}
-          <Text style={{ ...cfg.text, color: cfg2.textColor }}>{title}</Text>
+          <Text style={{ ...cfg.text, color: customTextColor ?? cfg2.textColor }}>{title}</Text>
         </>
       )}
     </TouchableOpacity>

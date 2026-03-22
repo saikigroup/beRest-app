@@ -202,6 +202,7 @@ export default function WelcomeScreen() {
               <Button
                 title="Sudah punya akun? Masuk"
                 variant="ghost"
+                textColor="#FFFFFF"
                 onPress={() => router.push('/(auth)/login')}
                 style={{ borderWidth: 1.5, borderColor: 'rgba(255,255,255,0.3)' }}
               />
@@ -214,6 +215,7 @@ export default function WelcomeScreen() {
               <Button
                 title="Lewati"
                 variant="ghost"
+                textColor="#FFFFFF"
                 onPress={() =>
                   scrollRef.current?.scrollTo({
                     x: (SLIDES.length - 1) * width,

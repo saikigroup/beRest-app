@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -114,9 +114,13 @@ export default function RegisterScreen() {
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={{ flex: 1, justifyContent: 'flex-end', paddingHorizontal: SPACING.lg, paddingBottom: insets.bottom + SPACING.lg }}>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end', paddingHorizontal: SPACING.lg, paddingBottom: insets.bottom + SPACING.lg }}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
           {error ? (
             <View style={{ backgroundColor: '#FEE2E2', borderRadius: RADIUS.md, padding: 12, marginBottom: SPACING.md }}>
               <Text style={{ ...TYPO.caption, color: '#DC2626', textAlign: 'center' }}>{error}</Text>
@@ -205,7 +209,7 @@ export default function RegisterScreen() {
               <Text style={{ color: '#2C7695', fontWeight: '700' }}>Masuk</Text>
             </Text>
           </TouchableOpacity>
-        </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );

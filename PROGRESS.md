@@ -6,6 +6,7 @@
 
 ## MODIFICATIONS LOG
 | Date | Files Modified | Reason |
+| 2026-03-22 | app/(auth)/login.tsx, app/(auth)/register.tsx, src/components/ui/Button.tsx, app/(auth)/welcome.tsx | Fix Android keyboard dismiss bug (ScrollView+keyboardShouldPersistTaps+KAV behavior height), fix Lewati ghost button contrast on dark bg (textColor prop) |
 | 2026-03-22 | app/(provider)/(tabs)/hajat/event-detail.tsx, app/(consumer)/lapak/student.tsx, [bizId].tsx, laundry-track.tsx, app/(consumer)/sewa/[unitId].tsx, rental.tsx, app/(consumer)/warga/[orgId].tsx, jadwal.tsx, app/(consumer)/hajat/index.tsx, app/(consumer)/riwayat/index.tsx, app/edit-profile.tsx, app/linked-accounts.tsx, app/(provider)/analytics.tsx | UI redesign: glassmorphism + flat vector. Replaced SafeAreaView+className with View+insets+inline styles. Gradient headers, glass cards, SVG icons, theme system (GRADIENTS, GLASS, RADIUS, TYPO, SPACING). |
 | 2026-03-22 | app/(provider)/(tabs)/warga/org-detail.tsx, members.tsx, dues.tsx, finance.tsx, announcements.tsx, jadwal.tsx, infaq.tsx, fundraising.tsx | UI redesign: glassmorphism + flat vector. Replaced SafeAreaView+className with View+insets+inline styles. Gradient headers, glass cards, SVG icons, theme system (GRADIENTS, GLASS, RADIUS, TYPO, SPACING). |
 | 2026-03-22 | app/(provider)/(tabs)/sewa/prop-detail.tsx, unit-detail.tsx, billing.tsx, contracts.tsx, vacant.tsx, maintenance.tsx, rental.tsx | UI redesign: glassmorphism + flat vector. Replaced SafeAreaView+className with View+insets+inline styles. Gradient headers, glass cards, SVG icons, theme system. |
