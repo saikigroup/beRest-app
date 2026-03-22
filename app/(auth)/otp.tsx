@@ -3,11 +3,19 @@ import { View, Text, TextInput } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "@components/ui/Button";
-import { verifyOtp, signInWithPhone } from "@services/auth.service";
+import { verifyOtp, verifyEmailOtp, signInWithPhone, signInWithEmail } from "@services/auth.service";
 import { useUIStore } from "@stores/ui.store";
 
 export default function OtpScreen() {
-  const { phone } = useLocalSearchParams<{ phone: string }>();
+  const { phone, email, via } = useLocalSearchParams<{
+    phone?: string;
+    email?: string;
+    via?: "phone" | "email";
+  }>();
+
+  const isEmail = via === "email";
+  const destination = isEmail ? email : phone;
+
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -46,7 +54,11 @@ export default function OtpScreen() {
 
     setLoading(true);
     setError("");
-    const { error: authError } = await verifyOtp(phone ?? "", token);
+
+    const { error: authError } = isEmail
+      ? await verifyEmailOtp(email ?? "", token)
+      : await verifyOtp(phone ?? "", token);
+
     setLoading(false);
 
     if (authError) {
@@ -59,8 +71,15 @@ export default function OtpScreen() {
 
   async function handleResend() {
     if (resendCooldown > 0) return;
-    await signInWithPhone(phone ?? "");
-    showToast("Kode OTP baru dikirim via WhatsApp!", "success");
+
+    if (isEmail) {
+      await signInWithEmail(email ?? "");
+      showToast("Kode OTP baru dikirim ke email!", "success");
+    } else {
+      await signInWithPhone(phone ?? "");
+      showToast("Kode OTP baru dikirim via WhatsApp!", "success");
+    }
+
     setResendCooldown(60);
     const interval = setInterval(() => {
       setResendCooldown((c) => {
@@ -73,6 +92,8 @@ export default function OtpScreen() {
     }, 1000);
   }
 
+  const channelText = isEmail ? "email" : "WhatsApp";
+
   return (
     <SafeAreaView className="flex-1 bg-light-bg">
       <View className="flex-1 px-6 justify-between">
@@ -82,7 +103,7 @@ export default function OtpScreen() {
             Masukkan Kode OTP
           </Text>
           <Text className="text-sm text-grey-text mt-2">
-            Kode 6 digit sudah dikirim via WhatsApp ke {phone}
+            Kode 6 digit sudah dikirim via {channelText} ke {destination}
           </Text>
 
           {/* OTP inputs */}

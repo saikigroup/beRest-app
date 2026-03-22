@@ -4,12 +4,16 @@ import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "@components/ui/Button";
 import { Input } from "@components/ui/Input";
-import { signInWithGoogle, signInWithPhone } from "@services/auth.service";
+import { signInWithGoogle, signInWithPhone, signInWithEmail } from "@services/auth.service";
 import { formatPhoneE164 } from "@utils/format";
 import { useUIStore } from "@stores/ui.store";
 
+type AuthTab = "phone" | "email";
+
 export default function RegisterScreen() {
+  const [activeTab, setActiveTab] = useState<AuthTab>("phone");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
@@ -23,7 +27,6 @@ export default function RegisterScreen() {
     if (authError) {
       setError("Daftar dengan Google gagal. Coba lagi ya.");
     }
-    // Auth state change will handle navigation to onboarding
   }
 
   async function handlePhoneRegister() {
@@ -46,7 +49,31 @@ export default function RegisterScreen() {
     showToast("Kode OTP sudah dikirim!", "success");
     router.push({
       pathname: "/(auth)/otp",
-      params: { phone: formatted, mode: "register" },
+      params: { phone: formatted, mode: "register", via: "phone" },
+    });
+  }
+
+  async function handleEmailRegister() {
+    const trimmed = email.trim().toLowerCase();
+    if (!trimmed || !trimmed.includes("@")) {
+      setError("Masukkan alamat email yang valid ya");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    const { error: authError } = await signInWithEmail(trimmed);
+    setLoading(false);
+
+    if (authError) {
+      setError(authError.message ?? "Gagal kirim kode OTP ke email. Coba lagi ya.");
+      return;
+    }
+
+    showToast("Kode OTP sudah dikirim ke email!", "success");
+    router.push({
+      pathname: "/(auth)/otp",
+      params: { email: trimmed, mode: "register", via: "email" },
     });
   }
 
@@ -87,24 +114,68 @@ export default function RegisterScreen() {
             </Text>
           ) : null}
 
-          <Input
-            placeholder="contoh: 08123456789"
-            value={phone}
-            onChangeText={(text) => {
-              setPhone(text.replace(/\D/g, ""));
-              setError("");
-            }}
-            keyboardType="phone-pad"
-            label="Nomor HP"
-          />
-
-          <View className="mt-4">
-            <Button
-              title="Daftar dengan Nomor HP"
-              onPress={handlePhoneRegister}
-              loading={loading}
-            />
+          {/* Tab switcher: HP / Email */}
+          <View className="flex-row bg-white rounded-lg border border-border-color mb-4">
+            <TouchableOpacity
+              className={`flex-1 py-2.5 rounded-lg items-center ${activeTab === "phone" ? "bg-navy" : ""}`}
+              onPress={() => { setActiveTab("phone"); setError(""); }}
+            >
+              <Text className={`text-sm font-bold ${activeTab === "phone" ? "text-white" : "text-grey-text"}`}>
+                Nomor HP
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className={`flex-1 py-2.5 rounded-lg items-center ${activeTab === "email" ? "bg-navy" : ""}`}
+              onPress={() => { setActiveTab("email"); setError(""); }}
+            >
+              <Text className={`text-sm font-bold ${activeTab === "email" ? "text-white" : "text-grey-text"}`}>
+                Email
+              </Text>
+            </TouchableOpacity>
           </View>
+
+          {activeTab === "phone" ? (
+            <>
+              <Input
+                placeholder="contoh: 08123456789"
+                value={phone}
+                onChangeText={(text) => {
+                  setPhone(text.replace(/\D/g, ""));
+                  setError("");
+                }}
+                keyboardType="phone-pad"
+                label="Nomor HP"
+              />
+              <View className="mt-4">
+                <Button
+                  title="Daftar dengan Nomor HP"
+                  onPress={handlePhoneRegister}
+                  loading={loading}
+                />
+              </View>
+            </>
+          ) : (
+            <>
+              <Input
+                placeholder="contoh: nama@email.com"
+                value={email}
+                onChangeText={(text) => {
+                  setEmail(text);
+                  setError("");
+                }}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                label="Alamat Email"
+              />
+              <View className="mt-4">
+                <Button
+                  title="Daftar dengan Email"
+                  onPress={handleEmailRegister}
+                  loading={loading}
+                />
+              </View>
+            </>
+          )}
 
           <View className="flex-row items-center my-5">
             <View className="flex-1 h-px bg-border-color" />
