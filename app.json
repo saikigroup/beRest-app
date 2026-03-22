@@ -18,6 +18,7 @@
     },
     "android": {
       "package": "id.apick.app",
+      "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "backgroundColor": "#2C7695",
         "foregroundImage": "./assets/android-icon-foreground.png",
