@@ -24,7 +24,14 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [{ "scheme": "apick", "host": "auth", "pathPrefix": "/callback" }],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,15 +41,23 @@
       "expo-sharing",
       [
         "expo-camera",
-        { "cameraPermission": "Izinkan Apick mengakses kamera untuk scan QR Code dan foto" }
+        {
+          "cameraPermission": "Izinkan Apick mengakses kamera untuk scan QR Code dan foto"
+        }
       ],
       [
         "expo-notifications",
-        { "icon": "./assets/notification-icon.png", "color": "#156064" }
-      ]
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#156064"
+        }
+      ],
+      "expo-web-browser"
     ],
     "extra": {
-      "eas": { "projectId": "4087ef4e-a903-468d-b293-d9652dc925a1" }
+      "eas": {
+        "projectId": "4087ef4e-a903-468d-b293-d9652dc925a1"
+      }
     }
   }
 }

@@ -50,7 +50,7 @@ export default function OtpScreen() {
     setLoading(false);
 
     if (authError) {
-      setError("Kode OTP salah. Cek lagi ya.");
+      setError(authError.message ?? "Kode OTP salah. Cek lagi ya.");
       return;
     }
 
@@ -61,7 +61,7 @@ export default function OtpScreen() {
     if (resendCooldown > 0) return;
     await signInWithPhone(phone ?? "");
     showToast("Kode OTP baru sudah dikirim!", "success");
-    setResendCooldown(30);
+    setResendCooldown(60);
     const interval = setInterval(() => {
       setResendCooldown((c) => {
         if (c <= 1) {

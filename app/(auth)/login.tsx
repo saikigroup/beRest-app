@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "@components/ui/Button";
 import { Input } from "@components/ui/Input";
 import { signInWithGoogle, signInWithPhone } from "@services/auth.service";
+import { formatPhoneE164 } from "@utils/format";
 import { useUIStore } from "@stores/ui.store";
 
 export default function LoginScreen() {
@@ -32,12 +33,12 @@ export default function LoginScreen() {
 
     setLoading(true);
     setError("");
-    const formatted = phone.startsWith("0") ? `+62${phone.slice(1)}` : phone;
+    const formatted = formatPhoneE164(phone);
     const { error: authError } = await signInWithPhone(formatted);
     setLoading(false);
 
     if (authError) {
-      setError("Gagal kirim kode OTP. Cek nomor HP kamu ya.");
+      setError(authError.message ?? "Gagal kirim kode OTP. Cek nomor HP kamu ya.");
       return;
     }
 
