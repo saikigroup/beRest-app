@@ -3,16 +3,20 @@ import { supabase } from "./supabase";
 import type { Notification } from "@app-types/consumer.types";
 import type { ModuleKey } from "@app-types/shared.types";
 
-// Configure notification handler
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-    shouldShowBanner: true,
-    shouldShowList: true,
-  }),
-});
+// Configure notification handler (wrapped in try-catch to prevent crash on init)
+try {
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+      shouldShowBanner: true,
+      shouldShowList: true,
+    }),
+  });
+} catch (error) {
+  console.warn("[Apick] Notification handler init failed:", error);
+}
 
 /** Register push token with Supabase */
 export async function registerPushToken(userId: string): Promise<void> {
