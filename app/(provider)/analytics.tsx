@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
 import { router } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import Svg, { Path } from "react-native-svg";
 import { Card } from "@components/ui/Card";
 import { Badge } from "@components/ui/Badge";
+import { ModuleIcon } from "@components/ui/ModuleIcon";
 import { useAuthStore } from "@stores/auth.store";
 import { useModulesStore } from "@stores/modules.store";
 import {
@@ -14,6 +17,7 @@ import {
 } from "@services/analytics.service";
 import type { AnalyticsSummary, AnalyticsMetric } from "@services/analytics.service";
 import { MODULE_COLORS } from "@utils/colors";
+import { GRADIENTS, RADIUS, TYPO, SPACING } from "@utils/theme";
 import type { ModuleKey } from "@app-types/shared.types";
 
 const FETCH_MAP: Record<ModuleKey, (userId: string) => Promise<AnalyticsSummary>> = {
@@ -23,12 +27,21 @@ const FETCH_MAP: Record<ModuleKey, (userId: string) => Promise<AnalyticsSummary>
   hajat: getHajatAnalytics,
 };
 
-const MODULE_ICONS: Record<ModuleKey, string> = {
-  lapak: "🏪",
-  sewa: "🏠",
-  warga: "👥",
-  hajat: "🎉",
-};
+function BackIcon({ size = 20, color = "#FFFFFF" }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path d="M15 19L8 12L15 5" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}
+
+function ChartIcon({ size = 48, color = "#94A3B8" }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path d="M18 20V10M12 20V4M6 20V14" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}
 
 function TrendBadge({ metric }: { metric: AnalyticsMetric }) {
   if (!metric.trend || metric.trend === "flat") return null;
@@ -42,6 +55,7 @@ function TrendBadge({ metric }: { metric: AnalyticsMetric }) {
 }
 
 export default function AnalyticsScreen() {
+  const insets = useSafeAreaInsets();
   const session = useAuthStore((s) => s.session);
   const activeModules = useModulesStore((s) => s.activeModules);
   const [summaries, setSummaries] = useState<AnalyticsSummary[]>([]);
@@ -71,72 +85,88 @@ export default function AnalyticsScreen() {
   }, [session?.user.id, activeModules]);
 
   return (
-    <SafeAreaView className="flex-1 bg-light-bg" edges={["top"]}>
-      <View className="flex-row items-center px-4 py-3 border-b border-border-color bg-white">
-        <TouchableOpacity onPress={() => router.back()} hitSlop={12}>
-          <Text className="text-lg text-navy">←</Text>
-        </TouchableOpacity>
-        <Text className="text-lg font-bold text-dark-text ml-3">
-          Analitik
-        </Text>
-      </View>
+    <View style={{ flex: 1, backgroundColor: "#F8FAFC" }}>
+      {/* Gradient Header */}
+      <LinearGradient
+        colors={GRADIENTS.primary}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={{ paddingTop: insets.top + SPACING.sm, paddingBottom: SPACING.lg, paddingHorizontal: SPACING.md }}
+      >
+        <View style={{ flexDirection: "row", alignItems: "center", gap: SPACING.md }}>
+          <TouchableOpacity onPress={() => router.back()} hitSlop={12}>
+            <BackIcon size={22} color="#FFFFFF" />
+          </TouchableOpacity>
+          <Text style={{ ...TYPO.h3, color: "#FFFFFF" }}>Analitik</Text>
+        </View>
+      </LinearGradient>
 
-      <ScrollView className="flex-1 px-4 pt-3">
+      <ScrollView style={{ flex: 1, paddingHorizontal: SPACING.md, paddingTop: SPACING.md }}>
         {loading ? (
-          <View className="items-center py-16">
+          <View style={{ alignItems: "center", paddingVertical: SPACING.xxl * 1.5 }}>
             <ActivityIndicator size="large" color="#2C7695" />
-            <Text className="text-sm text-grey-text mt-3">
+            <Text style={{ ...TYPO.body, color: "#64748B", marginTop: SPACING.md }}>
               Memuat analitik...
             </Text>
           </View>
         ) : summaries.length === 0 ? (
-          <View className="items-center py-16">
-            <Text className="text-4xl mb-3">📊</Text>
-            <Text className="text-base font-bold text-grey-text">
+          <View style={{ alignItems: "center", paddingVertical: SPACING.xxl * 1.5 }}>
+            <ChartIcon size={48} color="#94A3B8" />
+            <Text style={{ ...TYPO.bodyBold, color: "#64748B", marginTop: SPACING.md }}>
               Belum ada data
             </Text>
-            <Text className="text-sm text-grey-text mt-1 text-center">
+            <Text style={{ ...TYPO.caption, color: "#64748B", marginTop: SPACING.xs, textAlign: "center" }}>
               Aktifkan modul dan mulai catat transaksi
             </Text>
           </View>
         ) : (
           summaries.map((summary) => (
-            <View key={summary.module} className="mb-4">
+            <View key={summary.module} style={{ marginBottom: SPACING.lg }}>
               {/* Module header */}
-              <View className="flex-row items-center mb-2">
-                <Text className="text-xl mr-2">
-                  {MODULE_ICONS[summary.module]}
-                </Text>
+              <View style={{ flexDirection: "row", alignItems: "center", marginBottom: SPACING.sm, gap: SPACING.sm }}>
+                <View style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: RADIUS.md,
+                  backgroundColor: `${MODULE_COLORS[summary.module]}15`,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                  <ModuleIcon module={summary.module} size={20} />
+                </View>
                 <Text
-                  className="text-base font-bold"
-                  style={{ color: MODULE_COLORS[summary.module] }}
+                  style={{ ...TYPO.bodyBold, color: MODULE_COLORS[summary.module] }}
                 >
                   {summary.label}
                 </Text>
               </View>
 
               {summary.metrics.length === 0 ? (
-                <Card>
-                  <Text className="text-sm text-grey-text text-center">
+                <Card variant="glass">
+                  <Text style={{ ...TYPO.body, color: "#64748B", textAlign: "center" }}>
                     Belum ada data untuk modul ini
                   </Text>
                 </Card>
               ) : (
-                <Card>
+                <Card variant="glass">
                   {summary.metrics.map((metric, idx) => (
                     <View
                       key={metric.key}
-                      className={`flex-row items-center justify-between ${
-                        idx < summary.metrics.length - 1
-                          ? "pb-3 mb-3 border-b border-border-color"
-                          : ""
-                      }`}
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        paddingBottom: idx < summary.metrics.length - 1 ? SPACING.md : 0,
+                        marginBottom: idx < summary.metrics.length - 1 ? SPACING.md : 0,
+                        borderBottomWidth: idx < summary.metrics.length - 1 ? 1 : 0,
+                        borderBottomColor: "#E2E8F0",
+                      }}
                     >
-                      <Text className="text-sm text-grey-text flex-1">
+                      <Text style={{ ...TYPO.body, color: "#64748B", flex: 1 }}>
                         {metric.label}
                       </Text>
-                      <View className="flex-row items-center">
-                        <Text className="text-base font-bold text-dark-text mr-2">
+                      <View style={{ flexDirection: "row", alignItems: "center", gap: SPACING.sm }}>
+                        <Text style={{ ...TYPO.bodyBold, color: "#1E293B" }}>
                           {metric.formatted}
                         </Text>
                         <TrendBadge metric={metric} />
@@ -148,7 +178,9 @@ export default function AnalyticsScreen() {
             </View>
           ))
         )}
+
+        <View style={{ height: SPACING.xxl }} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
