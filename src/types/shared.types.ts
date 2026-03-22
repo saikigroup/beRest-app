@@ -6,13 +6,17 @@ export type SubscriptionTier = "free" | "starter" | "pro";
 
 export type BillingCycle = "monthly" | "annual";
 
+export type AuthMethod = "phone" | "email" | "google";
+
 export interface Profile {
   id: string;
   full_name: string | null;
   phone: string | null;
+  email: string | null;
   avatar_url: string | null;
   role: UserRole;
   active_modules: ModuleKey[];
+  linked_auth_methods: AuthMethod[];
   subscription_tier: SubscriptionTier;
   billing_cycle: BillingCycle | null;
   subscription_expires_at: string | null;

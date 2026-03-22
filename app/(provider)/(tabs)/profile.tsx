@@ -93,6 +93,11 @@ export default function ProviderProfileScreen() {
                 {profile.phone}
               </Text>
             )}
+            {profile?.email && (
+              <Text className="text-sm text-grey-text mt-0.5">
+                {profile.email}
+              </Text>
+            )}
             <View className="flex-row mt-2">
               <Badge
                 label={role === "both" ? "Pengelola & Pengguna" : role === "provider" ? "Pengelola" : "Pengguna"}
@@ -180,6 +185,22 @@ export default function ProviderProfileScreen() {
               {session?.user.id.slice(0, 8)}...
             </Text>
           </View>
+        </Card>
+
+        {/* Linked auth methods */}
+        <Card>
+          <TouchableOpacity
+            className="flex-row items-center justify-between"
+            onPress={() => router.push("/linked-accounts")}
+          >
+            <View>
+              <Text className="text-sm font-bold text-dark-text">Metode Login</Text>
+              <Text className="text-xs text-grey-text mt-0.5">
+                Kelola cara masuk ke akun kamu
+              </Text>
+            </View>
+            <Text className="text-grey-text text-lg">{">"}</Text>
+          </TouchableOpacity>
         </Card>
 
         {/* Logout */}

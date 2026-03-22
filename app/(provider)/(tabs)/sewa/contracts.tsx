@@ -101,7 +101,7 @@ export default function ContractsScreen() {
       await createContract(profile.id, {
         unit_id: null, contact_id: null, consumer_id: null, type: "sewa",
         title: `Kontrak ${tenantName.trim()} - ${propName.trim()}`,
-        content_json: JSON.stringify({ text: generatedText }),
+        content_json: { text: generatedText },
         start_date: new Date().toISOString(), end_date: null,
       });
       showToast("Kontrak disimpan!", "success");

@@ -158,6 +158,7 @@ export default function RootLayout() {
               <Stack.Screen name="(provider)" />
               <Stack.Screen name="(consumer)" />
               <Stack.Screen name="connect" />
+              <Stack.Screen name="linked-accounts" />
             </Stack>
           </AuthInitializer>
         </QueryClientProvider>

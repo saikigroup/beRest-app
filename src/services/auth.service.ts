@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import type { Profile } from "@app-types/shared.types";
+import type { Profile, AuthMethod } from "@app-types/shared.types";
 import * as WebBrowser from "expo-web-browser";
 import { makeRedirectUri } from "expo-auth-session";
 
@@ -7,6 +7,8 @@ WebBrowser.maybeCompleteAuthSession();
 
 const WEB_CLIENT_ID =
   "598472364540-8el2ldsh0lql0qf5js7hlgk3l0s3omjj.apps.googleusercontent.com";
+
+// ─── Google OAuth ───────────────────────────────────────────────
 
 export async function signInWithGoogle() {
   try {
@@ -58,6 +60,8 @@ export async function signInWithGoogle() {
   }
 }
 
+// ─── Phone OTP (WhatsApp/SMS) ───────────────────────────────────
+
 export async function signInWithPhone(phone: string) {
   const { data, error } = await supabase.auth.signInWithOtp({ phone });
   if (error) {
@@ -67,7 +71,9 @@ export async function signInWithPhone(phone: string) {
     } else if (msg.includes("invalid") && msg.includes("phone")) {
       error.message = "Format nomor HP tidak valid. Coba pakai format 08xx.";
     } else if (msg.includes("not authorized") || msg.includes("unverified")) {
-      error.message = "Nomor ini belum bisa menerima SMS. Hubungi admin.";
+      error.message = "Nomor ini belum bisa menerima OTP. Hubungi admin.";
+    } else if (msg.includes("whatsapp") || msg.includes("twilio")) {
+      error.message = "Gagal kirim OTP via WhatsApp. Pastikan nomor terdaftar di WhatsApp.";
     }
   }
   return { data, error };
@@ -89,6 +95,128 @@ export async function verifyOtp(phone: string, token: string) {
   }
   return { data, error };
 }
+
+// ─── Email OTP ──────────────────────────────────────────────────
+
+export async function signInWithEmail(email: string) {
+  const { data, error } = await supabase.auth.signInWithOtp({ email });
+  if (error) {
+    const msg = error.message?.toLowerCase() ?? "";
+    if (msg.includes("rate limit") || msg.includes("too many")) {
+      error.message = "Terlalu sering kirim kode. Tunggu beberapa menit ya.";
+    } else if (msg.includes("invalid") && msg.includes("email")) {
+      error.message = "Format email tidak valid. Cek lagi ya.";
+    }
+  }
+  return { data, error };
+}
+
+export async function verifyEmailOtp(email: string, token: string) {
+  const { data, error } = await supabase.auth.verifyOtp({
+    email,
+    token,
+    type: "email",
+  });
+  if (error) {
+    const msg = error.message?.toLowerCase() ?? "";
+    if (msg.includes("expired")) {
+      error.message = "Kode OTP sudah kedaluwarsa. Kirim ulang ya.";
+    } else if (msg.includes("invalid") || msg.includes("token")) {
+      error.message = "Kode OTP salah. Cek lagi ya.";
+    }
+  }
+  return { data, error };
+}
+
+// ─── Account Linking ────────────────────────────────────────────
+
+export async function linkPhone(phone: string) {
+  const { data, error } = await supabase.auth.updateUser({ phone });
+  if (error) {
+    const msg = error.message?.toLowerCase() ?? "";
+    if (msg.includes("already") || msg.includes("exists")) {
+      error.message = "Nomor HP ini sudah dipakai akun lain.";
+    } else {
+      error.message = "Gagal menghubungkan nomor HP. Coba lagi ya.";
+    }
+  }
+  return { data, error };
+}
+
+export async function verifyPhoneLink(phone: string, token: string) {
+  const { data, error } = await supabase.auth.verifyOtp({
+    phone,
+    token,
+    type: "phone_change",
+  });
+  if (error) {
+    const msg = error.message?.toLowerCase() ?? "";
+    if (msg.includes("expired")) {
+      error.message = "Kode OTP sudah kedaluwarsa. Kirim ulang ya.";
+    } else if (msg.includes("invalid") || msg.includes("token")) {
+      error.message = "Kode OTP salah. Cek lagi ya.";
+    }
+  }
+  return { data, error };
+}
+
+export async function linkEmail(email: string) {
+  const { data, error } = await supabase.auth.updateUser({ email });
+  if (error) {
+    const msg = error.message?.toLowerCase() ?? "";
+    if (msg.includes("already") || msg.includes("exists")) {
+      error.message = "Email ini sudah dipakai akun lain.";
+    } else {
+      error.message = "Gagal menghubungkan email. Coba lagi ya.";
+    }
+  }
+  return { data, error };
+}
+
+export async function verifyEmailLink(email: string, token: string) {
+  const { data, error } = await supabase.auth.verifyOtp({
+    email,
+    token,
+    type: "email_change",
+  });
+  if (error) {
+    const msg = error.message?.toLowerCase() ?? "";
+    if (msg.includes("expired")) {
+      error.message = "Kode OTP sudah kedaluwarsa. Kirim ulang ya.";
+    } else if (msg.includes("invalid") || msg.includes("token")) {
+      error.message = "Kode OTP salah. Cek lagi ya.";
+    }
+  }
+  return { data, error };
+}
+
+export async function linkGoogle() {
+  // Google linking uses the same OAuth flow, Supabase merges identities
+  return signInWithGoogle();
+}
+
+export async function getLinkedAuthMethods(_userId: string): Promise<AuthMethod[]> {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const methods: AuthMethod[] = [];
+
+  if (user.phone) methods.push("phone");
+  if (user.email) methods.push("email");
+
+  const hasGoogle = user.identities?.some((i) => i.provider === "google");
+  if (hasGoogle) methods.push("google");
+
+  return methods;
+}
+
+export async function syncLinkedMethods(userId: string) {
+  const methods = await getLinkedAuthMethods(userId);
+  await upsertProfile(userId, { linked_auth_methods: methods });
+  return methods;
+}
+
+// ─── Session / Profile ──────────────────────────────────────────
 
 export async function signOut() {
   const { error } = await supabase.auth.signOut();
